@@ -49,8 +49,8 @@ class SnackbarHelper {
         color: Colors.red,
         key: key,
       ),
-      colorText: AppTheme.of(ctx).textBlack,
-      backgroundColor: AppTheme.of(ctx).background,
+      colorText: AppTheme.of(ctx).black50,
+      backgroundColor: AppTheme.of(ctx).white,
       boxShadows: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.2),
@@ -82,8 +82,8 @@ class SnackbarHelper {
         color: Colors.amber,
         key: key,
       ),
-      colorText: AppTheme.of(ctx).textBlack,
-      backgroundColor: AppTheme.of(ctx).background,
+      colorText: AppTheme.of(ctx).black50,
+      backgroundColor: AppTheme.of(ctx).white,
       boxShadows: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.2),
@@ -115,8 +115,8 @@ class SnackbarHelper {
         color: Colors.green,
         key: key,
       ),
-      colorText: AppTheme.of(ctx).textBlack,
-      backgroundColor: AppTheme.of(ctx).background,
+      colorText: AppTheme.of(ctx).black50,
+      backgroundColor: AppTheme.of(ctx).white,
       boxShadows: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.2),
@@ -155,8 +155,8 @@ class SnackbarHelper {
             color: Colors.green,
             key: key,
           ),
-      colorText: colorText ?? AppTheme.of(ctx).textBlack,
-      backgroundColor: backgroundColor ?? AppTheme.of(ctx).background,
+      colorText: colorText ?? AppTheme.of(ctx).black50,
+      backgroundColor: backgroundColor ?? AppTheme.of(ctx).white,
       boxShadows: boxShadows ??
           [
             BoxShadow(

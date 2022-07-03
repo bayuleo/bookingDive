@@ -6,9 +6,9 @@ class AppDefaultTheme {
   static ThemeData theme(AppThemeData appThemeData) => ThemeData(
         textTheme: TextTheme(
           bodyText2: TextStyle(
-            color: appThemeData.textBlack,
+            color: appThemeData.black50,
             fontWeight: FontWeight.w400,
-            fontSize: 15,
+            fontSize: 16,
             height: 1.45,
           ),
         ),

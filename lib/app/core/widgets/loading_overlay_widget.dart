@@ -14,7 +14,7 @@ class LoadingOverlayWidget extends StatelessWidget with BaseWidgetMixin {
       height: SizeConfig().screenHeight,
       child: Center(
         child: CircularProgressIndicator(
-          color: theme.branding,
+          color: theme.main50,
         ),
       ),
     );

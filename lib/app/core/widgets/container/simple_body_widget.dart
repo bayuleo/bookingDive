@@ -15,7 +15,7 @@ class SimpleBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints.expand(),
-      color: AppTheme.of(context).background,
+      color: AppTheme.of(context).white,
       child: Stack(
         children: [
           // Positioned(

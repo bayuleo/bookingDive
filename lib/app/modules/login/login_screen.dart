@@ -16,7 +16,7 @@ class LoginScreen extends BaseView<LoginController> {
   @override
   Widget buildScreen(BuildContext context) {
     return Scaffold(
-      backgroundColor: theme.background,
+      backgroundColor: theme.white,
       appBar: AppBarWidget(
         titleText: "Login Screen",
       ),
@@ -56,11 +56,11 @@ class LoginScreen extends BaseView<LoginController> {
                   obsecure: !controller.isShownPassword,
                   rightIcon: controller.isShownPassword
                       ? Assets.icons.passwordShow.svg(
-                          color: theme.grey,
+                          color: theme.black10,
                           key: const ValueKey('password_visibility_off_icon'),
                         )
                       : Assets.icons.passwordHide.svg(
-                          color: theme.grey,
+                          color: theme.black10,
                           key: const ValueKey('password_visibility_on_icon'),
                         ),
                   rightIconKey: const ValueKey(
@@ -81,7 +81,7 @@ class LoginScreen extends BaseView<LoginController> {
                       onPressed: () {},
                       child: Text(
                         "Forgot password",
-                        style: TextStyle(color: theme.branding),
+                        style: TextStyle(color: theme.main50),
                       ),
                     ),
                   ],
@@ -98,7 +98,7 @@ class LoginScreen extends BaseView<LoginController> {
                   children: [
                     Text(
                       "Not registered yet?",
-                      style: TextStyle(color: theme.branding),
+                      style: TextStyle(color: theme.main50),
                     ),
                     TextButton(
                       key: const ValueKey('signup_button'),
@@ -111,7 +111,7 @@ class LoginScreen extends BaseView<LoginController> {
                       },
                       child: Text(
                         "Register",
-                        style: TextStyle(color: theme.branding),
+                        style: TextStyle(color: theme.main50),
                       ),
                     ),
                   ],

@@ -68,7 +68,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color defaultBorderColor = AppTheme.of(context).branding;
+    final Color defaultBorderColor = AppTheme.of(context).main50;
     return Container(
       margin: margin,
       child: Column(
@@ -106,7 +106,9 @@ class TextFieldWithLabelWidget extends StatelessWidget {
             textInputAction: textInputAction,
             onFieldSubmitted: (value) => onFieldSubmitted?.call(value),
             style: TextStyle(
-              color: enabled ? AppTheme.of(context).branding : Colors.grey,
+              color: enabled
+                  ? AppTheme.of(context).main50
+                  : AppTheme.of(context).black10,
               fontSize: 14,
             ),
             inputFormatters: inputFormatter,
@@ -116,14 +118,14 @@ class TextFieldWithLabelWidget extends StatelessWidget {
               counterText: '',
               isDense: true,
               filled: true,
-              fillColor: backgroundColor ?? AppTheme.of(context).background,
+              fillColor: backgroundColor ?? AppTheme.of(context).main50,
               contentPadding: contentPadding,
               hintText: hint ?? label,
               suffixIcon: _rightIcon(),
               prefixIcon: leftWidget,
               hintStyle: TextStyle(
                 fontSize: 14,
-                color: hintColor ?? AppTheme.of(context).branding,
+                color: hintColor ?? AppTheme.of(context).main50,
                 overflow: TextOverflow.ellipsis,
               ),
               errorMaxLines: 10,

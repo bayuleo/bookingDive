@@ -50,20 +50,20 @@ class ButtonWidget extends StatelessWidget {
                     ? null
                     : Border.all(
                         width: 1,
-                        color: AppTheme.of(context).branding,
+                        color: AppTheme.of(context).main50,
                       ),
               )
           : BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: AppTheme.of(context).lightGrey,
+              color: AppTheme.of(context).main50,
             ),
       child: Material(
         borderRadius: BorderRadius.circular(15),
         color: isFill
             ? (enabled
-                ? AppTheme.of(context).branding
-                : AppTheme.of(context).lightGrey)
-            : AppTheme.of(context).background,
+                ? AppTheme.of(context).main50
+                : AppTheme.of(context).main10)
+            : AppTheme.of(context).white,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
           highlightColor: Colors.transparent,
@@ -89,11 +89,11 @@ class ButtonWidget extends StatelessWidget {
                         TextStyle(
                           color: isFill
                               ? (enabled
-                                  ? Colors.white
-                                  : AppTheme.of(context).lightGrey)
+                                  ? AppTheme.of(context).black50
+                                  : AppTheme.of(context).black10)
                               : (enabled
-                                  ? AppTheme.of(context).branding
-                                  : AppTheme.of(context).lightGrey),
+                                  ? AppTheme.of(context).black50
+                                  : AppTheme.of(context).black10),
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                         ),
