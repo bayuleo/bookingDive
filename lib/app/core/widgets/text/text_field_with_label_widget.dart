@@ -106,7 +106,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
             textInputAction: textInputAction,
             onFieldSubmitted: (value) => onFieldSubmitted?.call(value),
             style: TextStyle(
-              color: enabled ? AppTheme.of(context).textBlack : Colors.grey,
+              color: enabled ? AppTheme.of(context).branding : Colors.grey,
               fontSize: 14,
             ),
             inputFormatters: inputFormatter,

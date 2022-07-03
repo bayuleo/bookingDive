@@ -55,9 +55,10 @@ class ValidatorHelper {
     if (input == null || input.trim().isEmpty) {
       return ValidatorResult.empty;
     }
-    return RegExp(passwordRegex).hasMatch(input)
-        ? ValidatorResult.valid
-        : ValidatorResult.invalid;
+    return ValidatorResult.valid;
+    // return RegExp(passwordRegex).hasMatch(input)
+    //     ? ValidatorResult.valid
+    //     : ValidatorResult.invalid;
   }
 
   static ValidatorResult validateNewPassword(

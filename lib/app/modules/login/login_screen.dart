@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../gen/assets.gen.dart';
 import '../../core/base/base_view.dart';
 import '../../core/utils/size_config.dart';
 import '../../core/utils/validator.dart';
@@ -42,7 +43,7 @@ class LoginScreen extends BaseView<LoginController> {
                   key: const ValueKey('login_username_text_field'),
                   label: "Username",
                   hint: "Please insert your username",
-                  // controller: controller.usernameController,
+                  controller: controller.usernameController,
                   keyboardType: TextInputType.text,
                   validator: validateUsername,
                 ),
@@ -50,23 +51,23 @@ class LoginScreen extends BaseView<LoginController> {
                   key: const ValueKey('login_password_text_field'),
                   label: "Password",
                   hint: "Please insert your password",
-                  // controller: controller.passwordController,
+                  controller: controller.passwordController,
                   keyboardType: TextInputType.text,
-                  // obsecure: !controller.isShownPassword,
-                  // rightIcon: controller.isShownPassword
-                  //     ? Assets.icons.passwordShow.svg(
-                  //         color: theme.grey,
-                  //         key: const ValueKey('password_visibility_off_icon'),
-                  //       )
-                  //     : Assets.icons.passwordHide.svg(
-                  //         color: theme.grey,
-                  //         key: const ValueKey('password_visibility_on_icon'),
-                  //       ),
+                  obsecure: !controller.isShownPassword,
+                  rightIcon: controller.isShownPassword
+                      ? Assets.icons.passwordShow.svg(
+                          color: theme.grey,
+                          key: const ValueKey('password_visibility_off_icon'),
+                        )
+                      : Assets.icons.passwordHide.svg(
+                          color: theme.grey,
+                          key: const ValueKey('password_visibility_on_icon'),
+                        ),
                   rightIconKey: const ValueKey(
                     'toggle_obscure_password_button',
                   ),
-                  // onTapRightIcon: controller.onTapShowPassword,
-                  // onChangedText: controller.onChangedText,
+                  onTapRightIcon: controller.onTapShowPassword,
+                  onChangedText: controller.onChangedText,
                   validator: validatePassword,
                 ),
                 Row(
@@ -90,7 +91,7 @@ class LoginScreen extends BaseView<LoginController> {
                   key: const ValueKey('login_button'),
                   text: "Login",
                   // enabled: controller.isEnabledLoginButton,
-                  onTap: () {},
+                  onTap: controller.login,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

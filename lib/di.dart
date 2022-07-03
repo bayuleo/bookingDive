@@ -1,3 +1,7 @@
+import 'package:bookingdive/app/bindings/local_source_bindings.dart';
+import 'package:bookingdive/app/bindings/remote_source_bindings.dart';
+import 'package:bookingdive/app/bindings/repository_bindings.dart';
+import 'package:bookingdive/app/network/endpoints.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
@@ -13,7 +17,11 @@ class DependencyInjection {
   static Future<void> init(Flavor flavor) async {
     await Get.putAsync(() => StorageService().init());
     await GetStorage.init();
+    RepositoryBindings().dependencies();
+    RemoteSourceBindings().dependencies();
+    LocalSourceBindings().dependencies();
     Get.lazyPut<DioConfigure>(() => DioConfigure(), fenix: true);
+    Get.lazyPut<Endpoints>(() => Endpoints(), fenix: true);
     Get.lazyPut<AppController>(() => AppControllerImpl(), fenix: true);
     Get.lazyPut<Logger>(
       () => Logger(

@@ -2,6 +2,7 @@
 
 A booking dive mobile project.
 
+
 <details>
     <summary><font size="5">Generator</font> </summary>
 
@@ -16,6 +17,38 @@ A booking dive mobile project.
 
 3. Use the generated models in `lib/app/data/model/`<br/>
    [Package Docs](https://pub.dev/packages/json_to_model)
+
+
+### Assets generator
+
+1. Copy icon/images files into `assets/icons` or `assets/images`...
+
+   ```
+   -- assets
+     -- icons
+       -- an_icon.svg
+     -- images
+       -- an_image.png
+   ```
+
+2. Run the following command<br/>
+
+   ```sh
+   flutter packages pub run build_runner build
+   ```
+
+3. Usage:<br/>
+
+   ```dart
+   import 'package:mantra_mobile/gen/assets.gen.dart';
+   // Display a svg
+   Assets.icons.anIcon.svg(),
+   // Display an image
+   Assets.images.anImage.image()
+   ```
+
+   [Package Docs](https://pub.dev/packages/flutter_gen)
+
 
 </details>
 

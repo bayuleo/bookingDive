@@ -1,16 +1,20 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../flavors/flavors.dart';
+import '../data/repository/user_credentials_repository.dart';
 
 class DioConfigure {
-  // static final UserCredentialsRepository _userCredentialsRepository = et.find();
+  static final UserCredentialsRepository _userCredentialsRepository =
+      Get.find();
 
   // contact with real API
   Dio dio = createDio();
 
-  // contact with AlMock API
-  Dio dioAlmock = createDio(true);
+  // contact with Mock API
+  Dio dioMock = createDio(true);
 
   final tokenDio = Dio(BaseOptions(baseUrl: FlavorConfigs.baseURL));
 
@@ -52,10 +56,10 @@ class DioConfigure {
   }
 
   void updateToken() {
-    // _addHeaderEntries({
-    //   'Authorization':
-    //   'Bearer ${_userCredentialsRepository.getCredentials().accessToken}',
-    // });
+    _addHeaderEntries({
+      'Authorization':
+          'Bearer ${_userCredentialsRepository.getCredentials().accessToken}',
+    });
   }
 
   void addOtp(String otp) {

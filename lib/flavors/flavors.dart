@@ -38,7 +38,7 @@ class FlavorConfigs {
   }
 
   static String get mockURL {
-    return 'https://example.id';
+    return 'https://62bdc842c5ad14c110c69ce7.mockapi.io';
   }
 
   static String get baseURL {

@@ -5,12 +5,14 @@ class AppThemeData {
   final Color textBlack;
   final Color background;
   final Color lightGrey;
+  final Color grey;
 
   const AppThemeData(
       {required this.branding,
       required this.textBlack,
       required this.lightGrey,
-      required this.background});
+      required this.background,
+      required this.grey});
 
   static AppThemeData get light {
     return const AppThemeData(
@@ -18,6 +20,7 @@ class AppThemeData {
       textBlack: Color(0x00000000),
       background: Color(0xFFFFFFFF),
       lightGrey: Color(0xFFa6a6a6),
+      grey: Color(0xFFABB3BB),
     );
   }
 
@@ -27,6 +30,7 @@ class AppThemeData {
       textBlack: Color(0x00000000),
       background: Color(0xFFFFFFFF),
       lightGrey: Color(0xFFa6a6a6),
+      grey: Color(0xFFABB3BB),
     );
   }
 }
