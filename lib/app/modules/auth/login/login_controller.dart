@@ -8,9 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../core/base/base_controller.dart';
-import '../../core/utils/app_focus.dart';
-import '../../core/utils/validator.dart';
+import '../../../core/base/base_controller.dart';
+import '../../../core/utils/app_focus.dart';
+import '../../../core/utils/validator.dart';
 
 class LoginController extends BaseController {
   final UserCredentialsRepository _userCredentialsRepository = Get.find();
@@ -19,6 +19,7 @@ class LoginController extends BaseController {
   bool isEnabledLoginButton = false;
   bool isShownPassword = false;
   bool isNewAccount = false;
+  bool isRememberMe = false;
 
   @override
   void onReady() {
@@ -61,9 +62,14 @@ class LoginController extends BaseController {
     );
   }
 
-  Future<void> _handleLoginGoogle() async {}
+  Future<void> handleLoginGoogle() async {}
 
-  Future<void> _handleLoginFB() async {}
+  Future<void> handleLoginFB() async {}
+
+  handleClickRememberMe() {
+    this.isRememberMe = !this.isRememberMe;
+    update();
+  }
 
   onChangedText(value) {
     if (ValidatorHelper.validateCommon(usernameController.text.trim()) ==

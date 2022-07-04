@@ -68,7 +68,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color defaultBorderColor = AppTheme.of(context).main50;
+    final Color defaultBorderColor = AppTheme.of(context).white;
     return Container(
       margin: margin,
       child: Column(
@@ -107,7 +107,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
             onFieldSubmitted: (value) => onFieldSubmitted?.call(value),
             style: TextStyle(
               color: enabled
-                  ? AppTheme.of(context).main50
+                  ? AppTheme.of(context).black70
                   : AppTheme.of(context).black10,
               fontSize: 14,
             ),
@@ -117,44 +117,47 @@ class TextFieldWithLabelWidget extends StatelessWidget {
             decoration: InputDecoration(
               counterText: '',
               isDense: true,
-              filled: true,
-              fillColor: backgroundColor ?? AppTheme.of(context).main50,
               contentPadding: contentPadding,
               hintText: hint ?? label,
               suffixIcon: _rightIcon(),
               prefixIcon: leftWidget,
               hintStyle: TextStyle(
                 fontSize: 14,
-                color: hintColor ?? AppTheme.of(context).main50,
+                color: hintColor ?? AppTheme.of(context).black30,
                 overflow: TextOverflow.ellipsis,
               ),
               errorMaxLines: 10,
-              disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: changeBorderColorOnFocus
-                      ? defaultBorderColor.withAlpha(200)
-                      : defaultBorderColor,
-                  width: 1,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: defaultBorderColor,
-                  width: 1,
-                ),
-              ),
+              // disabledBorder: OutlineInputBorder(
+              //   borderRadius: BorderRadius.circular(12),
+              //   borderSide: BorderSide(
+              //     color: changeBorderColorOnFocus
+              //         ? defaultBorderColor.withAlpha(200)
+              //         : defaultBorderColor,
+              //     width: 1,
+              //   ),
+              // ),
+              // enabledBorder: OutlineInputBorder(
+              //   borderRadius: BorderRadius.circular(12),
+              //   borderSide: BorderSide(
+              //     color: defaultBorderColor,
+              //     width: 1,
+              //   ),
+              // ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: changeBorderColorOnFocus
-                        ? Colors.grey.shade500
+                        ? AppTheme.of(context).black10
                         : defaultBorderColor,
                     width: 1),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                    color: changeBorderColorOnFocus
+                        ? AppTheme.of(context).black10
+                        : defaultBorderColor,
+                    width: 1),
+                borderRadius: BorderRadius.circular(8),
               ),
             ),
           ),

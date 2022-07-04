@@ -89,10 +89,10 @@ class ButtonWidget extends StatelessWidget {
                         TextStyle(
                           color: isFill
                               ? (enabled
-                                  ? AppTheme.of(context).black50
+                                  ? AppTheme.of(context).white
                                   : AppTheme.of(context).black10)
                               : (enabled
-                                  ? AppTheme.of(context).black50
+                                  ? AppTheme.of(context).white
                                   : AppTheme.of(context).black10),
                           fontSize: 15,
                           fontWeight: FontWeight.w700,

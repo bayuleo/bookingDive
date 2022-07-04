@@ -1,7 +1,7 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
-import '../modules/login/login_binding.dart';
-import '../modules/login/login_screen.dart';
+import '../modules/auth/login/login_binding.dart';
+import '../modules/auth/login/login_screen.dart';
 import '../modules/main/main_binding.dart';
 import '../modules/main/main_screen.dart';
 import '../modules/splash/splash_binding.dart';
