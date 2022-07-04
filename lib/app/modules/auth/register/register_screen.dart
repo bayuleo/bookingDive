@@ -1,17 +1,16 @@
-import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
-import 'package:bookingdive/app/core/widgets/button/button_image_widget.dart';
-import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/core/base/base_view.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
-import 'package:bookingdive/app/modules/auth/widgets/auth_body_widget.dart';
+import 'package:bookingdive/app/modules/auth/register/register_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../gen/assets.gen.dart';
-import '../../../core/base/base_view.dart';
-import '../../../core/utils/validator.dart';
-import 'login_controller.dart';
+import '../../../core/widgets/button/button_basic_widget.dart';
+import '../../../core/widgets/button/button_image_widget.dart';
+import '../../../core/widgets/text/text_basic_widget.dart';
+import '../widgets/auth_body_widget.dart';
 
-class LoginScreen extends BaseView<LoginController> {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends BaseView<RegisterController> {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget buildScreen(BuildContext context) {
@@ -29,10 +28,33 @@ class LoginScreen extends BaseView<LoginController> {
             padding: const EdgeInsets.symmetric(vertical: 24),
             child: Center(
               child: TextBasicWidget(
-                text: 'Sign in',
+                text: 'Register',
                 size: 32,
                 weight: FontWeight.w700,
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Row(
+              children: [
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: TextFormFieldOutlineWidget(
+                      hint: 'First name',
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: TextFormFieldOutlineWidget(
+                      hint: 'Last name',
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
@@ -49,42 +71,22 @@ class LoginScreen extends BaseView<LoginController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Checkbox(
-                        checkColor: theme.black10,
-                        focusColor: theme.black10,
-                        value: controller.isRememberMe,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        side: BorderSide(width: 1, color: theme.black10),
-                        onChanged: controller.handleClickRememberMe()),
-                    TextBasicWidget(text: 'Remember me'),
-                  ],
-                ),
-                GestureDetector(
-                  onTap: controller.handleCLickForgotPassword,
-                  child: TextBasicWidget(
-                    text: 'Forget password?',
-                    color: theme.main50,
-                    weight: FontWeight.w600,
-                  ),
-                ),
-              ],
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: TextFormFieldOutlineWidget(
+              hint: "Confirm password",
+              rightIcon: Assets.icons.passwordShow.svg(),
             ),
           ),
-          ButtonBasicWidget(
-            text: 'Sign In',
-            isFullWidht: true,
-            onTap: controller.handleClickLogin,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: ButtonBasicWidget(
+              text: 'Sign Up',
+              isFullWidht: true,
+              onTap: () {},
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.only(bottom: 24),
             child: Row(
               children: [
                 Expanded(
@@ -95,7 +97,7 @@ class LoginScreen extends BaseView<LoginController> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: TextBasicWidget(
-                    text: 'or continue with',
+                    text: 'or connect with',
                     color: theme.black30,
                   ),
                 ),
@@ -135,13 +137,13 @@ class LoginScreen extends BaseView<LoginController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextBasicWidget(
-                  text: 'Don’t have account? ',
+                  text: 'Already have an account? ',
                   color: theme.black30,
                 ),
                 GestureDetector(
-                  onTap: controller.handleClickRegister,
+                  onTap: controller.handleButtonLogin,
                   child: TextBasicWidget(
-                    text: 'Register',
+                    text: 'Login',
                     color: theme.main50,
                     weight: FontWeight.w600,
                   ),
@@ -152,23 +154,5 @@ class LoginScreen extends BaseView<LoginController> {
         ],
       ),
     );
-  }
-
-  validateUsername(value) {
-    final validatorResult = ValidatorHelper.validateCommon(value);
-    if (validatorResult == ValidatorResult.empty) {
-      return "Username required";
-    }
-    return null;
-  }
-
-  validatePassword(value) {
-    final validatorResult = ValidatorHelper.validatePassword(value);
-    if (validatorResult == ValidatorResult.empty) {
-      return "Password required";
-    } else if (validatorResult == ValidatorResult.invalid) {
-      return "Password invalid";
-    }
-    return null;
   }
 }

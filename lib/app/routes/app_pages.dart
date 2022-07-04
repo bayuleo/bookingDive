@@ -1,3 +1,11 @@
+import 'package:bookingdive/app/modules/auth/forgot_password/forgot_password_binding.dart';
+import 'package:bookingdive/app/modules/auth/forgot_password/forgot_password_screen.dart';
+import 'package:bookingdive/app/modules/auth/forgot_password_check_email/forgot_password_check_email_binding.dart';
+import 'package:bookingdive/app/modules/auth/forgot_password_check_email/forgot_password_check_email_screen.dart';
+import 'package:bookingdive/app/modules/auth/register/register_binding.dart';
+import 'package:bookingdive/app/modules/auth/register/register_screen.dart';
+import 'package:bookingdive/app/modules/auth/reset_password/reset_password_binding.dart';
+import 'package:bookingdive/app/modules/auth/reset_password/reset_password_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../modules/auth/login/login_binding.dart';
@@ -21,6 +29,26 @@ class AppPages {
       name: Routes.LOGIN,
       page: () => const LoginScreen(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: Routes.FORGOT_PASSWORD,
+      page: () => const ForgotPasswordScreen(),
+      binding: ForgotPasswordBinding(),
+    ),
+    GetPage(
+      name: Routes.FORGOT_PASSWORD_CHECK_EMAIL,
+      page: () => const ForgotPasswordCheckEmailScreen(),
+      binding: ForgotPasswordCheckEmailBinding(),
+    ),
+    GetPage(
+      name: Routes.RESET_PASSWORD,
+      page: () => const ResetPasswordScreen(),
+      binding: ResetPasswordBinding(),
+    ),
+    GetPage(
+      name: Routes.REGISTER,
+      page: () => const RegisterScreen(),
+      binding: RegisterBinding(),
     ),
     GetPage(
       name: Routes.MAIN_CONTENT,

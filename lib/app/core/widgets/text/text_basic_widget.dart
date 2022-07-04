@@ -7,6 +7,7 @@ class TextBasicWidget extends StatelessWidget {
   final Color? color;
   final double? size;
   final FontWeight? weight;
+  final TextAlign? textAlign;
 
   const TextBasicWidget({
     Key? key,
@@ -14,12 +15,14 @@ class TextBasicWidget extends StatelessWidget {
     this.color,
     this.size,
     this.weight,
+    this.textAlign,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: TextStyle(
         color: color == null ? AppTheme.of(context).black50 : color,
         fontSize: size == null ? 14 : size,

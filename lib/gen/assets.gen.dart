@@ -14,6 +14,10 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/amplop_icon.svg
+  SvgGenImage get amplopIcon =>
+      const SvgGenImage('assets/icons/amplop_icon.svg');
+
   /// File path: assets/icons/facebook_icon.svg
   SvgGenImage get facebookIcon =>
       const SvgGenImage('assets/icons/facebook_icon.svg');

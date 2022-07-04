@@ -35,8 +35,6 @@ class LoginController extends BaseController {
     print('login');
   }
 
-  void handleForgotPassword() {}
-
   Future<void> handleRegistrationStep() async {}
 
   Future<void> _handleLogin() async {
@@ -69,6 +67,18 @@ class LoginController extends BaseController {
   handleClickRememberMe() {
     this.isRememberMe = !this.isRememberMe;
     update();
+  }
+
+  handleCLickForgotPassword() {
+    Get.toNamed(Routes.FORGOT_PASSWORD);
+  }
+
+  handleClickLogin() {
+    Get.offAllNamed(Routes.MAIN_CONTENT);
+  }
+
+  handleClickRegister() {
+    Get.toNamed(Routes.REGISTER);
   }
 
   onChangedText(value) {
