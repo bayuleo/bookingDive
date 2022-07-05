@@ -16,42 +16,45 @@ class LoginController extends BaseController {
   final UserCredentialsRepository _userCredentialsRepository = Get.find();
   final AuthRepository _authRepository = Get.find();
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   bool isEnabledLoginButton = false;
   bool isShownPassword = false;
   bool isNewAccount = false;
   bool isRememberMe = false;
 
+  String? email;
+  String? token;
+  String? refreshToken;
+
   @override
-  void onReady() {
+  void onReady() async {
+    var credential = await _userCredentialsRepository.getCredentials();
+    email = credential.email;
+    token = credential.accessToken;
+    refreshToken = credential.refreshToken;
+    update();
     super.onReady();
-  }
-
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  void login() {
-    AppFocus.unfocus(Get.context!);
-    _handleLogin();
-    print('login');
   }
 
   Future<void> handleRegistrationStep() async {}
 
-  Future<void> _handleLogin() async {
+  Future<void> _handleLoginAPI() async {
     await callDataService<ResponseAuthSignIn>(
       () => _authRepository.signIn(
         RequestAuthSignIn(
-            username: usernameController.text.trim(),
-            password: usernameController.text.trim(),
-            rememberMe: true), // TODO update handle rememberMe
+          username: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        ),
       ),
       onSuccess: ((response) async {
         await _userCredentialsRepository.updateCredentials(
           UserCredentials(
-            isFirstLaunch: false,
+            // isFirstLaunch: false,
             accessToken: response.data.token,
             refreshToken: response.data.refreshToken,
-            username: usernameController.text.trim(),
+            email: emailController.text.trim(),
           ),
         );
         Get.find<DioConfigure>().updateToken();
@@ -64,25 +67,31 @@ class LoginController extends BaseController {
 
   Future<void> handleLoginFB() async {}
 
-  handleClickRememberMe() {
-    this.isRememberMe = !this.isRememberMe;
-    update();
-  }
+  // handleClickRememberMe() {
+  //   this.isRememberMe = !this.isRememberMe;
+  //   update();
+  // }
 
   handleCLickForgotPassword() {
     Get.toNamed(Routes.FORGOT_PASSWORD);
   }
 
   handleClickLogin() {
-    Get.offAllNamed(Routes.MAIN_CONTENT);
+    AppFocus.unfocus(Get.context!);
+    _handleLoginAPI();
   }
 
   handleClickRegister() {
     Get.toNamed(Routes.REGISTER);
   }
 
+  handleClickShowPassword() {
+    isShownPassword = !isShownPassword;
+    update();
+  }
+
   onChangedText(value) {
-    if (ValidatorHelper.validateCommon(usernameController.text.trim()) ==
+    if (ValidatorHelper.validateCommon(emailController.text.trim()) ==
             ValidatorResult.valid &&
         ValidatorHelper.validatePassword(passwordController.text.trim()) ==
             ValidatorResult.valid) {
@@ -100,7 +109,7 @@ class LoginController extends BaseController {
 
   @override
   void onClose() {
-    usernameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.onClose();
   }

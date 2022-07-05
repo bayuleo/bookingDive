@@ -26,10 +26,14 @@ class UserCredentialsDataSourceImpl implements UserCredentialsDataSource {
 
   @override
   Future<bool> clearToken() {
-    final credential = getUserCredentials();
-    return updateUserCredentials(
-      credential.copyWith(accessToken: null, refreshToken: null),
-    );
+    return _sharedPreferences.remove(key);
+    // final credential = getUserCredentials();
+    // return updateUserCredentials(
+    //   credential.copyWith(
+    //     accessToken: null,
+    //     refreshToken: null,
+    //   ),
+    // );
   }
 
   @override
@@ -48,7 +52,8 @@ class UserCredentialsDataSourceImpl implements UserCredentialsDataSource {
   UserCredentials getUserCredentials() {
     final rawCredentials = _sharedPreferences.getString(key);
     if (rawCredentials == null) {
-      return const UserCredentials(isFirstLaunch: true);
+      // return const UserCredentials(isFirstLaunch: true);
+      return const UserCredentials();
     } else {
       return UserCredentials.fromJson(
         jsonDecode(rawCredentials),

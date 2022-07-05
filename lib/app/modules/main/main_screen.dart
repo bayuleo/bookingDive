@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/base/base_view.dart';
@@ -13,7 +14,18 @@ class MainScreen extends BaseView<MainController> {
         title: Text("Main Screen"),
       ),
       body: Center(
-        child: Text("Main Body"),
+        child: Column(
+          children: [
+            Text("Main Body"),
+            Text("Email : ${controller.email}"),
+            Text("Token : ${controller.token}"),
+            Text("Refresh Token : ${controller.refreshToken}"),
+            ButtonBasicWidget(
+              text: 'Logout',
+              onTap: controller.handleButtonLogout,
+            )
+          ],
+        ),
       ),
     );
   }

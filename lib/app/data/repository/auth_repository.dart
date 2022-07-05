@@ -7,7 +7,9 @@ import 'package:get/get_core/src/get_main.dart';
 abstract class AuthRepository {
   Future<ResponseAuthSignIn> signIn(RequestAuthSignIn data);
 
-  Future<void> signOut();
+  Future<ResponseRegister> signUp(RequestRegister data);
+
+  Future<bool> signOut();
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -25,8 +27,14 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signOut() async {
-    await _authDataSource.signOut();
-    await _userCredentialsDataSource.clearToken();
+  Future<bool> signOut() async {
+    await _authDataSource.signOut(); //TODO integration logout
+    final res = await _userCredentialsDataSource.clearToken();
+    return res;
+  }
+
+  @override
+  Future<ResponseRegister> signUp(RequestRegister data) {
+    return _authDataSource.signUp(data);
   }
 }

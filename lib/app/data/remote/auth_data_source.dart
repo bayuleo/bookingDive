@@ -9,6 +9,8 @@ import 'package:get/get_core/src/get_main.dart';
 abstract class AuthDataSource {
   Future<ResponseAuthSignIn> signIn(RequestAuthSignIn data);
 
+  Future<ResponseRegister> signUp(RequestRegister data);
+
   Future<void> signOut();
 }
 
@@ -30,5 +32,16 @@ class AuthDataSourceImpl implements AuthDataSource {
     await Future.delayed(
       const Duration(seconds: 1),
     );
+  }
+
+  @override
+  Future<ResponseRegister> signUp(RequestRegister data) async {
+    var response = await dioConfigure.dioMock.post(
+      endpoints.auth.signup,
+      data: jsonEncode(
+        data.toJson(),
+      ),
+    );
+    return ResponseRegister.fromJson(response.data);
   }
 }

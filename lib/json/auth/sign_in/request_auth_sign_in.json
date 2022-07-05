@@ -1,5 +1,4 @@
 {
   "username": "string",
-  "password": "string",
-  "rememberMe": true
+  "password": "string"
 }

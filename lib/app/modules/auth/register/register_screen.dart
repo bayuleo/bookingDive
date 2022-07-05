@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/utils/validator.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
 import 'package:bookingdive/app/modules/auth/register/register_controller.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,8 @@ class RegisterScreen extends BaseView<RegisterController> {
     return AuthBodyWidget(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 24),
             child: Center(
               child: TextBasicWidget(
                 text: 'Register',
@@ -37,44 +38,68 @@ class RegisterScreen extends BaseView<RegisterController> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(
-              children: [
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
                 Flexible(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 8),
+                    padding: EdgeInsets.only(right: 8),
                     child: TextFormFieldOutlineWidget(
                       hint: 'First name',
+                      validator: TextFieldValidatorHelper.validateRequired,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChangedText: controller.onChangedText,
                     ),
                   ),
                 ),
                 Flexible(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: EdgeInsets.only(left: 8),
                     child: TextFormFieldOutlineWidget(
                       hint: 'Last name',
+                      validator: TextFieldValidatorHelper.validateRequired,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
             child: TextFormFieldOutlineWidget(
               hint: "Email",
+              validator: TextFieldValidatorHelper.validateEmail,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: TextFormFieldOutlineWidget(
               hint: "Password",
-              rightIcon: Assets.icons.passwordShow.svg(),
+              obsecure: !controller.isShownPassword,
+              rightIcon: controller.isShownPassword
+                  ? Assets.icons.passwordShow.svg()
+                  : Assets.icons.passwordHide.svg(),
+              onTapRightIcon: controller.handleClickShowPassword,
+              controller: controller.passwordController,
+              validator: TextFieldValidatorHelper.validatePassword,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: TextFormFieldOutlineWidget(
               hint: "Confirm password",
-              rightIcon: Assets.icons.passwordShow.svg(),
+              obsecure: !controller.isShownConfirmPassword,
+              rightIcon: controller.isShownConfirmPassword
+                  ? Assets.icons.passwordShow.svg()
+                  : Assets.icons.passwordHide.svg(),
+              onTapRightIcon: controller.handleClickShowConfirmPassword,
+              controller: controller.confirmPasswordController,
+              validator: (value) =>
+                  TextFieldValidatorHelper.validateConfirmPassword(
+                      controller.passwordController.text.trim(), value),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
           ),
           Padding(
@@ -82,7 +107,8 @@ class RegisterScreen extends BaseView<RegisterController> {
             child: ButtonBasicWidget(
               text: 'Sign Up',
               isFullWidht: true,
-              onTap: () {},
+              enable: controller.isEnabledRegisterButton,
+              onTap: controller.handleButtonRegister,
             ),
           ),
           Padding(
@@ -141,7 +167,7 @@ class RegisterScreen extends BaseView<RegisterController> {
                   color: theme.black30,
                 ),
                 GestureDetector(
-                  onTap: controller.handleButtonLogin,
+                  onTap: controller.handleButtonBackToLogin,
                   child: TextBasicWidget(
                     text: 'Login',
                     color: theme.main50,

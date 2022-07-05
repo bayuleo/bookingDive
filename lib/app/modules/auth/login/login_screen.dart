@@ -39,34 +39,40 @@ class LoginScreen extends BaseView<LoginController> {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: TextFormFieldOutlineWidget(
               hint: "Email",
+              controller: controller.emailController,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: TextFormFieldOutlineWidget(
               hint: "Password",
-              rightIcon: Assets.icons.passwordShow.svg(),
+              controller: controller.passwordController,
+              obsecure: !controller.isShownPassword,
+              onTapRightIcon: controller.handleClickShowPassword,
+              rightIcon: controller.isShownPassword
+                  ? Assets.icons.passwordShow.svg()
+                  : Assets.icons.passwordHide.svg(),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.only(top: 16, bottom: 24),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Row(
-                  children: [
-                    Checkbox(
-                        checkColor: theme.black10,
-                        focusColor: theme.black10,
-                        value: controller.isRememberMe,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        side: BorderSide(width: 1, color: theme.black10),
-                        onChanged: controller.handleClickRememberMe()),
-                    TextBasicWidget(text: 'Remember me'),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Checkbox(
+                //         checkColor: theme.black10,
+                //         focusColor: theme.black10,
+                //         value: controller.isRememberMe,
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(4),
+                //         ),
+                //         side: BorderSide(width: 1, color: theme.black10),
+                //         onChanged: controller.handleClickRememberMe()),
+                //     TextBasicWidget(text: 'Remember me'),
+                //   ],
+                // ),
                 GestureDetector(
                   onTap: controller.handleCLickForgotPassword,
                   child: TextBasicWidget(
@@ -149,6 +155,9 @@ class LoginScreen extends BaseView<LoginController> {
               ],
             ),
           ),
+          Text("Email : ${controller.email}"),
+          Text("Token : ${controller.token}"),
+          Text("Refresh Token : ${controller.refreshToken}"),
         ],
       ),
     );

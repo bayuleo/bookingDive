@@ -6,16 +6,31 @@ class TextFormFieldOutlineWidget extends StatelessWidget {
   final String? hint;
   final Widget? rightIcon;
   final Function? onTapRightIcon;
-  const TextFormFieldOutlineWidget({
-    Key? key,
-    this.hint,
-    this.rightIcon,
-    this.onTapRightIcon,
-  }) : super(key: key);
+  final Function? validator;
+  final Function? onChangedText;
+  final TextEditingController? controller;
+  final AutovalidateMode? autovalidateMode;
+  final bool obsecure;
+  const TextFormFieldOutlineWidget(
+      {Key? key,
+      this.hint,
+      this.obsecure = false,
+      this.controller,
+      this.rightIcon,
+      this.onChangedText,
+      this.onTapRightIcon,
+      this.autovalidateMode,
+      this.validator})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
+      obscureText: obsecure,
+      autovalidateMode: autovalidateMode,
+      validator: (value) => validator?.call(value),
+      onChanged: (value) => onChangedText?.call(value),
       decoration: InputDecoration(
         hintText: hint,
         suffixIcon: _rightIcon(),

@@ -8,8 +8,10 @@ class Endpoints {
 
 class AuthEndpoint {
   final String signin;
+  final String signup;
 
   AuthEndpoint({
     this.signin = '/login',
+    this.signup = '/register',
   });
 }

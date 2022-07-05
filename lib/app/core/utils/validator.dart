@@ -51,10 +51,11 @@ class ValidatorHelper {
   }
 
   static ValidatorResult validatePassword(String? input,
-      [int minLength = 8, int maxLength = 15]) {
+      [int minLength = 6, int maxLength = 20]) {
     if (input == null || input.trim().isEmpty) {
       return ValidatorResult.empty;
     }
+    if (input.length < minLength) return ValidatorResult.invalid;
     return ValidatorResult.valid;
     // return RegExp(passwordRegex).hasMatch(input)
     //     ? ValidatorResult.valid
@@ -86,9 +87,9 @@ class ValidatorHelper {
         confirmPassword.trim().isEmpty) {
       return ValidatorResult.empty;
     }
-    if (!RegExp(passwordRegex).hasMatch(confirmPassword)) {
-      return ValidatorResult.invalid;
-    }
+    // if (!RegExp(passwordRegex).hasMatch(confirmPassword)) {
+    //   return ValidatorResult.invalid;
+    // }
     if (password == confirmPassword) {
       return ValidatorResult.valid;
     }
@@ -136,7 +137,13 @@ class ValidatorHelper {
 }
 
 class TextFieldValidatorHelper {
-  static validateFullName(value) {
+  static validateRequired(value) {
+    final validatorResult = ValidatorHelper.validateCommon(value);
+    if (validatorResult == ValidatorResult.empty) return "Required";
+    return null;
+  }
+
+  static validateName(value) {
     final validatorResult = ValidatorHelper.validateStringOnlyAlphabet(value);
     if (validatorResult == ValidatorResult.empty ||
         validatorResult == ValidatorResult.invalid) {
@@ -159,7 +166,7 @@ class TextFieldValidatorHelper {
   static validateEmail(value) {
     final validatorResult = ValidatorHelper.validateEmail(value);
     if (validatorResult == ValidatorResult.empty) {
-      return "Email required";
+      return "Required";
     }
     if (validatorResult == ValidatorResult.invalid) {
       return "Email invalid";
@@ -170,10 +177,10 @@ class TextFieldValidatorHelper {
   static validatePassword(value) {
     final validatorResult = ValidatorHelper.validatePassword(value);
     if (validatorResult == ValidatorResult.empty) {
-      return "Password required";
+      return "Required";
     }
     if (validatorResult == ValidatorResult.invalid) {
-      return "Password invalid";
+      return "Minimum 6 characters";
     }
     return null;
   }
@@ -182,7 +189,7 @@ class TextFieldValidatorHelper {
     final validatorResult =
         ValidatorHelper.validateConfirmPassword(password, confirmPassword);
     if (validatorResult == ValidatorResult.empty) {
-      return "Confirm password required";
+      return "Required";
     }
     if (validatorResult == ValidatorResult.invalid) {
       return "Confirm password invalid";
