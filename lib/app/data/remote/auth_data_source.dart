@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 abstract class AuthDataSource {
+  Future<ResponseForgotPassword> forgotPassword(RequestForgotPassword data);
+
   Future<ResponseAuthSignIn> signIn(RequestAuthSignIn data);
 
   Future<ResponseRegister> signUp(RequestRegister data);
@@ -43,5 +45,17 @@ class AuthDataSourceImpl implements AuthDataSource {
       ),
     );
     return ResponseRegister.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseForgotPassword> forgotPassword(
+      RequestForgotPassword data) async {
+    var response = await dioConfigure.dioMock.post(
+      endpoints.auth.forgotPassword,
+      data: jsonEncode(
+        data.toJson(),
+      ),
+    );
+    return ResponseForgotPassword.fromJson(response.data);
   }
 }

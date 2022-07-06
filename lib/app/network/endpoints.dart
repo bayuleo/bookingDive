@@ -9,9 +9,11 @@ class Endpoints {
 class AuthEndpoint {
   final String signin;
   final String signup;
+  final String forgotPassword;
 
   AuthEndpoint({
     this.signin = '/login',
     this.signup = '/register',
+    this.forgotPassword = '/forgot',
   });
 }

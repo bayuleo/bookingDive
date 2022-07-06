@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 abstract class AuthRepository {
+  Future<ResponseForgotPassword> forgotPassword(RequestForgotPassword data);
+
   Future<ResponseAuthSignIn> signIn(RequestAuthSignIn data);
 
   Future<ResponseRegister> signUp(RequestRegister data);
@@ -36,5 +38,10 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<ResponseRegister> signUp(RequestRegister data) {
     return _authDataSource.signUp(data);
+  }
+
+  @override
+  Future<ResponseForgotPassword> forgotPassword(RequestForgotPassword data) {
+    return _authDataSource.forgotPassword(data);
   }
 }

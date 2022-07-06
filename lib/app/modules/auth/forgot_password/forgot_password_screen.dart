@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/utils/validator.dart';
 import 'package:bookingdive/app/modules/auth/widgets/auth_body_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -36,6 +37,9 @@ class ForgotPasswordScreen extends BaseView<ForgotPasswordController> {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: TextFormFieldOutlineWidget(
               hint: "Email",
+              validator: TextFieldValidatorHelper.validateEmail,
+              controller: controller.emailController,
+              onChangedText: controller.onChangedText,
             ),
           ),
           Padding(
@@ -43,6 +47,7 @@ class ForgotPasswordScreen extends BaseView<ForgotPasswordController> {
             child: ButtonBasicWidget(
               text: 'Reset Password',
               isFullWidht: true,
+              enable: controller.isEnableButton,
               onTap: controller.handleSubmitResetPasswordButton,
             ),
           ),

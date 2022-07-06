@@ -83,12 +83,13 @@ class RegisterController extends BaseController {
             ValidatorResult.valid &&
         ValidatorHelper.validateCommon(emailController.text.trim()) ==
             ValidatorResult.valid &&
-        ValidatorHelper.validateCommon(passwordController.text.trim()) ==
-            ValidatorResult.valid &&
-        ValidatorHelper.validateCommon(confirmPasswordController.text.trim()) ==
-            ValidatorResult.valid &&
-        ValidatorHelper.validatePassword(passwordController.text.trim()) ==
-            ValidatorResult.valid) {
+        TextFieldValidatorHelper.validatePassword(
+                passwordController.text.trim()) ==
+            null &&
+        TextFieldValidatorHelper.validateConfirmPassword(
+                passwordController.text.trim(),
+                confirmPasswordController.text.trim()) ==
+            null) {
       isEnabledRegisterButton = true;
     } else {
       isEnabledRegisterButton = false;

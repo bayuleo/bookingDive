@@ -39,7 +39,7 @@ class RegisterScreen extends BaseView<RegisterController> {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Flexible(
                   child: Padding(
                     padding: EdgeInsets.only(right: 8),
@@ -47,6 +47,7 @@ class RegisterScreen extends BaseView<RegisterController> {
                       hint: 'First name',
                       validator: TextFieldValidatorHelper.validateRequired,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: controller.firstNameController,
                       onChangedText: controller.onChangedText,
                     ),
                   ),
@@ -58,18 +59,22 @@ class RegisterScreen extends BaseView<RegisterController> {
                       hint: 'Last name',
                       validator: TextFieldValidatorHelper.validateRequired,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChangedText: controller.onChangedText,
+                      controller: controller.lastNameController,
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
             child: TextFormFieldOutlineWidget(
               hint: "Email",
               validator: TextFieldValidatorHelper.validateEmail,
               autovalidateMode: AutovalidateMode.onUserInteraction,
+              onChangedText: controller.onChangedText,
+              controller: controller.emailController,
             ),
           ),
           Padding(
@@ -81,6 +86,7 @@ class RegisterScreen extends BaseView<RegisterController> {
                   ? Assets.icons.passwordShow.svg()
                   : Assets.icons.passwordHide.svg(),
               onTapRightIcon: controller.handleClickShowPassword,
+              onChangedText: controller.onChangedText,
               controller: controller.passwordController,
               validator: TextFieldValidatorHelper.validatePassword,
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -95,6 +101,7 @@ class RegisterScreen extends BaseView<RegisterController> {
                   ? Assets.icons.passwordShow.svg()
                   : Assets.icons.passwordHide.svg(),
               onTapRightIcon: controller.handleClickShowConfirmPassword,
+              onChangedText: controller.onChangedText,
               controller: controller.confirmPasswordController,
               validator: (value) =>
                   TextFieldValidatorHelper.validateConfirmPassword(

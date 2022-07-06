@@ -1,3 +1,6 @@
+export 'auth/forgot_password/response_forgot_password.dart';
+export 'auth/forgot_password/response_forgot_password_data.dart';
+export 'auth/forgot_password/request_forgot_password.dart';
 export 'auth/sign_in/request_auth_sign_in.dart';
 export 'auth/sign_in/response_auth_sign_in_data.dart';
 export 'auth/sign_in/response_auth_sign_in.dart';
