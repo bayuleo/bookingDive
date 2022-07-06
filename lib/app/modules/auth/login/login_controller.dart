@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/core/configs/firebase_config.dart';
 import 'package:bookingdive/app/core/model/user_credentials.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/auth_repository.dart';
@@ -63,9 +64,15 @@ class LoginController extends BaseController {
     );
   }
 
-  Future<void> handleLoginGoogle() async {}
+  Future<void> handleLoginGoogle() async {
+    var test = await FirebaseConfig.signInWithGoogle();
+    print('test');
+  }
 
-  Future<void> handleLoginFB() async {}
+  Future<void> handleLoginFB() async {
+    var test = await FirebaseConfig.signInWithFacebook();
+    print('test');
+  }
 
   // handleClickRememberMe() {
   //   this.isRememberMe = !this.isRememberMe;

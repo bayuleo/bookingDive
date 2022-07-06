@@ -1,4 +1,4 @@
-package com.bookingdive.bookingdive
+package com.nilevia.bookingdive
 
 import io.flutter.embedding.android.FlutterActivity
 

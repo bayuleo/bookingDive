@@ -120,7 +120,7 @@ class LoginScreen extends BaseView<LoginController> {
                   padding: const EdgeInsets.only(right: 12),
                   child: ButtonImageWidget(
                     image: Assets.icons.googleIcon.svg(),
-                    onTap: () {},
+                    onTap: controller.handleLoginGoogle,
                   ),
                 ),
               ),
@@ -129,7 +129,7 @@ class LoginScreen extends BaseView<LoginController> {
                   padding: const EdgeInsets.only(left: 12),
                   child: ButtonImageWidget(
                     image: Assets.icons.facebookIcon.svg(),
-                    onTap: () {},
+                    onTap: controller.handleLoginFB,
                   ),
                 ),
               ),

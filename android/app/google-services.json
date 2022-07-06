@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "660688921378",
+    "project_id": "bookingdive-8888",
+    "storage_bucket": "bookingdive-8888.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660688921378:android:8659b900302fa6f47e7b7b",
+        "android_client_info": {
+          "package_name": "com.nilevia.bookingdive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660688921378-h177l5961ir74bjaeitrg2hsqrgd65oq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nilevia.bookingdive",
+            "certificate_hash": "8f9ebe7999dc8df1c14b2ce620330d7b07d5034d"
+          }
+        },
+        {
+          "client_id": "660688921378-qtgh9pjij1aio29aeirb1f8c41q80r3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbSaaAH0yqJk-p4v3CUUhOhUuNv1krr8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660688921378-qtgh9pjij1aio29aeirb1f8c41q80r3l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660688921378-e13srj2lqb98350ob13hg08inu52r7ud.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bookingdive.bookingdive"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

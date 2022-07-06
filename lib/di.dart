@@ -10,6 +10,7 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/app_controller.dart';
+import 'app/core/configs/firebase_config.dart';
 import 'app/network/dio_config.dart';
 import 'flavors/flavors.dart';
 
@@ -20,6 +21,7 @@ class DependencyInjection {
     RepositoryBindings().dependencies();
     RemoteSourceBindings().dependencies();
     LocalSourceBindings().dependencies();
+    await FirebaseConfig.registerNotification();
     Get.lazyPut<DioConfigure>(() => DioConfigure(), fenix: true);
     Get.lazyPut<Endpoints>(() => Endpoints(), fenix: true);
     Get.lazyPut<AppController>(() => AppControllerImpl(), fenix: true);
