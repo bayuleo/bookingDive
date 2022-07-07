@@ -96,4 +96,8 @@ class FirebaseConfig {
     // Once signed in, return the UserCredential
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
+
+  static Future<void> signOutFirebase() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }

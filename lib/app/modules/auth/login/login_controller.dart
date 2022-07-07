@@ -65,13 +65,27 @@ class LoginController extends BaseController {
   }
 
   Future<void> handleLoginGoogle() async {
-    var test = await FirebaseConfig.signInWithGoogle();
-    print('test');
+    var response = await FirebaseConfig.signInWithGoogle();
+    await _userCredentialsRepository.updateCredentials(
+      UserCredentials(
+        accessToken: response.credential?.token.toString(),
+        refreshToken: '',
+        email: response.user?.email,
+      ),
+    );
+    Get.offAllNamed(Routes.MAIN_CONTENT);
   }
 
   Future<void> handleLoginFB() async {
-    var test = await FirebaseConfig.signInWithFacebook();
-    print('test');
+    var response = await FirebaseConfig.signInWithFacebook();
+    await _userCredentialsRepository.updateCredentials(
+      UserCredentials(
+        accessToken: response.credential?.token.toString(),
+        refreshToken: '',
+        email: response.user?.email,
+      ),
+    );
+    Get.offAllNamed(Routes.MAIN_CONTENT);
   }
 
   // handleClickRememberMe() {

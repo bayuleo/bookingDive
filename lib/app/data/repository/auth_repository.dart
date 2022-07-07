@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/core/configs/firebase_config.dart';
 import 'package:bookingdive/app/data/local/user_credentials_data_source.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/remote/auth_data_source.dart';
@@ -31,6 +32,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<bool> signOut() async {
     await _authDataSource.signOut(); //TODO integration logout
+    FirebaseConfig.signOutFirebase();
     final res = await _userCredentialsDataSource.clearToken();
     return res;
   }
