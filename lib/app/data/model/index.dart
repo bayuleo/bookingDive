@@ -4,6 +4,7 @@ export 'auth/forgot_password/request_forgot_password.dart';
 export 'auth/sign_in/request_auth_sign_in.dart';
 export 'auth/sign_in/response_auth_sign_in_data.dart';
 export 'auth/sign_in/response_auth_sign_in.dart';
+export 'auth/sign_in/response_auth_sign_in_data_profile.dart';
 export 'auth/register/request_register.dart';
 export 'auth/register/response_register_data.dart';
 export 'auth/register/response_register.dart';

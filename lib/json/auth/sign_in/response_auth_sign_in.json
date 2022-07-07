@@ -1,4 +1,6 @@
 {
-  "message": "$../../common/message",
-  "data": "$./response_auth_sign_in_data"
+  "message": "Login Sucessfully",
+  "error?": "string",
+  "datas": "$./response_auth_sign_in_data",
+  "id": "1"
 }

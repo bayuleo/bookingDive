@@ -13,7 +13,7 @@ class SplashController extends BaseController {
 
   Future<void> startAppHandler() async {
     await Future.delayed(const Duration(milliseconds: 2000));
-    Get.offAllNamed(Routes.LOGIN);
+    Get.offAllNamed(Routes.MAIN_CONTENT);
     // } else {
     // final credential = _userCredentialsRepository.getCredentials();
     // if (credential.isFirstLaunch) {

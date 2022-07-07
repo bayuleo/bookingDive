@@ -18,6 +18,17 @@ class $AssetsIconsGen {
   SvgGenImage get amplopIcon =>
       const SvgGenImage('assets/icons/amplop_icon.svg');
 
+  /// File path: assets/icons/date_icon.svg
+  SvgGenImage get dateIcon => const SvgGenImage('assets/icons/date_icon.svg');
+
+  /// File path: assets/icons/destination_icon.svg
+  SvgGenImage get destinationIcon =>
+      const SvgGenImage('assets/icons/destination_icon.svg');
+
+  /// File path: assets/icons/down_stroke_icon.svg
+  SvgGenImage get downStrokeIcon =>
+      const SvgGenImage('assets/icons/down_stroke_icon.svg');
+
   /// File path: assets/icons/facebook_icon.svg
   SvgGenImage get facebookIcon =>
       const SvgGenImage('assets/icons/facebook_icon.svg');
@@ -26,6 +37,13 @@ class $AssetsIconsGen {
   SvgGenImage get googleIcon =>
       const SvgGenImage('assets/icons/google_icon.svg');
 
+  /// File path: assets/icons/home_icon.svg
+  SvgGenImage get homeIcon => const SvgGenImage('assets/icons/home_icon.svg');
+
+  /// File path: assets/icons/home_inactive_icon.svg
+  SvgGenImage get homeInactiveIcon =>
+      const SvgGenImage('assets/icons/home_inactive_icon.svg');
+
   /// File path: assets/icons/password_hide.svg
   SvgGenImage get passwordHide =>
       const SvgGenImage('assets/icons/password_hide.svg');
@@ -33,10 +51,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/password_show.svg
   SvgGenImage get passwordShow =>
       const SvgGenImage('assets/icons/password_show.svg');
+
+  /// File path: assets/icons/person_icon.svg
+  SvgGenImage get personIcon =>
+      const SvgGenImage('assets/icons/person_icon.svg');
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/banner_home.png
+  AssetGenImage get bannerHome =>
+      const AssetGenImage('assets/images/banner_home.png');
 
   /// File path: assets/images/login_banner.png
   AssetGenImage get loginBanner =>

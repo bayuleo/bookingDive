@@ -23,8 +23,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ResponseAuthSignIn> signIn(RequestAuthSignIn dataRequest) async {
     final res = await _authDataSource.signIn(dataRequest);
     await _userCredentialsDataSource.saveToken(
-      refreshToken: res.data.refreshToken,
-      accessToken: res.data.token,
+      refreshToken: res.datas.refreshToken,
+      accessToken: res.datas.accessToken,
     );
     return res;
   }

@@ -9,40 +9,54 @@ class ResponseAuthSignIn {
 
   const ResponseAuthSignIn({
     required this.message,
-    required this.data,
+    this.error,
+    required this.datas,
+    required this.id,
   });
 
-  final Message message;
-  final ResponseAuthSignInData data;
+  final String message;
+  final String? error;
+  final ResponseAuthSignInData datas;
+  final String id;
 
   factory ResponseAuthSignIn.fromJson(Map<String,dynamic> json) => ResponseAuthSignIn(
-    message: Message.fromJson(json['message'] as Map<String, dynamic>),
-    data: ResponseAuthSignInData.fromJson(json['data'] as Map<String, dynamic>)
+    message: json['message'].toString(),
+    error: json['error']?.toString(),
+    datas: ResponseAuthSignInData.fromJson(json['datas'] as Map<String, dynamic>),
+    id: json['id'].toString()
   );
   
   Map<String, dynamic> toJson() => {
-    'message': message.toJson(),
-    'data': data.toJson()
+    'message': message,
+    'error': error,
+    'datas': datas.toJson(),
+    'id': id
   };
 
   ResponseAuthSignIn clone() => ResponseAuthSignIn(
-    message: message.clone(),
-    data: data.clone()
+    message: message,
+    error: error,
+    datas: datas.clone(),
+    id: id
   );
 
 
   ResponseAuthSignIn copyWith({
-    Message? message,
-    ResponseAuthSignInData? data
+    String? message,
+    Optional<String?>? error,
+    ResponseAuthSignInData? datas,
+    String? id
   }) => ResponseAuthSignIn(
     message: message ?? this.message,
-    data: data ?? this.data,
+    error: checkOptional(error, () => this.error),
+    datas: datas ?? this.datas,
+    id: id ?? this.id,
   );
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseAuthSignIn && message == other.message && data == other.data;
+    || other is ResponseAuthSignIn && message == other.message && error == other.error && datas == other.datas && id == other.id;
 
   @override
-  int get hashCode => message.hashCode ^ data.hashCode;
+  int get hashCode => message.hashCode ^ error.hashCode ^ datas.hashCode ^ id.hashCode;
 }

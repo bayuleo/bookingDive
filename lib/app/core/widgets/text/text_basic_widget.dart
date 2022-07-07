@@ -13,7 +13,7 @@ class TextBasicWidget extends StatelessWidget {
     Key? key,
     this.text = '',
     this.color,
-    this.size,
+    this.size = 14,
     this.weight,
     this.textAlign,
   }) : super(key: key);
@@ -25,7 +25,7 @@ class TextBasicWidget extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         color: color == null ? AppTheme.of(context).black50 : color,
-        fontSize: size == null ? 14 : size,
+        fontSize: size,
         fontWeight: weight == null ? FontWeight.normal : weight,
       ),
     );

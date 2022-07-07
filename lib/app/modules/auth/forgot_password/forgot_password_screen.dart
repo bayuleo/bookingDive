@@ -23,8 +23,8 @@ class ForgotPasswordScreen extends BaseView<ForgotPasswordController> {
     return AuthBodyWidget(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 24),
             child: Center(
               child: TextBasicWidget(
                 text: 'Forgot Password',
@@ -38,6 +38,7 @@ class ForgotPasswordScreen extends BaseView<ForgotPasswordController> {
             child: TextFormFieldOutlineWidget(
               hint: "Email",
               validator: TextFieldValidatorHelper.validateEmail,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: controller.emailController,
               onChangedText: controller.onChangedText,
             ),

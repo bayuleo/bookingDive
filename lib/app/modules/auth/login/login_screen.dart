@@ -1,13 +1,13 @@
-import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
-import 'package:bookingdive/app/core/widgets/button/button_image_widget.dart';
-import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
-import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
-import 'package:bookingdive/app/modules/auth/widgets/auth_body_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../core/base/base_view.dart';
 import '../../../core/utils/validator.dart';
+import '../../../core/widgets/button/button_basic_widget.dart';
+import '../../../core/widgets/button/button_image_widget.dart';
+import '../../../core/widgets/text/text_basic_widget.dart';
+import '../../../core/widgets/text/text_field_outline_widget.dart';
+import '../widgets/auth_body_widget.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends BaseView<LoginController> {
@@ -25,8 +25,8 @@ class LoginScreen extends BaseView<LoginController> {
     return AuthBodyWidget(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 24),
             child: Center(
               child: TextBasicWidget(
                 text: 'Sign in',
@@ -40,6 +40,9 @@ class LoginScreen extends BaseView<LoginController> {
             child: TextFormFieldOutlineWidget(
               hint: "Email",
               controller: controller.emailController,
+              validator: TextFieldValidatorHelper.validateEmail,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              onChangedText: controller.onChangedText,
             ),
           ),
           Padding(
@@ -47,6 +50,9 @@ class LoginScreen extends BaseView<LoginController> {
             child: TextFormFieldOutlineWidget(
               hint: "Password",
               controller: controller.passwordController,
+              validator: TextFieldValidatorHelper.validateRequired,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              onChangedText: controller.onChangedText,
               obsecure: !controller.isShownPassword,
               onTapRightIcon: controller.handleClickShowPassword,
               rightIcon: controller.isShownPassword
@@ -59,20 +65,6 @@ class LoginScreen extends BaseView<LoginController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                // Row(
-                //   children: [
-                //     Checkbox(
-                //         checkColor: theme.black10,
-                //         focusColor: theme.black10,
-                //         value: controller.isRememberMe,
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(4),
-                //         ),
-                //         side: BorderSide(width: 1, color: theme.black10),
-                //         onChanged: controller.handleClickRememberMe()),
-                //     TextBasicWidget(text: 'Remember me'),
-                //   ],
-                // ),
                 GestureDetector(
                   onTap: controller.handleCLickForgotPassword,
                   child: TextBasicWidget(
@@ -87,6 +79,7 @@ class LoginScreen extends BaseView<LoginController> {
           ButtonBasicWidget(
             text: 'Sign In',
             isFullWidht: true,
+            enable: controller.isEnabledLoginButton,
             onTap: controller.handleClickLogin,
           ),
           Padding(
@@ -161,14 +154,6 @@ class LoginScreen extends BaseView<LoginController> {
         ],
       ),
     );
-  }
-
-  validateUsername(value) {
-    final validatorResult = ValidatorHelper.validateCommon(value);
-    if (validatorResult == ValidatorResult.empty) {
-      return "Username required";
-    }
-    return null;
   }
 
   validatePassword(value) {

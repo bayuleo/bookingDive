@@ -5,6 +5,7 @@ import '../../values/app_theme.dart';
 class TextFormFieldOutlineWidget extends StatelessWidget {
   final String? hint;
   final Widget? rightIcon;
+  final Widget? leftIcon;
   final Function? onTapRightIcon;
   final Function? validator;
   final Function? onChangedText;
@@ -17,6 +18,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget {
       this.obsecure = false,
       this.controller,
       this.rightIcon,
+      this.leftIcon,
       this.onChangedText,
       this.onTapRightIcon,
       this.autovalidateMode,
@@ -33,6 +35,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget {
       onChanged: (value) => onChangedText?.call(value),
       decoration: InputDecoration(
         hintText: hint,
+        prefixIcon: leftIcon,
         suffixIcon: _rightIcon(),
         isDense: true,
         border: OutlineInputBorder(

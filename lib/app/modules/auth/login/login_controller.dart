@@ -53,8 +53,8 @@ class LoginController extends BaseController {
         await _userCredentialsRepository.updateCredentials(
           UserCredentials(
             // isFirstLaunch: false,
-            accessToken: response.data.token,
-            refreshToken: response.data.refreshToken,
+            accessToken: response.datas.accessToken,
+            refreshToken: response.datas.refreshToken,
             email: emailController.text.trim(),
           ),
         );
@@ -112,9 +112,9 @@ class LoginController extends BaseController {
   }
 
   onChangedText(value) {
-    if (ValidatorHelper.validateCommon(emailController.text.trim()) ==
+    if (ValidatorHelper.validateEmail(emailController.text.trim()) ==
             ValidatorResult.valid &&
-        ValidatorHelper.validatePassword(passwordController.text.trim()) ==
+        ValidatorHelper.validateCommon(passwordController.text.trim()) ==
             ValidatorResult.valid) {
       isEnabledLoginButton = true;
     } else {
