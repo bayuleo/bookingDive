@@ -45,5 +45,45 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleURLTypes</key>
+    <array>
+    	<dict>
+    		<key>CFBundleTypeRole</key>
+    		<string>Editor</string>
+    		<key>CFBundleURLSchemes</key>
+    		<array>
+    			<string>com.googleusercontent.apps.660688921378-mla0d6t5u9f88pmciba0imllp1ssts3i</string>
+    		</array>
+    	</dict>
+    </array>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb408197394680939</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>408197394680939</string>
+    <key>FacebookDisplayName</key>
+    <string>Scubadive</string>
+    
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb408197394680939</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>408197394680939</string>
+    <key>FacebookClientToken</key>
+    <string>79237f90aa077d67452c30b3dd818bb8</string>
+    <key>FacebookDisplayName</key>
+    <string>Booking Dive</string>
 </dict>
 </plist>
