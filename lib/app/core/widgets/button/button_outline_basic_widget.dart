@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 
 import '../text/text_basic_widget.dart';
 
-class ButtonBasicWidget extends StatelessWidget with BaseWidgetMixin {
+class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
   final String text;
   final Function onTap;
+  final Size? size;
   final bool isFullWidht;
   final bool enable;
 
-  const ButtonBasicWidget({
+  const ButtonOutlineBasicWidget({
     Key? key,
     this.text = '',
     this.isFullWidht = false,
+    this.size,
     this.enable = true,
     required this.onTap,
   }) : super(key: key);
@@ -24,14 +26,19 @@ class ButtonBasicWidget extends StatelessWidget with BaseWidgetMixin {
       child: TextBasicWidget(
         text: text,
         weight: FontWeight.w600,
-        color: theme.white,
+        color: enable ? theme.main50 : theme.main30,
       ),
       style: ElevatedButton.styleFrom(
         shadowColor: theme.white,
         elevation: 0,
-        primary: enable ? theme.main50 : theme.main30,
-        minimumSize: isFullWidht ? const Size.fromHeight(50) : null,
+        primary: theme.white,
+        minimumSize: isFullWidht
+            ? const Size.fromHeight(50)
+            : size == null
+                ? null
+                : size,
         shape: RoundedRectangleBorder(
+          side: BorderSide(color: enable ? theme.main50 : theme.main30),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

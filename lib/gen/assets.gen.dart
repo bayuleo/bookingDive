@@ -37,12 +37,19 @@ class $AssetsIconsGen {
   SvgGenImage get googleIcon =>
       const SvgGenImage('assets/icons/google_icon.svg');
 
+  /// File path: assets/icons/heart_icon.svg
+  SvgGenImage get heartIcon => const SvgGenImage('assets/icons/heart_icon.svg');
+
   /// File path: assets/icons/home_icon.svg
   SvgGenImage get homeIcon => const SvgGenImage('assets/icons/home_icon.svg');
 
   /// File path: assets/icons/home_inactive_icon.svg
   SvgGenImage get homeInactiveIcon =>
       const SvgGenImage('assets/icons/home_inactive_icon.svg');
+
+  /// File path: assets/icons/location_icon.svg
+  SvgGenImage get locationIcon =>
+      const SvgGenImage('assets/icons/location_icon.svg');
 
   /// File path: assets/icons/password_hide.svg
   SvgGenImage get passwordHide =>
