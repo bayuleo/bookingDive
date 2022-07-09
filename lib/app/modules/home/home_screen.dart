@@ -3,13 +3,13 @@ import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.
 import 'package:bookingdive/app/modules/home/home_controller.dart';
 import 'package:bookingdive/app/modules/home/widgets/item_location_home_widget.dart';
 import 'package:bookingdive/app/modules/home/widgets/item_spot_home_widget.dart';
+import 'package:bookingdive/app/modules/home/widgets/search_section_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../core/widgets/button/button_basic_widget.dart';
 import '../../core/widgets/text/text_basic_widget.dart';
-import '../main/widgets/seach_section_widget.dart';
 
 class HomeScreen extends BaseView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
@@ -65,7 +65,11 @@ class HomeScreen extends BaseView<HomeController> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 48),
-                  child: SearchSectionWidget(theme: theme),
+                  child: SearchSectionWidget(
+                    onTapDestination: controller.onTapDestination,
+                    bottomSheetSelectorController:
+                        controller.destinationBottomSelector,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28),

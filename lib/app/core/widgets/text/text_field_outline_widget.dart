@@ -9,18 +9,22 @@ class TextFormFieldOutlineWidget extends StatelessWidget {
   final Function? onTapRightIcon;
   final Function? validator;
   final Function? onChangedText;
+  final VoidCallback? onTap;
   final TextEditingController? controller;
   final AutovalidateMode? autovalidateMode;
   final bool obsecure;
+  final bool readOnly;
   const TextFormFieldOutlineWidget(
       {Key? key,
       this.hint,
       this.obsecure = false,
+      this.readOnly = false,
       this.controller,
       this.rightIcon,
       this.leftIcon,
       this.onChangedText,
       this.onTapRightIcon,
+      this.onTap,
       this.autovalidateMode,
       this.validator})
       : super(key: key);
@@ -28,6 +32,8 @@ class TextFormFieldOutlineWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly,
+      onTap: onTap,
       controller: controller,
       obscureText: obsecure,
       autovalidateMode: autovalidateMode,

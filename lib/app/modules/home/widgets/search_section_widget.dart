@@ -1,17 +1,21 @@
+import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
+import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_controller.dart';
+import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../gen/assets.gen.dart';
-import '../../../core/values/app_theme_data.dart';
 import '../../../core/widgets/button/button_basic_widget.dart';
 import '../../../core/widgets/text/text_field_outline_widget.dart';
 
-class SearchSectionWidget extends StatelessWidget {
+class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
+  final Function? onTapDestination;
+  final BottomSheetSelectorController bottomSheetSelectorController;
+
   const SearchSectionWidget({
     Key? key,
-    required this.theme,
+    this.onTapDestination,
+    required this.bottomSheetSelectorController,
   }) : super(key: key);
-
-  final AppThemeData theme;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +43,8 @@ class SearchSectionWidget extends StatelessWidget {
             rightIcon: Assets.icons.downStrokeIcon
                 .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
           ),
+          BottomSheetSelectorWidget(
+              selectorController: bottomSheetSelectorController),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: TextFormFieldOutlineWidget(

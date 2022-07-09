@@ -43,7 +43,7 @@ class MainController extends BaseController {
       ),
       BottomNavItem(
         icon: Assets.icons.homeInactiveIcon,
-        activeIcon: Assets.icons.homeIcon,
+        activeIcon: Assets.icons.heartIcon,
         label: "Wishlist",
       ),
       BottomNavItem(
@@ -53,7 +53,7 @@ class MainController extends BaseController {
       ),
       BottomNavItem(
         icon: Assets.icons.homeInactiveIcon,
-        activeIcon: Assets.icons.homeIcon,
+        activeIcon: Assets.icons.personIcon,
         label: "Profile",
       ),
     ];
