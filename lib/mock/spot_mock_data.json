@@ -1,0 +1,36 @@
+{
+  "message": "Login Sucessfully",
+  "error": null,
+  "data": [
+    {
+      "country": "Indonesia",
+      "citied": [
+        {
+          "id": "1",
+          "city": "Jakarta"
+        },
+        {
+          "id": "2",
+          "city": "Semarang"
+        },
+        {
+          "id": "3",
+          "city": "Surabaya"
+        }
+      ]
+    },
+    {
+      "country": "Singapore",
+      "citied": [
+        {
+          "id": "4",
+          "city": "Center"
+        },
+        {
+          "id": "5",
+          "city": "North"
+        }
+      ]
+    }
+  ]
+}

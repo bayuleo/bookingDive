@@ -10,6 +10,7 @@ class MainScreen extends BaseView<MainController> {
   Widget buildScreen(BuildContext context) {
     final bottomNavItems = controller.getBottomNavItems();
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: theme.white,
       body: IndexedStack(
         index: controller.pageIndex,

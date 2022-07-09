@@ -1,6 +1,6 @@
 import 'package:bookingdive/app/core/base/base_state_mixin.dart';
 import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_controller.dart';
-import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_widget.dart';
+import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_destination_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +11,7 @@ class BottomSheetSelectorWidget extends StatefulWidget {
   final String hint;
   final String selectorHint;
   final String selectorTitle;
+  final Widget? leftIcon;
   final bool isEnable;
 
   const BottomSheetSelectorWidget({
@@ -19,6 +20,7 @@ class BottomSheetSelectorWidget extends StatefulWidget {
     this.hint = '',
     this.selectorHint = '',
     this.selectorTitle = '',
+    this.leftIcon,
     this.isEnable = true,
   }) : super(key: key);
 
@@ -33,17 +35,17 @@ class _BottomSheetSelectorWidgetState extends State<BottomSheetSelectorWidget>
 
   void showSelector() {
     if (widget.isEnable) {
-      widget.selectorController.showBottomSheet();
+      // widget.selectorController.showBottomSheet();
       showModalBottomSheet(
         context: context,
         isScrollControlled: true,
-        backgroundColor: theme.white,
+        backgroundColor: Colors.transparent,
         builder: (_) {
-          return SelectorWidget(
-            controller: widget.selectorController,
-            title: widget.selectorTitle,
-            hint: widget.selectorHint,
-          );
+          return SelectorDestinationWidget(
+              // controller: widget.selectorController,
+              // title: widget.selectorTitle,
+              // hint: widget.selectorHint,
+              );
         },
       );
     }
@@ -52,8 +54,8 @@ class _BottomSheetSelectorWidgetState extends State<BottomSheetSelectorWidget>
   @override
   Widget build(BuildContext context) {
     return TextFormFieldOutlineWidget(
-      controller: textEditingController,
       hint: widget.hint,
+      leftIcon: widget.leftIcon,
       readOnly: true,
       rightIcon: Assets.icons.downStrokeIcon
           .svg(width: 8, height: 8, fit: BoxFit.scaleDown),

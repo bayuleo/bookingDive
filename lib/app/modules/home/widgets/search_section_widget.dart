@@ -34,17 +34,14 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
           ]),
       child: Column(
         children: [
-          TextFormFieldOutlineWidget(
+          BottomSheetSelectorWidget(
+            selectorController: bottomSheetSelectorController,
             hint: 'Destination',
             leftIcon: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Assets.icons.destinationIcon.svg(),
             ),
-            rightIcon: Assets.icons.downStrokeIcon
-                .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
           ),
-          BottomSheetSelectorWidget(
-              selectorController: bottomSheetSelectorController),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: TextFormFieldOutlineWidget(

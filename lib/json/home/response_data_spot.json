@@ -1,0 +1,4 @@
+{
+  "country": "String",
+  "cities": "$[]./response_data_city_spot"
+}

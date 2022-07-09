@@ -1,3 +1,6 @@
+export 'home/response_spot.dart';
+export 'home/response_data_city_spot.dart';
+export 'home/response_data_spot.dart';
 export 'auth/forgot_password/response_forgot_password.dart';
 export 'auth/forgot_password/response_forgot_password_data.dart';
 export 'auth/forgot_password/request_forgot_password.dart';
