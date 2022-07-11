@@ -18,6 +18,18 @@ class $AssetsIconsGen {
   SvgGenImage get amplopIcon =>
       const SvgGenImage('assets/icons/amplop_icon.svg');
 
+  /// File path: assets/icons/button_down_active_icon.svg
+  SvgGenImage get buttonDownActiveIcon =>
+      const SvgGenImage('assets/icons/button_down_active_icon.svg');
+
+  /// File path: assets/icons/button_down_icon.svg
+  SvgGenImage get buttonDownIcon =>
+      const SvgGenImage('assets/icons/button_down_icon.svg');
+
+  /// File path: assets/icons/button_up_active_icon.svg
+  SvgGenImage get buttonUpActiveIcon =>
+      const SvgGenImage('assets/icons/button_up_active_icon.svg');
+
   /// File path: assets/icons/date_icon.svg
   SvgGenImage get dateIcon => const SvgGenImage('assets/icons/date_icon.svg');
 
@@ -62,6 +74,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/person_icon.svg
   SvgGenImage get personIcon =>
       const SvgGenImage('assets/icons/person_icon.svg');
+
+  /// File path: assets/icons/person_inactive_icon.svg
+  SvgGenImage get personInactiveIcon =>
+      const SvgGenImage('assets/icons/person_inactive_icon.svg');
 }
 
 class $AssetsImagesGen {

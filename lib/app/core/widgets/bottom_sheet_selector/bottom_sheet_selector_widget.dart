@@ -1,10 +1,14 @@
 import 'package:bookingdive/app/core/base/base_state_mixin.dart';
 import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_controller.dart';
+import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_date_widget.dart';
 import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_destination_widget.dart';
+import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_number_diver_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../gen/assets.gen.dart';
+
+enum SelectorType { Destination, Date, NumberDiver }
 
 class BottomSheetSelectorWidget extends StatefulWidget {
   final BottomSheetSelectorController selectorController;
@@ -12,6 +16,7 @@ class BottomSheetSelectorWidget extends StatefulWidget {
   final String selectorHint;
   final String selectorTitle;
   final Widget? leftIcon;
+  final SelectorType? selectorType;
   final bool isEnable;
 
   const BottomSheetSelectorWidget({
@@ -22,6 +27,7 @@ class BottomSheetSelectorWidget extends StatefulWidget {
     this.selectorTitle = '',
     this.leftIcon,
     this.isEnable = true,
+    this.selectorType = SelectorType.Destination,
   }) : super(key: key);
 
   @override
@@ -41,11 +47,14 @@ class _BottomSheetSelectorWidgetState extends State<BottomSheetSelectorWidget>
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (_) {
-          return SelectorDestinationWidget(
-              // controller: widget.selectorController,
-              // title: widget.selectorTitle,
-              // hint: widget.selectorHint,
-              );
+          return widget.selectorType == SelectorType.Destination
+              ? SelectorDestinationWidget()
+              : widget.selectorType == SelectorType.Date
+                  ? SelectorDateWidget()
+                  : SelectorNumberDiverWidget();
+          // controller: widget.selectorController,
+          // title: widget.selectorTitle,
+          // hint: widget.selectorHint,
         },
       );
     }

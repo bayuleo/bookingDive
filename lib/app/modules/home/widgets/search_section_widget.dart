@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../core/widgets/button/button_basic_widget.dart';
-import '../../../core/widgets/text/text_field_outline_widget.dart';
 
 class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
   final Function? onTapDestination;
@@ -34,6 +33,7 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
           ]),
       child: Column(
         children: [
+          // Input Destination
           BottomSheetSelectorWidget(
             selectorController: bottomSheetSelectorController,
             hint: 'Destination',
@@ -41,29 +41,56 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
               padding: const EdgeInsets.all(12.0),
               child: Assets.icons.destinationIcon.svg(),
             ),
+            selectorType: SelectorType.Destination,
           ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 16),
+          //   child: TextFormFieldOutlineWidget(
+          //     hint: 'Date',
+          //     leftIcon: Padding(
+          //       padding: const EdgeInsets.all(12.0),
+          //       child: Assets.icons.dateIcon.svg(),
+          //     ),
+          //     rightIcon: Assets.icons.downStrokeIcon
+          //         .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
+          //     readOnly: true,
+          //   ),
+          // ),
+          // Input Date
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: TextFormFieldOutlineWidget(
+            child: BottomSheetSelectorWidget(
+              selectorController: bottomSheetSelectorController,
               hint: 'Date',
               leftIcon: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Assets.icons.dateIcon.svg(),
               ),
-              rightIcon: Assets.icons.downStrokeIcon
-                  .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
+              selectorType: SelectorType.Date,
             ),
           ),
+          // Padding(
+          //   padding: const EdgeInsets.only(bottom: 16),
+          //   child: TextFormFieldOutlineWidget(
+          //     hint: 'Number of diver',
+          //     leftIcon: Padding(
+          //       padding: const EdgeInsets.all(12.0),
+          //       child: Assets.icons.personIcon.svg(),
+          //     ),
+          //     rightIcon: Assets.icons.downStrokeIcon
+          //         .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: TextFormFieldOutlineWidget(
+            child: BottomSheetSelectorWidget(
+              selectorController: bottomSheetSelectorController,
               hint: 'Number of diver',
               leftIcon: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Assets.icons.personIcon.svg(),
+                child: Assets.icons.personInactiveIcon.svg(),
               ),
-              rightIcon: Assets.icons.downStrokeIcon
-                  .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
+              selectorType: SelectorType.NumberDiver,
             ),
           ),
           ButtonBasicWidget(

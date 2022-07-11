@@ -52,7 +52,7 @@ class MainController extends BaseController {
         label: "Inbox",
       ),
       BottomNavItem(
-        icon: Assets.icons.homeInactiveIcon,
+        icon: Icons.person_outline),
         activeIcon: Assets.icons.personIcon,
         label: "Profile",
       ),

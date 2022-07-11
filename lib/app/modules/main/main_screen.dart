@@ -19,6 +19,7 @@ class MainScreen extends BaseView<MainController> {
       bottomNavigationBar: bottomNavItems.isEmpty
           ? null
           : BottomNavigationBar(
+              selectedFontSize: 12,
               currentIndex: controller.pageIndex,
               selectedItemColor: theme.main70,
               unselectedItemColor: theme.black30,

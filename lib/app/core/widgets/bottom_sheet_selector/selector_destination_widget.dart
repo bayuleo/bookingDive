@@ -71,18 +71,22 @@ class _SelectorDestinationWidgetState extends State<SelectorDestinationWidget>
             ),
           ]),
       child: Padding(
-        padding: EdgeInsets.only(top: 32, bottom: 16, right: 24, left: 24),
+        padding: EdgeInsets.only(top: 32, bottom: 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextBasicWidget(
-              text: 'Choose your destination',
-              size: 18,
-              weight: FontWeight.w500,
+            Padding(
+              padding: const EdgeInsets.only(right: 24, left: 24),
+              child: TextBasicWidget(
+                text: 'Choose your destination',
+                size: 18,
+                weight: FontWeight.w500,
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 16, bottom: 16),
+              padding: const EdgeInsets.only(
+                  top: 16, bottom: 16, right: 24, left: 24),
               child: TextFormFieldOutlineWidget(
                 hint: 'Search',
                 leftIcon: Icon(Icons.search),
@@ -101,7 +105,7 @@ class _SelectorDestinationWidgetState extends State<SelectorDestinationWidget>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: TextBasicWidget(
                             text:
                                 '${itemCountry.country.toUpperCase()}(${itemCountry.cities.length})',
@@ -121,14 +125,23 @@ class _SelectorDestinationWidgetState extends State<SelectorDestinationWidget>
                                   Divider(),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 16),
+                                        horizontal: 24),
                                     child: GestureDetector(
                                       onTap: () {}, // TODO handle on click city
-                                      child: TextBasicWidget(
-                                        text: itemCities.city,
-                                        size: 14,
-                                        weight: FontWeight.w400,
-                                        color: theme.black50,
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(right: 8),
+                                            child: Icon(Icons.flag_outlined),
+                                          ),
+                                          TextBasicWidget(
+                                            text: itemCities.city,
+                                            size: 14,
+                                            weight: FontWeight.w400,
+                                            color: theme.black50,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
