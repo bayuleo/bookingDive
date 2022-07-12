@@ -1,7 +1,9 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_controller.dart';
 import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_widget.dart';
+import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../core/widgets/button/button_basic_widget.dart';
@@ -96,7 +98,9 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
           ButtonBasicWidget(
             text: 'Search',
             isFullWidht: true,
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(Routes.SEARCH);
+            },
           ),
         ],
       ),

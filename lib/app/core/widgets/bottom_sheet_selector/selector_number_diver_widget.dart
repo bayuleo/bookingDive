@@ -103,13 +103,19 @@ class _SelectorNumberDiverWidgetState extends State<SelectorNumberDiverWidget>
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+              ),
               child: ButtonBasicWidget(
                 text: 'Submit',
                 isFullWidht: true,
                 onTap: () {},
               ),
-            )
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+            ),
           ],
         ),
       ),

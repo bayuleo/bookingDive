@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/modules/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -19,7 +20,7 @@ class MainController extends BaseController {
       const SizedBox(),
       const SizedBox(),
       const SizedBox(),
-      const SizedBox(),
+      const ProfileScreen(),
     ];
   }
 
@@ -52,7 +53,7 @@ class MainController extends BaseController {
         label: "Inbox",
       ),
       BottomNavItem(
-        icon: Icons.person_outline),
+        icon: Assets.icons.personInactiveIcon,
         activeIcon: Assets.icons.personIcon,
         label: "Profile",
       ),

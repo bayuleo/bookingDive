@@ -18,6 +18,13 @@ class $AssetsIconsGen {
   SvgGenImage get amplopIcon =>
       const SvgGenImage('assets/icons/amplop_icon.svg');
 
+  /// File path: assets/icons/avatar_icon.svg
+  SvgGenImage get avatarIcon =>
+      const SvgGenImage('assets/icons/avatar_icon.svg');
+
+  /// File path: assets/icons/bag_icon.svg
+  SvgGenImage get bagIcon => const SvgGenImage('assets/icons/bag_icon.svg');
+
   /// File path: assets/icons/button_down_active_icon.svg
   SvgGenImage get buttonDownActiveIcon =>
       const SvgGenImage('assets/icons/button_down_active_icon.svg');
@@ -30,12 +37,19 @@ class $AssetsIconsGen {
   SvgGenImage get buttonUpActiveIcon =>
       const SvgGenImage('assets/icons/button_up_active_icon.svg');
 
+  /// File path: assets/icons/card_icon.svg
+  SvgGenImage get cardIcon => const SvgGenImage('assets/icons/card_icon.svg');
+
   /// File path: assets/icons/date_icon.svg
   SvgGenImage get dateIcon => const SvgGenImage('assets/icons/date_icon.svg');
 
   /// File path: assets/icons/destination_icon.svg
   SvgGenImage get destinationIcon =>
       const SvgGenImage('assets/icons/destination_icon.svg');
+
+  /// File path: assets/icons/dollar_icon.svg
+  SvgGenImage get dollarIcon =>
+      const SvgGenImage('assets/icons/dollar_icon.svg');
 
   /// File path: assets/icons/down_stroke_icon.svg
   SvgGenImage get downStrokeIcon =>
@@ -44,6 +58,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/facebook_icon.svg
   SvgGenImage get facebookIcon =>
       const SvgGenImage('assets/icons/facebook_icon.svg');
+
+  /// File path: assets/icons/file_icon.svg
+  SvgGenImage get fileIcon => const SvgGenImage('assets/icons/file_icon.svg');
 
   /// File path: assets/icons/google_icon.svg
   SvgGenImage get googleIcon =>
@@ -59,9 +76,16 @@ class $AssetsIconsGen {
   SvgGenImage get homeInactiveIcon =>
       const SvgGenImage('assets/icons/home_inactive_icon.svg');
 
+  /// File path: assets/icons/i_warning_icon.svg
+  SvgGenImage get iWarningIcon =>
+      const SvgGenImage('assets/icons/i_warning_icon.svg');
+
   /// File path: assets/icons/location_icon.svg
   SvgGenImage get locationIcon =>
       const SvgGenImage('assets/icons/location_icon.svg');
+
+  /// File path: assets/icons/lock_icon.svg
+  SvgGenImage get lockIcon => const SvgGenImage('assets/icons/lock_icon.svg');
 
   /// File path: assets/icons/password_hide.svg
   SvgGenImage get passwordHide =>
@@ -71,6 +95,9 @@ class $AssetsIconsGen {
   SvgGenImage get passwordShow =>
       const SvgGenImage('assets/icons/password_show.svg');
 
+  /// File path: assets/icons/pen_icon.svg
+  SvgGenImage get penIcon => const SvgGenImage('assets/icons/pen_icon.svg');
+
   /// File path: assets/icons/person_icon.svg
   SvgGenImage get personIcon =>
       const SvgGenImage('assets/icons/person_icon.svg');
@@ -78,6 +105,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/person_inactive_icon.svg
   SvgGenImage get personInactiveIcon =>
       const SvgGenImage('assets/icons/person_inactive_icon.svg');
+
+  /// File path: assets/icons/phone_icon.svg
+  SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
+
+  /// File path: assets/icons/right_stroke.svg
+  SvgGenImage get rightStroke =>
+      const SvgGenImage('assets/icons/right_stroke.svg');
 }
 
 class $AssetsImagesGen {

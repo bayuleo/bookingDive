@@ -17,8 +17,6 @@ class HomeController extends BaseController {
 
   final destinationBottomSelector = BottomSheetSelectorController();
 
-  var pageIndex = 0;
-
   @override
   void onReady() async {
     var credential = await _userCredentialsRepository.getCredentials();
