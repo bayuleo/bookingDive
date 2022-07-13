@@ -9,6 +9,9 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
   final Size? size;
   final bool isFullWidht;
   final bool enable;
+  final Color? textColor;
+  final Color? borderColor;
+  final Widget? icon;
 
   const ButtonOutlineBasicWidget({
     Key? key,
@@ -16,6 +19,9 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
     this.isFullWidht = false,
     this.size,
     this.enable = true,
+    this.textColor,
+    this.borderColor,
+    this.icon,
     required this.onTap,
   }) : super(key: key);
 
@@ -23,10 +29,15 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => enable ? onTap() : {},
-      child: TextBasicWidget(
-        text: text,
-        weight: FontWeight.w600,
-        color: enable ? theme.main50 : theme.main30,
+      child: Row(
+        children: [
+          icon ?? Container(),
+          TextBasicWidget(
+            text: text,
+            weight: FontWeight.w600,
+            color: enable ? textColor ?? theme.main50 : theme.main30,
+          ),
+        ],
       ),
       style: ElevatedButton.styleFrom(
         shadowColor: theme.white,
@@ -38,7 +49,8 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
                 ? null
                 : size,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: enable ? theme.main50 : theme.main30),
+          side: BorderSide(
+              color: enable ? borderColor ?? theme.main50 : theme.main30),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

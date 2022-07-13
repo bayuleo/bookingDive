@@ -40,6 +40,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/card_icon.svg
   SvgGenImage get cardIcon => const SvgGenImage('assets/icons/card_icon.svg');
 
+  /// File path: assets/icons/clock_icon.svg
+  SvgGenImage get clockIcon => const SvgGenImage('assets/icons/clock_icon.svg');
+
   /// File path: assets/icons/date_icon.svg
   SvgGenImage get dateIcon => const SvgGenImage('assets/icons/date_icon.svg');
 
@@ -61,6 +64,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/file_icon.svg
   SvgGenImage get fileIcon => const SvgGenImage('assets/icons/file_icon.svg');
+
+  /// File path: assets/icons/filter_icon.svg
+  SvgGenImage get filterIcon =>
+      const SvgGenImage('assets/icons/filter_icon.svg');
 
   /// File path: assets/icons/google_icon.svg
   SvgGenImage get googleIcon =>
@@ -112,6 +119,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/right_stroke.svg
   SvgGenImage get rightStroke =>
       const SvgGenImage('assets/icons/right_stroke.svg');
+
+  /// File path: assets/icons/setting_icon.svg
+  SvgGenImage get settingIcon =>
+      const SvgGenImage('assets/icons/setting_icon.svg');
 }
 
 class $AssetsImagesGen {

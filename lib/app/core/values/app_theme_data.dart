@@ -28,6 +28,7 @@ class AppThemeData {
   final Color success90;
   final Color white;
   final Color disable;
+  final Color backgrounGrey;
 
   const AppThemeData(
       {required this.yellow10,
@@ -56,6 +57,7 @@ class AppThemeData {
       required this.success70,
       required this.success90,
       required this.white,
+      required this.backgrounGrey,
       required this.disable});
 
   static AppThemeData get light {
@@ -87,6 +89,7 @@ class AppThemeData {
       success90: Color(0xFF18451A),
       white: Color(0xFFFFFFFF),
       disable: Color(0xFFF3F3F3),
+      backgrounGrey: Color(0xFFF5F5F5),
     );
   }
 
