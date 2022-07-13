@@ -3,9 +3,9 @@ import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../data/repository/auth_repository.dart';
-import '../../data/repository/user_credentials_repository.dart';
-import '../../routes/app_routes.dart';
+import '../../../data/repository/auth_repository.dart';
+import '../../../data/repository/user_credentials_repository.dart';
+import '../../../routes/app_routes.dart';
 
 class HomeController extends BaseController {
   final AuthRepository _authRepository = Get.find();

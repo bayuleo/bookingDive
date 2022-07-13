@@ -1,9 +1,9 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
+import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../gen/assets.gen.dart';
-import '../../../core/widgets/button/button_outline_basic_widget.dart';
-import '../../../core/widgets/text/text_basic_widget.dart';
+import '../../../../../gen/assets.gen.dart';
+import '../../../../core/widgets/text/text_basic_widget.dart';
 
 class ItemLocationHomeWidget extends StatelessWidget with BaseWidgetMixin {
   const ItemLocationHomeWidget({

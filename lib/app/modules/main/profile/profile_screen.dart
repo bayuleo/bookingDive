@@ -1,9 +1,10 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
-import 'package:bookingdive/app/modules/profile/profile_controller.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
+
+import '../profile/profile_controller.dart';
 
 class ProfileScreen extends BaseView<ProfileController> {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class ProfileScreen extends BaseView<ProfileController> {
                     padding: const EdgeInsets.only(left: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         TextBasicWidget(
                           text: 'John Doe',
                           color: Colors.white,

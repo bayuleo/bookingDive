@@ -1,9 +1,9 @@
-import 'package:bookingdive/app/modules/profile/profile_screen.dart';
+import 'package:bookingdive/app/modules/main/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../core/base/base_controller.dart';
-import '../home/home_screen.dart';
+import 'home/home_screen.dart';
 import 'models/bottom_nav_item.dart';
 
 class MainController extends BaseController {

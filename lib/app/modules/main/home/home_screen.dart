@@ -1,15 +1,15 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
 import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
-import 'package:bookingdive/app/modules/home/home_controller.dart';
-import 'package:bookingdive/app/modules/home/widgets/item_location_home_widget.dart';
-import 'package:bookingdive/app/modules/home/widgets/item_spot_home_widget.dart';
-import 'package:bookingdive/app/modules/home/widgets/search_section_widget.dart';
+import 'package:bookingdive/app/modules/main/home/widgets/item_location_home_widget.dart';
+import 'package:bookingdive/app/modules/main/home/widgets/item_spot_home_widget.dart';
+import 'package:bookingdive/app/modules/main/home/widgets/search_section_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../../../gen/assets.gen.dart';
-import '../../core/widgets/button/button_basic_widget.dart';
-import '../../core/widgets/text/text_basic_widget.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../core/widgets/button/button_basic_widget.dart';
+import '../../../core/widgets/text/text_basic_widget.dart';
+import 'home_controller.dart';
 
 class HomeScreen extends BaseView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);

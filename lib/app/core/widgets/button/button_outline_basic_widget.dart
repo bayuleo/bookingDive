@@ -12,6 +12,7 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
   final Color? textColor;
   final Color? borderColor;
   final Widget? icon;
+  final EdgeInsets? padding;
 
   const ButtonOutlineBasicWidget({
     Key? key,
@@ -22,6 +23,7 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
     this.textColor,
     this.borderColor,
     this.icon,
+    this.padding,
     required this.onTap,
   }) : super(key: key);
 
@@ -31,7 +33,12 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
       onPressed: () => enable ? onTap() : {},
       child: Row(
         children: [
-          icon ?? Container(),
+          icon == null
+              ? Container()
+              : Padding(
+                  padding: EdgeInsets.only(right: 6),
+                  child: icon,
+                ),
           TextBasicWidget(
             text: text,
             weight: FontWeight.w600,
@@ -40,6 +47,7 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
         ],
       ),
       style: ElevatedButton.styleFrom(
+        padding: padding,
         shadowColor: theme.white,
         elevation: 0,
         primary: theme.white,

@@ -1,4 +1,4 @@
-import '../../core/base/base_controller.dart';
+import 'package:bookingdive/app/core/base/base_controller.dart';
 
 class ProfileController extends BaseController {
   @override

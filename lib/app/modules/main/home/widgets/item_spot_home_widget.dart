@@ -1,8 +1,8 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
+import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../gen/assets.gen.dart';
-import '../../../core/widgets/text/text_basic_widget.dart';
+import '../../../../../gen/assets.gen.dart';
 
 class ItemSpotHomeWidget extends StatelessWidget with BaseWidgetMixin {
   const ItemSpotHomeWidget({

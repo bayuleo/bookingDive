@@ -11,27 +11,48 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       margin: EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: theme.white),
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ListView.builder(
-              scrollDirection: Axis.vertical,
-              padding: EdgeInsets.only(left: 24, top: 16, right: 24),
-              shrinkWrap: true,
-              itemCount: 9,
-              itemBuilder: (BuildContext context, int index) {
-                return TextBasicWidget(
-                  text: 'test',
-                );
-              }),
+          Container(
+            clipBehavior: Clip.hardEdge,
+            height: MediaQuery.of(context).size.height / 4,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                topLeft: Radius.circular(10),
+              ),
+            ),
+            child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  var item = Assets.images.bannerHome.image(
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width - 50);
+                  return index != 4
+                      ? Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: item,
+                        )
+                      : item;
+                }),
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+            padding:
+                const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -82,6 +103,9 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 4),
             child: TextBasicWidget(
               text: 'Semporna, Malaysia',
+              color: theme.black30,
+              size: 12,
+              weight: FontWeight.w600,
             ),
           ),
           Padding(
@@ -90,6 +114,7 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ButtonOutlineBasicWidget(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
                     text: 'Request to Book',
                     textColor: theme.black50,
                     borderColor: theme.black10,
@@ -101,16 +126,23 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 18),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Assets.icons.heartIcon.svg(color: theme.black30),
                 Row(
                   children: [
                     TextBasicWidget(
-                      text: 'Starts from',
+                      text: 'Starts from ',
+                      color: theme.black30,
+                      size: 12,
+                      weight: FontWeight.w400,
                     ),
                     TextBasicWidget(
                       text: 'IDR 500,000',
+                      color: theme.main50,
+                      weight: FontWeight.w700,
+                      size: 16,
                     ),
                   ],
                 )

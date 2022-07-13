@@ -10,6 +10,9 @@ class ButtonBasicWidget extends StatelessWidget with BaseWidgetMixin {
   final bool enable;
   final Color? backgroundColor;
   final Color? textColor;
+  final Widget? icon;
+  final BorderRadius? borderRadius;
+  final EdgeInsets? padding;
 
   const ButtonBasicWidget({
     Key? key,
@@ -18,6 +21,9 @@ class ButtonBasicWidget extends StatelessWidget with BaseWidgetMixin {
     this.enable = true,
     this.backgroundColor,
     this.textColor,
+    this.icon,
+    this.borderRadius,
+    this.padding,
     required this.onTap,
   }) : super(key: key);
 
@@ -25,18 +31,32 @@ class ButtonBasicWidget extends StatelessWidget with BaseWidgetMixin {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => enable ? onTap() : {},
-      child: TextBasicWidget(
-        text: text,
-        weight: FontWeight.w600,
-        color: textColor ?? theme.white,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          icon == null
+              ? Padding(
+                  padding: EdgeInsets.zero,
+                )
+              : Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: icon,
+                ),
+          TextBasicWidget(
+            text: text,
+            weight: FontWeight.w600,
+            color: textColor ?? theme.white,
+          ),
+        ],
       ),
       style: ElevatedButton.styleFrom(
+        padding: padding,
         shadowColor: theme.white,
         elevation: 0,
         primary: enable ? backgroundColor ?? theme.main50 : theme.main30,
         minimumSize: isFullWidht ? const Size.fromHeight(50) : null,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: borderRadius ?? BorderRadius.circular(8),
         ),
       ),
     );

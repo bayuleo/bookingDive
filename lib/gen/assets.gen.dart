@@ -94,6 +94,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/lock_icon.svg
   SvgGenImage get lockIcon => const SvgGenImage('assets/icons/lock_icon.svg');
 
+  /// File path: assets/icons/map_icon.svg
+  SvgGenImage get mapIcon => const SvgGenImage('assets/icons/map_icon.svg');
+
   /// File path: assets/icons/password_hide.svg
   SvgGenImage get passwordHide =>
       const SvgGenImage('assets/icons/password_hide.svg');
@@ -123,6 +126,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/setting_icon.svg
   SvgGenImage get settingIcon =>
       const SvgGenImage('assets/icons/setting_icon.svg');
+
+  /// File path: assets/icons/up_circle_icon.svg
+  SvgGenImage get upCircleIcon =>
+      const SvgGenImage('assets/icons/up_circle_icon.svg');
 }
 
 class $AssetsImagesGen {
