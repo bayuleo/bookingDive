@@ -35,7 +35,8 @@ class DioConfigure {
         headers: <String, String>{
           // 'Authorization':
           //     'Bearer ${_userCredentialsRepository.getCredentials().accessToken}',
-          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/json'
+          'app-id': '1',
         },
       ),
     );

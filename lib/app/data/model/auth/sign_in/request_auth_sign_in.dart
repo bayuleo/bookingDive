@@ -8,41 +8,41 @@ import '../../index.dart';
 class RequestAuthSignIn {
 
   const RequestAuthSignIn({
-    required this.username,
+    required this.email,
     required this.password,
   });
 
-  final String username;
+  final String email;
   final String password;
 
   factory RequestAuthSignIn.fromJson(Map<String,dynamic> json) => RequestAuthSignIn(
-    username: json['username'].toString(),
+    email: json['email'].toString(),
     password: json['password'].toString()
   );
   
   Map<String, dynamic> toJson() => {
-    'username': username,
+    'email': email,
     'password': password
   };
 
   RequestAuthSignIn clone() => RequestAuthSignIn(
-    username: username,
+    email: email,
     password: password
   );
 
 
   RequestAuthSignIn copyWith({
-    String? username,
+    String? email,
     String? password
   }) => RequestAuthSignIn(
-    username: username ?? this.username,
+    email: email ?? this.email,
     password: password ?? this.password,
   );
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is RequestAuthSignIn && username == other.username && password == other.password;
+    || other is RequestAuthSignIn && email == other.email && password == other.password;
 
   @override
-  int get hashCode => username.hashCode ^ password.hashCode;
+  int get hashCode => email.hashCode ^ password.hashCode;
 }

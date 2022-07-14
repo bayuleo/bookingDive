@@ -11,6 +11,9 @@ export 'auth/sign_in/response_auth_sign_in_data_profile.dart';
 export 'auth/register/request_register.dart';
 export 'auth/register/response_register_data.dart';
 export 'auth/register/response_register.dart';
+export 'auth/profile/response_profile.dart';
+export 'auth/profile/response_profile_data.dart';
+export 'common/error.dart';
 export 'common/message.dart';
 import 'package:quiver/core.dart';
 

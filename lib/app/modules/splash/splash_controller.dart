@@ -2,9 +2,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../core/base/base_controller.dart';
+import '../../data/repository/user_credentials_repository.dart';
 import '../../routes/app_routes.dart';
 
 class SplashController extends BaseController {
+  final UserCredentialsRepository _userCredentialsRepository = Get.find();
   @override
   void onReady() {
     startAppHandler();
@@ -13,13 +15,11 @@ class SplashController extends BaseController {
 
   Future<void> startAppHandler() async {
     await Future.delayed(const Duration(milliseconds: 2000));
-    Get.offAllNamed(Routes.MAIN_CONTENT);
-    // } else {
-    // final credential = _userCredentialsRepository.getCredentials();
-    // if (credential.isFirstLaunch) {
-    // Get.offAllNamed(Routes.LOGIN);
-    // } else {
-    // Get.offAllNamed(Routes.LOGIN);
-    // }
+    final credential = _userCredentialsRepository.getCredentials();
+    if (credential.accessToken != null) {
+      Get.offAllNamed(Routes.MAIN_CONTENT);
+    } else {
+      Get.offAllNamed(Routes.LOGIN);
+    }
   }
 }

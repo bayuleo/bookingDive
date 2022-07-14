@@ -6,6 +6,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:quiver/core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../model/auth/sign_in/response_auth_sign_in_data_profile.dart';
+
 abstract class UserCredentialsDataSource {
   UserCredentials getUserCredentials();
 
@@ -13,9 +15,10 @@ abstract class UserCredentialsDataSource {
 
   Future<bool> clearToken();
 
-  Future<bool> saveToken({
+  Future<bool> saveUserCredentials({
     required String refreshToken,
     required String accessToken,
+    required ResponseAuthSignInDataProfile profile,
   });
 }
 
@@ -37,14 +40,16 @@ class UserCredentialsDataSourceImpl implements UserCredentialsDataSource {
   }
 
   @override
-  Future<bool> saveToken(
-      {required String refreshToken, required String accessToken}) {
+  Future<bool> saveUserCredentials(
+      {required String refreshToken,
+      required String accessToken,
+      required ResponseAuthSignInDataProfile profile}) {
     final credential = getUserCredentials();
     return updateUserCredentials(
       credential.copyWith(
-        accessToken: Optional.of(accessToken),
-        refreshToken: Optional.of(refreshToken),
-      ),
+          accessToken: Optional.of(accessToken),
+          refreshToken: Optional.of(refreshToken),
+          profile: Optional.of(profile)),
     );
   }
 

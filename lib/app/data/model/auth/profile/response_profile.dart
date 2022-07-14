@@ -5,9 +5,9 @@ import '../../index.dart';
 
 
 @immutable
-class ResponseRegister {
+class ResponseProfile {
 
-  const ResponseRegister({
+  const ResponseProfile({
     required this.message,
     this.error,
     required this.status,
@@ -17,13 +17,13 @@ class ResponseRegister {
   final String message;
   final Error? error;
   final bool status;
-  final ResponseAuthSignInData data;
+  final ResponseProfileData data;
 
-  factory ResponseRegister.fromJson(Map<String,dynamic> json) => ResponseRegister(
+  factory ResponseProfile.fromJson(Map<String,dynamic> json) => ResponseProfile(
     message: json['message'].toString(),
     error: json['error'] != null ? Error.fromJson(json['error'] as Map<String, dynamic>) : null,
     status: json['status'] as bool,
-    data: ResponseAuthSignInData.fromJson(json['data'] as Map<String, dynamic>)
+    data: ResponseProfileData.fromJson(json['data'] as Map<String, dynamic>)
   );
   
   Map<String, dynamic> toJson() => {
@@ -33,7 +33,7 @@ class ResponseRegister {
     'data': data.toJson()
   };
 
-  ResponseRegister clone() => ResponseRegister(
+  ResponseProfile clone() => ResponseProfile(
     message: message,
     error: error?.clone(),
     status: status,
@@ -41,12 +41,12 @@ class ResponseRegister {
   );
 
 
-  ResponseRegister copyWith({
+  ResponseProfile copyWith({
     String? message,
     Optional<Error?>? error,
     bool? status,
-    ResponseAuthSignInData? data
-  }) => ResponseRegister(
+    ResponseProfileData? data
+  }) => ResponseProfile(
     message: message ?? this.message,
     error: checkOptional(error, () => this.error),
     status: status ?? this.status,
@@ -55,7 +55,7 @@ class ResponseRegister {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseRegister && message == other.message && error == other.error && status == other.status && data == other.data;
+    || other is ResponseProfile && message == other.message && error == other.error && status == other.status && data == other.data;
 
   @override
   int get hashCode => message.hashCode ^ error.hashCode ^ status.hashCode ^ data.hashCode;

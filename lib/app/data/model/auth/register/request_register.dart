@@ -8,33 +8,33 @@ import '../../index.dart';
 class RequestRegister {
 
   const RequestRegister({
-    required this.firsName,
+    required this.firstName,
     required this.lastName,
     required this.email,
     required this.password,
   });
 
-  final String firsName;
+  final String firstName;
   final String lastName;
   final String email;
   final String password;
 
   factory RequestRegister.fromJson(Map<String,dynamic> json) => RequestRegister(
-    firsName: json['firsName'].toString(),
-    lastName: json['lastName'].toString(),
+    firstName: json['first_name'].toString(),
+    lastName: json['last_name'].toString(),
     email: json['email'].toString(),
     password: json['password'].toString()
   );
   
   Map<String, dynamic> toJson() => {
-    'firsName': firsName,
-    'lastName': lastName,
+    'first_name': firstName,
+    'last_name': lastName,
     'email': email,
     'password': password
   };
 
   RequestRegister clone() => RequestRegister(
-    firsName: firsName,
+    firstName: firstName,
     lastName: lastName,
     email: email,
     password: password
@@ -42,12 +42,12 @@ class RequestRegister {
 
 
   RequestRegister copyWith({
-    String? firsName,
+    String? firstName,
     String? lastName,
     String? email,
     String? password
   }) => RequestRegister(
-    firsName: firsName ?? this.firsName,
+    firstName: firstName ?? this.firstName,
     lastName: lastName ?? this.lastName,
     email: email ?? this.email,
     password: password ?? this.password,
@@ -55,8 +55,8 @@ class RequestRegister {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is RequestRegister && firsName == other.firsName && lastName == other.lastName && email == other.email && password == other.password;
+    || other is RequestRegister && firstName == other.firstName && lastName == other.lastName && email == other.email && password == other.password;
 
   @override
-  int get hashCode => firsName.hashCode ^ lastName.hashCode ^ email.hashCode ^ password.hashCode;
+  int get hashCode => firstName.hashCode ^ lastName.hashCode ^ email.hashCode ^ password.hashCode;
 }

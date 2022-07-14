@@ -22,7 +22,7 @@ class AuthDataSourceImpl implements AuthDataSource {
 
   @override
   Future<ResponseAuthSignIn> signIn(RequestAuthSignIn data) async {
-    var response = await dioConfigure.dioMock.post(
+    var response = await dioConfigure.dio.post(
       endpoints.auth.signin,
       data: jsonEncode(data.toJson()),
     );
@@ -38,7 +38,7 @@ class AuthDataSourceImpl implements AuthDataSource {
 
   @override
   Future<ResponseRegister> signUp(RequestRegister data) async {
-    var response = await dioConfigure.dioMock.post(
+    var response = await dioConfigure.dio.post(
       endpoints.auth.signup,
       data: jsonEncode(
         data.toJson(),
@@ -50,7 +50,7 @@ class AuthDataSourceImpl implements AuthDataSource {
   @override
   Future<ResponseForgotPassword> forgotPassword(
       RequestForgotPassword data) async {
-    var response = await dioConfigure.dioMock.post(
+    var response = await dioConfigure.dio.post(
       endpoints.auth.forgotPassword,
       data: jsonEncode(
         data.toJson(),

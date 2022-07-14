@@ -1,56 +1,52 @@
 import 'package:flutter/foundation.dart';
 import 'package:quiver/core.dart';
 
+import '../../data/model/auth/sign_in/response_auth_sign_in_data_profile.dart';
 import '../utils/check_optional.dart';
 
 @immutable
 class UserCredentials {
-  const UserCredentials({
-    // required this.isFirstLaunch,
-    this.refreshToken,
-    this.accessToken,
-    this.email,
-  });
+  const UserCredentials(
+      {
+      // required this.isFirstLaunch,
+      this.refreshToken,
+      this.accessToken,
+      this.profile});
 
-  // final bool isFirstLaunch;
   final String? refreshToken;
   final String? accessToken;
-  final String? email;
+  final ResponseAuthSignInDataProfile? profile;
 
   factory UserCredentials.fromJson(Map<String, dynamic> json) =>
       UserCredentials(
-        // isFirstLaunch: json['isFirstLaunch'] as bool,
-        refreshToken: json['refreshToken']?.toString(),
-        accessToken: json['accessToken']?.toString(),
-        email: json['email']?.toString(),
+        refreshToken: json['refresh_token']?.toString(),
+        accessToken: json['access_token']?.toString(),
+        profile: json['profile'] != null
+            ? ResponseAuthSignInDataProfile.fromJson(
+                json['profile'] as Map<String, dynamic>)
+            : null,
       );
 
   Map<String, dynamic> toJson() => {
         // 'isFirstLaunch': isFirstLaunch,
-        'refreshToken': refreshToken,
-        'accessToken': accessToken,
-        'email': email,
+        'refresh_token': refreshToken,
+        'access_token': accessToken,
+        'profile': profile?.toJson()
       };
 
   UserCredentials clone() => UserCredentials(
-        // isFirstLaunch: isFirstLaunch,
-        refreshToken: refreshToken,
-        accessToken: accessToken,
-        email: email,
-      );
+      refreshToken: refreshToken,
+      accessToken: accessToken,
+      profile: profile?.clone());
 
-  UserCredentials copyWith({
-    // bool? isFirstLaunch,
-    Optional<String?>? refreshToken,
-    Optional<String?>? accessToken,
-    Optional<String?>? email,
-  }) =>
+  UserCredentials copyWith(
+          {Optional<String?>? refreshToken,
+          Optional<String?>? accessToken,
+          Optional<ResponseAuthSignInDataProfile?>? profile}) =>
       UserCredentials(
-        // isFirstLaunch: isFirstLaunch ?? this.isFirstLaunch,
-        refreshToken: checkOptional(refreshToken, () => this.refreshToken),
-        accessToken: checkOptional(accessToken, () => this.accessToken),
-        email: checkOptional(email, () => this.email),
-      );
+          refreshToken: checkOptional(refreshToken, () => this.refreshToken),
+          accessToken: checkOptional(accessToken, () => this.accessToken),
+          profile: checkOptional(profile, () => this.profile));
 
   @override
   bool operator ==(Object other) =>
@@ -59,10 +55,10 @@ class UserCredentials {
           // isFirstLaunch == other.isFirstLaunch &&
           refreshToken == other.refreshToken &&
           accessToken == other.accessToken &&
-          email == other.email;
+          profile == other.profile;
 
   @override
   int get hashCode =>
       // isFirstLaunch.hashCode ^
-      refreshToken.hashCode ^ accessToken.hashCode ^ email.hashCode;
+      refreshToken.hashCode ^ accessToken.hashCode ^ profile.hashCode;
 }

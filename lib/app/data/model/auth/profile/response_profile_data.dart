@@ -5,9 +5,9 @@ import '../../index.dart';
 
 
 @immutable
-class ResponseRegisterData {
+class ResponseProfileData {
 
-  const ResponseRegisterData({
+  const ResponseProfileData({
     required this.idProfile,
     required this.firstName,
     required this.lastName,
@@ -39,7 +39,7 @@ class ResponseRegisterData {
   final String emergencyContact;
   final String avatar;
 
-  factory ResponseRegisterData.fromJson(Map<String,dynamic> json) => ResponseRegisterData(
+  factory ResponseProfileData.fromJson(Map<String,dynamic> json) => ResponseProfileData(
     idProfile: json['id_profile'] as int,
     firstName: json['first_name'].toString(),
     lastName: json['last_name'].toString(),
@@ -73,7 +73,7 @@ class ResponseRegisterData {
     'avatar': avatar
   };
 
-  ResponseRegisterData clone() => ResponseRegisterData(
+  ResponseProfileData clone() => ResponseProfileData(
     idProfile: idProfile,
     firstName: firstName,
     lastName: lastName,
@@ -91,7 +91,7 @@ class ResponseRegisterData {
   );
 
 
-  ResponseRegisterData copyWith({
+  ResponseProfileData copyWith({
     int? idProfile,
     String? firstName,
     String? lastName,
@@ -106,7 +106,7 @@ class ResponseRegisterData {
     int? yearDiving,
     String? emergencyContact,
     String? avatar
-  }) => ResponseRegisterData(
+  }) => ResponseProfileData(
     idProfile: idProfile ?? this.idProfile,
     firstName: firstName ?? this.firstName,
     lastName: lastName ?? this.lastName,
@@ -125,7 +125,7 @@ class ResponseRegisterData {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseRegisterData && idProfile == other.idProfile && firstName == other.firstName && lastName == other.lastName && email == other.email && dateOfBirth == other.dateOfBirth && gender == other.gender && countryCode == other.countryCode && phoneNumber == other.phoneNumber && countryId == other.countryId && countryName == other.countryName && address == other.address && yearDiving == other.yearDiving && emergencyContact == other.emergencyContact && avatar == other.avatar;
+    || other is ResponseProfileData && idProfile == other.idProfile && firstName == other.firstName && lastName == other.lastName && email == other.email && dateOfBirth == other.dateOfBirth && gender == other.gender && countryCode == other.countryCode && phoneNumber == other.phoneNumber && countryId == other.countryId && countryName == other.countryName && address == other.address && yearDiving == other.yearDiving && emergencyContact == other.emergencyContact && avatar == other.avatar;
 
   @override
   int get hashCode => idProfile.hashCode ^ firstName.hashCode ^ lastName.hashCode ^ email.hashCode ^ dateOfBirth.hashCode ^ gender.hashCode ^ countryCode.hashCode ^ phoneNumber.hashCode ^ countryId.hashCode ^ countryName.hashCode ^ address.hashCode ^ yearDiving.hashCode ^ emergencyContact.hashCode ^ avatar.hashCode;

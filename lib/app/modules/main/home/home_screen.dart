@@ -214,14 +214,6 @@ class HomeScreen extends BaseView<HomeController> {
                     ),
                   ],
                 ),
-                Text("Main Body"),
-                Text("Email : ${controller.email}"),
-                Text("Token : ${controller.token}"),
-                Text("Refresh Token : ${controller.refreshToken}"),
-                ButtonBasicWidget(
-                  text: 'Logout',
-                  onTap: controller.handleButtonLogout,
-                )
               ],
             ),
           ),

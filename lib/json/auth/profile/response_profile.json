@@ -2,5 +2,5 @@
   "message": "Login Sucessfully",
   "error?": "$../common/error",
   "status": true,
-  "data": "$./response_auth_sign_in_data"
+  "data": "$./response_profile_data"
 }

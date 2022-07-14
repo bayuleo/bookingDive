@@ -11,6 +11,7 @@ class ProfileScreen extends BaseView<ProfileController> {
 
   @override
   Widget buildScreen(BuildContext context) {
+    final profile = controller.userCredentials?.profile;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,20 +23,25 @@ class ProfileScreen extends BaseView<ProfileController> {
             children: [
               Row(
                 children: [
-                  Assets.icons.avatarIcon.svg(),
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: NetworkImage(profile?.avatar ?? ''),
+                    backgroundColor: Colors.transparent,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         TextBasicWidget(
-                          text: 'John Doe',
+                          text:
+                              '${profile?.firstName ?? ''} ${profile?.lastName ?? ''}',
                           color: Colors.white,
                           weight: FontWeight.w700,
                           size: 16,
                         ),
                         TextBasicWidget(
-                          text: 'mail@mail.com',
+                          text: profile?.email ?? '',
                           color: Colors.white,
                           weight: FontWeight.w400,
                           size: 16,
@@ -53,8 +59,12 @@ class ProfileScreen extends BaseView<ProfileController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ListMenuAccount(),
-                ListMenuGeneral(),
+                ListMenuAccount(
+                  controller: controller,
+                ),
+                ListMenuGeneral(
+                  controller: controller,
+                ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 64),
                 ),
@@ -68,8 +78,10 @@ class ProfileScreen extends BaseView<ProfileController> {
 }
 
 class ListMenuAccount extends StatelessWidget with BaseWidgetMixin {
+  final ProfileController controller;
   const ListMenuAccount({
     Key? key,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -96,11 +108,11 @@ class ListMenuAccount extends StatelessWidget with BaseWidgetMixin {
             title: "My Wishlist",
             onTap: () {},
           ),
-          ItemMenuProfileWidget(
-            icon: Assets.icons.cardIcon.svg(),
-            title: "Payment Methods",
-            onTap: () {},
-          ),
+          // ItemMenuProfileWidget(
+          //   icon: Assets.icons.cardIcon.svg(),
+          //   title: "Payment Methods",
+          //   onTap: () {},
+          // ),
           ItemMenuProfileWidget(
             icon: Assets.icons.dollarIcon.svg(),
             title: "Become a Host",
@@ -113,8 +125,10 @@ class ListMenuAccount extends StatelessWidget with BaseWidgetMixin {
 }
 
 class ListMenuGeneral extends StatelessWidget {
+  final ProfileController controller;
   const ListMenuGeneral({
     Key? key,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -151,6 +165,12 @@ class ListMenuGeneral extends StatelessWidget {
             title: "Terms of Service",
             onTap: () {},
           ),
+          ItemMenuProfileWidget(
+            icon: Assets.icons.logoutIcon.svg(),
+            title: "Log Out",
+            showRightIcon: false,
+            onTap: controller.handleButtonLogout,
+          ),
         ],
       ),
     );
@@ -160,19 +180,21 @@ class ListMenuGeneral extends StatelessWidget {
 class ItemMenuProfileWidget extends StatelessWidget {
   final String title;
   final Widget icon;
-  final Function? onTap;
+  final Function()? onTap;
+  final bool showRightIcon;
 
   const ItemMenuProfileWidget({
     Key? key,
     required this.title,
     required this.icon,
     this.onTap,
+    this.showRightIcon = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap,
+      onTap: onTap,
       child: Column(
         children: [
           Padding(
@@ -193,7 +215,9 @@ class ItemMenuProfileWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Assets.icons.rightStroke.svg(),
+                showRightIcon
+                    ? Assets.icons.rightStroke.svg()
+                    : Padding(padding: EdgeInsets.zero),
               ],
             ),
           ),

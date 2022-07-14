@@ -8,6 +8,7 @@ import '../../index.dart';
 class ResponseAuthSignInDataProfile {
 
   const ResponseAuthSignInDataProfile({
+    required this.idProfile,
     required this.firstName,
     required this.lastName,
     required this.email,
@@ -23,6 +24,7 @@ class ResponseAuthSignInDataProfile {
     required this.avatar,
   });
 
+  final int idProfile;
   final String firstName;
   final String lastName;
   final String email;
@@ -38,6 +40,7 @@ class ResponseAuthSignInDataProfile {
   final String avatar;
 
   factory ResponseAuthSignInDataProfile.fromJson(Map<String,dynamic> json) => ResponseAuthSignInDataProfile(
+    idProfile: json['id_profile'] as int,
     firstName: json['first_name'].toString(),
     lastName: json['last_name'].toString(),
     email: json['email'].toString(),
@@ -54,6 +57,7 @@ class ResponseAuthSignInDataProfile {
   );
   
   Map<String, dynamic> toJson() => {
+    'id_profile': idProfile,
     'first_name': firstName,
     'last_name': lastName,
     'email': email,
@@ -70,6 +74,7 @@ class ResponseAuthSignInDataProfile {
   };
 
   ResponseAuthSignInDataProfile clone() => ResponseAuthSignInDataProfile(
+    idProfile: idProfile,
     firstName: firstName,
     lastName: lastName,
     email: email,
@@ -87,6 +92,7 @@ class ResponseAuthSignInDataProfile {
 
 
   ResponseAuthSignInDataProfile copyWith({
+    int? idProfile,
     String? firstName,
     String? lastName,
     String? email,
@@ -101,6 +107,7 @@ class ResponseAuthSignInDataProfile {
     String? emergencyContact,
     String? avatar
   }) => ResponseAuthSignInDataProfile(
+    idProfile: idProfile ?? this.idProfile,
     firstName: firstName ?? this.firstName,
     lastName: lastName ?? this.lastName,
     email: email ?? this.email,
@@ -118,8 +125,8 @@ class ResponseAuthSignInDataProfile {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseAuthSignInDataProfile && firstName == other.firstName && lastName == other.lastName && email == other.email && dateOfBirth == other.dateOfBirth && gender == other.gender && countryCode == other.countryCode && phoneNumber == other.phoneNumber && countryId == other.countryId && countryName == other.countryName && address == other.address && yearDiving == other.yearDiving && emergencyContact == other.emergencyContact && avatar == other.avatar;
+    || other is ResponseAuthSignInDataProfile && idProfile == other.idProfile && firstName == other.firstName && lastName == other.lastName && email == other.email && dateOfBirth == other.dateOfBirth && gender == other.gender && countryCode == other.countryCode && phoneNumber == other.phoneNumber && countryId == other.countryId && countryName == other.countryName && address == other.address && yearDiving == other.yearDiving && emergencyContact == other.emergencyContact && avatar == other.avatar;
 
   @override
-  int get hashCode => firstName.hashCode ^ lastName.hashCode ^ email.hashCode ^ dateOfBirth.hashCode ^ gender.hashCode ^ countryCode.hashCode ^ phoneNumber.hashCode ^ countryId.hashCode ^ countryName.hashCode ^ address.hashCode ^ yearDiving.hashCode ^ emergencyContact.hashCode ^ avatar.hashCode;
+  int get hashCode => idProfile.hashCode ^ firstName.hashCode ^ lastName.hashCode ^ email.hashCode ^ dateOfBirth.hashCode ^ gender.hashCode ^ countryCode.hashCode ^ phoneNumber.hashCode ^ countryId.hashCode ^ countryName.hashCode ^ address.hashCode ^ yearDiving.hashCode ^ emergencyContact.hashCode ^ avatar.hashCode;
 }

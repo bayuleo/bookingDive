@@ -32,7 +32,7 @@ class LoginController extends BaseController {
   @override
   void onReady() async {
     var credential = await _userCredentialsRepository.getCredentials();
-    email = credential.email;
+    email = credential.profile?.email;
     token = credential.accessToken;
     refreshToken = credential.refreshToken;
     update();
@@ -45,7 +45,7 @@ class LoginController extends BaseController {
     await callDataService<ResponseAuthSignIn>(
       () => _authRepository.signIn(
         RequestAuthSignIn(
-          username: emailController.text.trim(),
+          email: emailController.text.trim(),
           password: passwordController.text.trim(),
         ),
       ),
@@ -53,9 +53,9 @@ class LoginController extends BaseController {
         await _userCredentialsRepository.updateCredentials(
           UserCredentials(
             // isFirstLaunch: false,
-            accessToken: response.datas.accessToken,
-            refreshToken: response.datas.refreshToken,
-            email: emailController.text.trim(),
+            accessToken: response.data.accessToken,
+            refreshToken: response.data.refreshToken,
+            profile: response.data.profile,
           ),
         );
         Get.find<DioConfigure>().updateToken();
@@ -70,7 +70,7 @@ class LoginController extends BaseController {
       UserCredentials(
         accessToken: response.credential?.token.toString(),
         refreshToken: '',
-        email: response.user?.email,
+        profile: null,
       ),
     );
     Get.offAllNamed(Routes.MAIN_CONTENT);
@@ -82,7 +82,7 @@ class LoginController extends BaseController {
       UserCredentials(
         accessToken: response.credential?.token.toString(),
         refreshToken: '',
-        email: response.user?.email,
+        profile: null,
       ),
     );
     Get.offAllNamed(Routes.MAIN_CONTENT);

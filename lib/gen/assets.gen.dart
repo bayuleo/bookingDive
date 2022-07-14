@@ -94,6 +94,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/lock_icon.svg
   SvgGenImage get lockIcon => const SvgGenImage('assets/icons/lock_icon.svg');
 
+  /// File path: assets/icons/logout_icon.svg
+  SvgGenImage get logoutIcon =>
+      const SvgGenImage('assets/icons/logout_icon.svg');
+
   /// File path: assets/icons/map_icon.svg
   SvgGenImage get mapIcon => const SvgGenImage('assets/icons/map_icon.svg');
 

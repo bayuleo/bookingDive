@@ -53,7 +53,7 @@ class RegisterController extends BaseController {
     await callDataService<ResponseRegister>(
       () => _authRepository.signUp(
         RequestRegister(
-          firsName: firstNameController.text.trim(),
+          firstName: firstNameController.text.trim(),
           lastName: lastNameController.text.trim(),
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
@@ -62,9 +62,9 @@ class RegisterController extends BaseController {
       onSuccess: ((response) async {
         await _userCredentialsRepository.updateCredentials(
           UserCredentials(
-            accessToken: response.data.token,
+            accessToken: response.data.accessToken,
             refreshToken: response.data.refreshToken,
-            email: emailController.text.trim(),
+            profile: null,
           ),
         );
         Get.offAllNamed(Routes.MAIN_CONTENT);

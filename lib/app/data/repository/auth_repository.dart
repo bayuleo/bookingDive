@@ -22,10 +22,10 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<ResponseAuthSignIn> signIn(RequestAuthSignIn dataRequest) async {
     final res = await _authDataSource.signIn(dataRequest);
-    await _userCredentialsDataSource.saveToken(
-      refreshToken: res.datas.refreshToken,
-      accessToken: res.datas.accessToken,
-    );
+    await _userCredentialsDataSource.saveUserCredentials(
+        refreshToken: res.data.refreshToken,
+        accessToken: res.data.accessToken,
+        profile: res.data.profile);
     return res;
   }
 

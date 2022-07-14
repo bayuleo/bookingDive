@@ -26,7 +26,7 @@ class FlavorConfigs {
   static bool get isPROD => FlavorConfigs.appFlavor == Flavor.PROD;
 
   static String get DEV_URL {
-    return 'https://example.id';
+    return 'https://bookingdive-27iu7.ondigitalocean.app/api/v1';
   }
 
   static String get UAT_URL {
