@@ -58,6 +58,9 @@ class $AssetsIconsGen {
   SvgGenImage get downStrokeIcon =>
       const SvgGenImage('assets/icons/down_stroke_icon.svg');
 
+  /// File path: assets/icons/empty_list.svg
+  SvgGenImage get emptyList => const SvgGenImage('assets/icons/empty_list.svg');
+
   /// File path: assets/icons/facebook_icon.svg
   SvgGenImage get facebookIcon =>
       const SvgGenImage('assets/icons/facebook_icon.svg');
@@ -142,6 +145,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/banner_home.png
   AssetGenImage get bannerHome =>
       const AssetGenImage('assets/images/banner_home.png');
+
+  /// File path: assets/images/empty_list.png
+  AssetGenImage get emptyList =>
+      const AssetGenImage('assets/images/empty_list.png');
 
   /// File path: assets/images/login_banner.png
   AssetGenImage get loginBanner =>

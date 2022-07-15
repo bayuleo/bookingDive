@@ -72,7 +72,7 @@ class SearchScreen extends BaseView<SearchController> {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: theme.white,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
@@ -87,7 +87,7 @@ class SearchScreen extends BaseView<SearchController> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 1),
+                        padding: const EdgeInsets.only(right: 0.5),
                         child: ButtonFilterSearchWidget(
                           title: 'Sort',
                           onClick: () {
@@ -106,7 +106,7 @@ class SearchScreen extends BaseView<SearchController> {
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 1),
+                        padding: const EdgeInsets.only(left: 0.5),
                         child: ButtonFilterSearchWidget(
                           title: 'Filter',
                           onClick: () {
@@ -128,16 +128,49 @@ class SearchScreen extends BaseView<SearchController> {
               ),
             ),
             Expanded(
-                child: SingleChildScrollView(
-              child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  padding: EdgeInsets.only(left: 24, top: 16, right: 24),
-                  shrinkWrap: true,
-                  itemCount: 9,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ItemSearchLocationWidget();
-                  }),
-            ))
+              child: SingleChildScrollView(
+                child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.only(left: 24, top: 16, right: 24),
+                    shrinkWrap: true,
+                    itemCount: 9,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ItemSearchLocationWidget();
+                    }),
+              ),
+            ),
+            // TODO remove comment when integrate with real data
+            // Expanded(
+            //   child: Center(
+            //     child: Padding(
+            //       padding: const EdgeInsets.symmetric(horizontal: 68),
+            //       child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           Assets.images.emptyList.image(
+            //               width: MediaQuery.of(context).size.width * 0.5),
+            //           Padding(
+            //             padding: const EdgeInsets.only(top: 24, bottom: 16),
+            //             child: TextBasicWidget(
+            //               text: 'No Results Found ',
+            //               size: 18,
+            //               weight: FontWeight.w700,
+            //               color: theme.black50,
+            //             ),
+            //           ),
+            //           TextBasicWidget(
+            //             text:
+            //                 'Try changing the keywords or filters for better results',
+            //             size: 16,
+            //             weight: FontWeight.w400,
+            //             color: theme.black30,
+            //             textAlign: TextAlign.center,
+            //           )
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         Align(
