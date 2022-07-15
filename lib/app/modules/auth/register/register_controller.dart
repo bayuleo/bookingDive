@@ -4,7 +4,6 @@ import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/model/user_credentials.dart';
 import '../../../core/utils/app_focus.dart';
 import '../../../core/utils/snackbar.dart';
 import '../../../core/utils/validator.dart';
@@ -60,13 +59,6 @@ class RegisterController extends BaseController {
         ),
       ),
       onSuccess: ((response) async {
-        await _userCredentialsRepository.updateCredentials(
-          UserCredentials(
-            accessToken: response.data.accessToken,
-            refreshToken: response.data.refreshToken,
-            profile: null,
-          ),
-        );
         Get.offAllNamed(Routes.MAIN_CONTENT);
         SnackbarHelper.success(
           title: "Welcome to Booking Dive",

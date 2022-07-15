@@ -38,8 +38,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<ResponseRegister> signUp(RequestRegister data) {
-    return _authDataSource.signUp(data);
+  Future<ResponseRegister> signUp(RequestRegister data) async {
+    final res = await _authDataSource.signUp(data);
+    await _userCredentialsDataSource.saveUserCredentials(
+        refreshToken: res.data.refreshToken,
+        accessToken: res.data.accessToken,
+        profile: res.data.profile);
+    return res;
   }
 
   @override

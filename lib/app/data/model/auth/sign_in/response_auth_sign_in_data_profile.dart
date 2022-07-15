@@ -12,48 +12,48 @@ class ResponseAuthSignInDataProfile {
     required this.firstName,
     required this.lastName,
     required this.email,
-    required this.dateOfBirth,
-    required this.gender,
-    required this.countryCode,
-    required this.phoneNumber,
-    required this.countryId,
-    required this.countryName,
-    required this.address,
-    required this.yearDiving,
-    required this.emergencyContact,
-    required this.avatar,
+    this.dateOfBirth,
+    this.gender,
+    this.countryCode,
+    this.phoneNumber,
+    this.countryId,
+    this.countryName,
+    this.address,
+    this.yearDiving,
+    this.emergencyContact,
+    this.avatar,
   });
 
   final int idProfile;
   final String firstName;
   final String lastName;
   final String email;
-  final String dateOfBirth;
-  final String gender;
-  final String countryCode;
-  final String phoneNumber;
-  final String countryId;
-  final String countryName;
-  final String address;
-  final int yearDiving;
-  final String emergencyContact;
-  final String avatar;
+  final String? dateOfBirth;
+  final String? gender;
+  final String? countryCode;
+  final String? phoneNumber;
+  final String? countryId;
+  final String? countryName;
+  final String? address;
+  final int? yearDiving;
+  final String? emergencyContact;
+  final String? avatar;
 
   factory ResponseAuthSignInDataProfile.fromJson(Map<String,dynamic> json) => ResponseAuthSignInDataProfile(
     idProfile: json['id_profile'] as int,
     firstName: json['first_name'].toString(),
     lastName: json['last_name'].toString(),
     email: json['email'].toString(),
-    dateOfBirth: json['date_of_birth'].toString(),
-    gender: json['gender'].toString(),
-    countryCode: json['country_code'].toString(),
-    phoneNumber: json['phone_number'].toString(),
-    countryId: json['country_id'].toString(),
-    countryName: json['country_name'].toString(),
-    address: json['address'].toString(),
-    yearDiving: json['year_diving'] as int,
-    emergencyContact: json['emergency_contact'].toString(),
-    avatar: json['avatar'].toString()
+    dateOfBirth: json['date_of_birth']?.toString(),
+    gender: json['gender']?.toString(),
+    countryCode: json['country_code']?.toString(),
+    phoneNumber: json['phone_number']?.toString(),
+    countryId: json['country_id']?.toString(),
+    countryName: json['country_name']?.toString(),
+    address: json['address']?.toString(),
+    yearDiving: json['year_diving'] != null ? json['year_diving'] as int : null,
+    emergencyContact: json['emergency_contact']?.toString(),
+    avatar: json['avatar']?.toString()
   );
   
   Map<String, dynamic> toJson() => {
@@ -96,31 +96,31 @@ class ResponseAuthSignInDataProfile {
     String? firstName,
     String? lastName,
     String? email,
-    String? dateOfBirth,
-    String? gender,
-    String? countryCode,
-    String? phoneNumber,
-    String? countryId,
-    String? countryName,
-    String? address,
-    int? yearDiving,
-    String? emergencyContact,
-    String? avatar
+    Optional<String?>? dateOfBirth,
+    Optional<String?>? gender,
+    Optional<String?>? countryCode,
+    Optional<String?>? phoneNumber,
+    Optional<String?>? countryId,
+    Optional<String?>? countryName,
+    Optional<String?>? address,
+    Optional<int?>? yearDiving,
+    Optional<String?>? emergencyContact,
+    Optional<String?>? avatar
   }) => ResponseAuthSignInDataProfile(
     idProfile: idProfile ?? this.idProfile,
     firstName: firstName ?? this.firstName,
     lastName: lastName ?? this.lastName,
     email: email ?? this.email,
-    dateOfBirth: dateOfBirth ?? this.dateOfBirth,
-    gender: gender ?? this.gender,
-    countryCode: countryCode ?? this.countryCode,
-    phoneNumber: phoneNumber ?? this.phoneNumber,
-    countryId: countryId ?? this.countryId,
-    countryName: countryName ?? this.countryName,
-    address: address ?? this.address,
-    yearDiving: yearDiving ?? this.yearDiving,
-    emergencyContact: emergencyContact ?? this.emergencyContact,
-    avatar: avatar ?? this.avatar,
+    dateOfBirth: checkOptional(dateOfBirth, () => this.dateOfBirth),
+    gender: checkOptional(gender, () => this.gender),
+    countryCode: checkOptional(countryCode, () => this.countryCode),
+    phoneNumber: checkOptional(phoneNumber, () => this.phoneNumber),
+    countryId: checkOptional(countryId, () => this.countryId),
+    countryName: checkOptional(countryName, () => this.countryName),
+    address: checkOptional(address, () => this.address),
+    yearDiving: checkOptional(yearDiving, () => this.yearDiving),
+    emergencyContact: checkOptional(emergencyContact, () => this.emergencyContact),
+    avatar: checkOptional(avatar, () => this.avatar),
   );
 
   @override

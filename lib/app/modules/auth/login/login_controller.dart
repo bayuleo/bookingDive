@@ -50,14 +50,6 @@ class LoginController extends BaseController {
         ),
       ),
       onSuccess: ((response) async {
-        await _userCredentialsRepository.updateCredentials(
-          UserCredentials(
-            // isFirstLaunch: false,
-            accessToken: response.data.accessToken,
-            refreshToken: response.data.refreshToken,
-            profile: response.data.profile,
-          ),
-        );
         Get.find<DioConfigure>().updateToken();
         Get.offAllNamed(Routes.MAIN_CONTENT);
       }),
