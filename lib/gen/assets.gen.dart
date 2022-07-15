@@ -58,9 +58,6 @@ class $AssetsIconsGen {
   SvgGenImage get downStrokeIcon =>
       const SvgGenImage('assets/icons/down_stroke_icon.svg');
 
-  /// File path: assets/icons/empty_list.svg
-  SvgGenImage get emptyList => const SvgGenImage('assets/icons/empty_list.svg');
-
   /// File path: assets/icons/facebook_icon.svg
   SvgGenImage get facebookIcon =>
       const SvgGenImage('assets/icons/facebook_icon.svg');
@@ -89,6 +86,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/i_warning_icon.svg
   SvgGenImage get iWarningIcon =>
       const SvgGenImage('assets/icons/i_warning_icon.svg');
+
+  /// File path: assets/icons/left_stroke_icon.svg
+  SvgGenImage get leftStrokeIcon =>
+      const SvgGenImage('assets/icons/left_stroke_icon.svg');
 
   /// File path: assets/icons/location_icon.svg
   SvgGenImage get locationIcon =>

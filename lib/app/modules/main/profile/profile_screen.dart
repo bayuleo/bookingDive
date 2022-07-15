@@ -1,8 +1,10 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../profile/profile_controller.dart';
 
@@ -51,7 +53,11 @@ class ProfileScreen extends BaseView<ProfileController> {
                   ),
                 ],
               ),
-              Assets.icons.penIcon.svg(),
+              GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.EDIT_PROFILE);
+                  },
+                  child: Assets.icons.penIcon.svg()),
             ],
           ),
         ),

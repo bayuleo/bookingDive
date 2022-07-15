@@ -7,4 +7,5 @@ abstract class Routes {
   static const REGISTER = '/register';
   static const MAIN_CONTENT = '/main_content';
   static const SEARCH = '/search';
+  static const EDIT_PROFILE = '/edit_profile';
 }
