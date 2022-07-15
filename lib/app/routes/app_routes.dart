@@ -8,4 +8,6 @@ abstract class Routes {
   static const MAIN_CONTENT = '/main_content';
   static const SEARCH = '/search';
   static const EDIT_PROFILE = '/edit_profile';
+  static const CHANGE_PASSWORD = '/change_password';
+  static const PAYMENT_METHOD = '/payment_method';
 }

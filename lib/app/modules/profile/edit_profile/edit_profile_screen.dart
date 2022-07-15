@@ -1,6 +1,7 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_controller.dart';
+import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -94,23 +95,27 @@ class EditProfileScreen extends BaseView<EditProfileController> {
               thickness: 16,
             ),
             ItemProfileDetail(
-              label: 'Manage Payment Method',
-              value: '',
-              showDivider: false,
-              padding:
-                  EdgeInsets.only(top: 14, bottom: 14, left: 24, right: 32),
-            ),
+                label: 'Manage Payment Method',
+                value: '',
+                showDivider: false,
+                padding:
+                    EdgeInsets.only(top: 14, bottom: 14, left: 24, right: 32),
+                onTap: () {
+                  Get.toNamed(Routes.PAYMENT_METHOD);
+                }),
             Divider(
               color: theme.disable,
               thickness: 16,
             ),
             ItemProfileDetail(
-              label: 'Change Password',
-              value: '',
-              showDivider: false,
-              padding:
-                  EdgeInsets.only(top: 14, bottom: 20, left: 24, right: 32),
-            ),
+                label: 'Change Password',
+                value: '',
+                showDivider: false,
+                padding:
+                    EdgeInsets.only(top: 14, bottom: 20, left: 24, right: 32),
+                onTap: () {
+                  Get.toNamed(Routes.CHANGE_PASSWORD);
+                }),
             Divider(
               color: theme.disable,
               thickness: 24,
@@ -126,39 +131,43 @@ class EditProfileScreen extends BaseView<EditProfileController> {
     String? value,
     bool showDivider = true,
     EdgeInsets? padding,
+    Function()? onTap,
   }) {
     return Column(
       children: [
-        Padding(
-          padding: padding ??
-              const EdgeInsets.only(left: 24, right: 32, top: 10, bottom: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextBasicWidget(
-                text: label,
-                size: 14,
-                color: theme.black50,
-                weight: FontWeight.w400,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: TextBasicWidget(
-                      text: value ?? 'Set now',
-                      size: 14,
-                      color: value == null ? theme.black30 : theme.black50,
-                      weight: FontWeight.w400,
+        GestureDetector(
+          onTap: onTap,
+          child: Padding(
+            padding: padding ??
+                const EdgeInsets.only(left: 24, right: 32, top: 10, bottom: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextBasicWidget(
+                  text: label,
+                  size: 14,
+                  color: theme.black50,
+                  weight: FontWeight.w400,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: TextBasicWidget(
+                        text: value ?? 'Set now',
+                        size: 14,
+                        color: value == null ? theme.black30 : theme.black50,
+                        weight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2),
-                    child: Assets.icons.rightStroke.svg(color: theme.black30),
-                  ),
-                ],
-              )
-            ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Assets.icons.rightStroke.svg(color: theme.black30),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
         showDivider
