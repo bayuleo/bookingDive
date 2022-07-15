@@ -3,6 +3,7 @@ import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/search/search_controller.dart';
 import 'package:bookingdive/app/modules/search/widgets/button_filter_search_widget.dart';
 import 'package:bookingdive/app/modules/search/widgets/item_search_location_widget.dart';
+import 'package:bookingdive/app/modules/search/widgets/selector_filter_widget.dart';
 import 'package:bookingdive/app/modules/search/widgets/selector_search_widget.dart';
 import 'package:bookingdive/app/modules/search/widgets/selector_sort_widget.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
@@ -91,11 +92,13 @@ class SearchScreen extends BaseView<SearchController> {
                           title: 'Sort',
                           onClick: () {
                             showModalBottomSheet(
-                                backgroundColor: Colors.transparent,
-                                context: context,
-                                builder: (_) {
-                                  return SelectorSortWidget();
-                                });
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              builder: (_) {
+                                return SelectorSortWidget();
+                              },
+                            );
                           },
                           icon: Assets.icons.settingIcon.svg(),
                         ),
@@ -106,7 +109,16 @@ class SearchScreen extends BaseView<SearchController> {
                         padding: const EdgeInsets.only(left: 1),
                         child: ButtonFilterSearchWidget(
                           title: 'Filter',
-                          onClick: () {},
+                          onClick: () {
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              builder: (_) {
+                                return SelectorFilterWidget();
+                              },
+                            );
+                          },
                           icon: Assets.icons.filterIcon.svg(),
                         ),
                       ),

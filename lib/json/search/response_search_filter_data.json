@@ -1,0 +1,5 @@
+{
+  "group": "String",
+  "type": "String",
+  "filterBy": "$[]./response_search_filter_data_filter_by"
+}

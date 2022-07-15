@@ -6,19 +6,19 @@ import '../../../core/widgets/text/text_basic_widget.dart';
 class ButtonFilterSearchWidget extends StatelessWidget with BaseWidgetMixin {
   final String title;
   final Widget icon;
-  final Function onClick;
+  final Function()? onClick;
 
   const ButtonFilterSearchWidget({
     Key? key,
     required this.title,
     required this.icon,
-    required this.onClick,
+    this.onClick,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => onClick,
+      onPressed: onClick,
       style: ElevatedButton.styleFrom(
         shadowColor: theme.white,
         elevation: 0,

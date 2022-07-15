@@ -1,11 +1,15 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_controller.dart';
-import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_widget.dart';
+import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_date_widget.dart';
+import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_number_diver_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../core/widgets/bottom_sheet_selector/selector_destination_widget.dart';
+import '../../../../core/widgets/text/text_field_outline_widget.dart';
 
 class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
   final Function? onTapDestination;
@@ -34,39 +38,64 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
           ]),
       child: Column(
         children: [
-          // Input Destination
-          BottomSheetSelectorWidget(
-            selectorController: bottomSheetSelectorController,
+          TextFormFieldOutlineWidget(
             hint: 'Destination',
             leftIcon: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Assets.icons.destinationIcon.svg(),
             ),
-            selectorType: SelectorType.Destination,
+            readOnly: true,
+            rightIcon: Assets.icons.downStrokeIcon
+                .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
+            onTapRightIcon: () => showBottomSheetDestination(
+              context,
+              SelectorDestinationWidget(),
+            ),
+            onTap: () => showBottomSheetDestination(
+              context,
+              SelectorDestinationWidget(),
+            ),
           ),
-          // Input Date
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: BottomSheetSelectorWidget(
-              selectorController: bottomSheetSelectorController,
+            child: TextFormFieldOutlineWidget(
               hint: 'Date',
               leftIcon: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Assets.icons.dateIcon.svg(),
               ),
-              selectorType: SelectorType.Date,
+              readOnly: true,
+              rightIcon: Assets.icons.downStrokeIcon
+                  .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
+              onTapRightIcon: () => showBottomSheetDestination(
+                context,
+                SelectorDateWidget(),
+              ),
+              onTap: () => showBottomSheetDestination(
+                context,
+                SelectorDateWidget(),
+              ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: BottomSheetSelectorWidget(
-              selectorController: bottomSheetSelectorController,
+            child: TextFormFieldOutlineWidget(
               hint: 'Number of diver',
               leftIcon: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Assets.icons.personInactiveIcon.svg(),
               ),
-              selectorType: SelectorType.NumberDiver,
+              readOnly: true,
+              rightIcon: Assets.icons.downStrokeIcon
+                  .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
+              onTapRightIcon: () => showBottomSheetDestination(
+                context,
+                SelectorNumberDiverWidget(),
+              ),
+              onTap: () => showBottomSheetDestination(
+                context,
+                SelectorNumberDiverWidget(),
+              ),
             ),
           ),
           ButtonBasicWidget(
@@ -78,6 +107,18 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> showBottomSheetDestination(
+      BuildContext context, Widget child) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) {
+        return child;
+      },
     );
   }
 }

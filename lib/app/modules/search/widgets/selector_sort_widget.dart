@@ -2,6 +2,9 @@ import 'package:bookingdive/app/core/base/base_state_mixin.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/button/button_basic_widget.dart';
+import '../../../core/widgets/list/list_radio_widget.dart';
+
 class SelectorSortWidget extends StatefulWidget {
   const SelectorSortWidget({Key? key}) : super(key: key);
 
@@ -11,6 +14,8 @@ class SelectorSortWidget extends StatefulWidget {
 
 class _SelectorSortWidgetState extends State<SelectorSortWidget>
     with BaseStateMixin {
+  var dummyVal = '1';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,19 +33,58 @@ class _SelectorSortWidgetState extends State<SelectorSortWidget>
             ),
           ]),
       child: Padding(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 32),
+        padding: EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextBasicWidget(
-              text: 'Sort By',
-              weight: FontWeight.w500,
-              size: 18,
-              color: theme.black90,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24),
+              child: TextBasicWidget(
+                text: 'Sort By',
+                weight: FontWeight.w500,
+                size: 18,
+                color: theme.black90,
+              ),
+            ),
+            ListRadioWidget(
+              label: 'Highest Rating',
+              groupValue: dummyVal,
+              value: '1',
+            ),
+            ListRadioWidget(
+              label: 'Lowest Price',
+              groupValue: dummyVal,
+              value: '2',
+            ),
+            ListRadioWidget(
+              label: 'Highest Price',
+              groupValue: dummyVal,
+              value: '3',
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: ButtonBasicWidget(
+                text: 'Search',
+                isFullWidht: true,
+                onTap: () {},
+              ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Future<dynamic> showBottomSheetDestination(
+      BuildContext context, Widget child) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) {
+        return child;
+      },
     );
   }
 }
