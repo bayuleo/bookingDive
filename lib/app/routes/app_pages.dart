@@ -10,6 +10,8 @@ import 'package:bookingdive/app/modules/profile/change_password/change_password_
 import 'package:bookingdive/app/modules/profile/change_password/change_password_screen.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_binding.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_screen.dart';
+import 'package:bookingdive/app/modules/profile/form_edit_profile/form_edit_profile_binding.dart';
+import 'package:bookingdive/app/modules/profile/form_edit_profile/form_edit_profile_screen.dart';
 import 'package:bookingdive/app/modules/profile/payment/list_payment_method/list_payment_method_binding.dart';
 import 'package:bookingdive/app/modules/profile/payment/list_payment_method/list_payment_method_screen.dart';
 import 'package:bookingdive/app/modules/search/search_binding.dart';
@@ -84,6 +86,11 @@ class AppPages {
       name: Routes.ADD_PAYMENT_METHOD,
       page: () => const AddPaymentMethodScreen(),
       binding: AddPaymentMethodBinding(),
+    ),
+    GetPage(
+      name: Routes.FORM_EDIT_PROFILE,
+      page: () => const FormEditProfileScreen(),
+      binding: FormEditProfileBinding(),
     ),
     GetPage(
       name: Routes.MAIN_CONTENT,

@@ -32,9 +32,10 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
     return ElevatedButton(
       onPressed: () => enable ? onTap() : {},
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           icon == null
-              ? Container()
+              ? Padding(padding: EdgeInsets.zero)
               : Padding(
                   padding: EdgeInsets.only(right: 6),
                   child: icon,

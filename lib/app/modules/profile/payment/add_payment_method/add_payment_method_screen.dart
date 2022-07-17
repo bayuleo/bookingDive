@@ -5,7 +5,6 @@ import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../../../../core/widgets/text/text_basic_widget.dart';
 import 'add_payment_method_controller.dart';
 
 class AddPaymentMethodScreen extends BaseView<AddPaymentMethodController> {
@@ -24,47 +23,42 @@ class AddPaymentMethodScreen extends BaseView<AddPaymentMethodController> {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      Radio(
-                          value: valueDummy,
-                          groupValue: valueDummy,
-                          activeColor: theme.main30,
-                          onChanged: null),
-                      TextBasicWidget(
-                        text: 'Bank Account',
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Radio(
-                          value: valueDummy,
-                          groupValue: valueDummy,
-                          activeColor: theme.main30,
-                          onChanged: null),
-                      TextBasicWidget(
-                        text: 'Paypal Account',
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              ListPaymentMethod(label: 'Bank name'),
-              ListPaymentMethod(label: 'Bank account holder name'),
-              ListPaymentMethod(label: 'Bank account number/IBAN'),
-              ListPaymentMethod(label: 'Branch name'),
-              ListPaymentMethod(label: 'Branch city'),
-              ListPaymentMethod(label: 'Branch address'),
-              ListPaymentMethod(label: 'Swift code'),
-              ListPaymentMethod(label: 'Country'),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     Row(
+              //       children: [
+              //         Radio(
+              //             value: valueDummy,
+              //             groupValue: valueDummy,
+              //             activeColor: theme.main30,
+              //             onChanged: null),
+              //         TextBasicWidget(
+              //           text: 'Bank Account',
+              //         )
+              //       ],
+              //     ),
+              //     Row(
+              //       children: [
+              //         Radio(
+              //             value: valueDummy,
+              //             groupValue: valueDummy,
+              //             activeColor: theme.main30,
+              //             onChanged: null),
+              //         TextBasicWidget(
+              //           text: 'Paypal Account',
+              //         )
+              //       ],
+              //     ),
+              //   ],
+              // ),
+              ListPaymentMethod(label: 'Card Number'),
+              ListPaymentMethod(label: 'Expired number (MM/YY)'),
+              ListPaymentMethod(label: 'BCVC/CVV'),
               Padding(
                 padding: const EdgeInsets.only(top: 40, bottom: 24),
                 child: ButtonBasicWidget(
-                  text: 'Add Payment Method',
+                  text: 'Add Credit Card',
                   isFullWidht: true,
                   onTap: () {},
                 ),

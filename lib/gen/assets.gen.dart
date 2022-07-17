@@ -147,6 +147,10 @@ class $AssetsImagesGen {
   AssetGenImage get bannerHome =>
       const AssetGenImage('assets/images/banner_home.png');
 
+  /// File path: assets/images/credit_card.png
+  AssetGenImage get creditCard =>
+      const AssetGenImage('assets/images/credit_card.png');
+
   /// File path: assets/images/empty_list.png
   AssetGenImage get emptyList =>
       const AssetGenImage('assets/images/empty_list.png');

@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/model/form_edit_argument.dart';
 import 'package:bookingdive/app/core/widgets/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_controller.dart';
@@ -43,34 +44,90 @@ class EditProfileScreen extends BaseView<EditProfileController> {
             ItemProfileDetail(
               label: 'First Name',
               value: 'John',
+              onTap: () {
+                Get.toNamed(
+                  Routes.FORM_EDIT_PROFILE,
+                  arguments: FormEditArgument(
+                      title: 'Change Name',
+                      hintTop: 'First Name',
+                      hintBottom: 'Last Name'),
+                );
+              },
             ),
             ItemProfileDetail(
-              label: 'Last Name',
-              value: 'Doe',
-            ),
+                label: 'Email',
+                value: 'Joh***@gmail.com',
+                onTap: () {
+                  Get.toNamed(
+                    Routes.FORM_EDIT_PROFILE,
+                    arguments: FormEditArgument(
+                      title: 'Email',
+                      hintTop: 'Email',
+                    ),
+                  );
+                }),
             ItemProfileDetail(
-              label: 'Email',
-              value: 'Joh***@gmail.com',
-            ),
-            ItemProfileDetail(
-              label: 'Date of Birth',
-            ),
+                label: 'Date of Birth',
+                onTap: () {
+                  showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now(),
+                  );
+                }),
             ItemProfileDetail(
               label: 'Gender',
             ),
             ItemProfileDetail(
-              label: 'Phone Number',
-            ),
+                label: 'Phone Number',
+                onTap: () {
+                  Get.toNamed(
+                    Routes.FORM_EDIT_PROFILE,
+                    arguments: FormEditArgument(
+                      title: 'Phone Number',
+                      hintTop: 'Phone Number',
+                    ),
+                  );
+                }),
             ItemProfileDetail(
-              label: 'Country',
-            ),
+                label: 'Country',
+                onTap: () {
+                  Get.toNamed(
+                    Routes.FORM_EDIT_PROFILE,
+                    arguments: FormEditArgument(
+                      title: 'Country',
+                      hintTop: 'Country',
+                    ),
+                  );
+                }),
             ItemProfileDetail(
-              label: 'Home Address',
-            ),
+                label: 'Home Address',
+                onTap: () {
+                  Get.toNamed(
+                    Routes.FORM_EDIT_PROFILE,
+                    arguments: FormEditArgument(
+                      title: 'Home Address',
+                      hintTop: 'Home Address',
+                    ),
+                  );
+                }),
             ItemProfileDetail(
               label: 'Years of Diving',
             ),
-            ItemProfileDetail(label: 'Emergency Contact', showDivider: false),
+            ItemProfileDetail(
+              label: 'Emergency Contact',
+              showDivider: false,
+              onTap: () {
+                Get.toNamed(
+                  Routes.FORM_EDIT_PROFILE,
+                  arguments: FormEditArgument(
+                    title: 'Emergency Contact',
+                    hintTop: 'Emergency Contact',
+                  ),
+                );
+              },
+            ),
             Divider(
               color: theme.disable,
               thickness: 16,
