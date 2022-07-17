@@ -9,5 +9,6 @@ abstract class Routes {
   static const SEARCH = '/search';
   static const EDIT_PROFILE = '/edit_profile';
   static const CHANGE_PASSWORD = '/change_password';
-  static const PAYMENT_METHOD = '/payment_method';
+  static const LIST_PAYMENT_METHOD = '/list_payment_method';
+  static const ADD_PAYMENT_METHOD = '/add_payment_method';
 }

@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/widgets/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_controller.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
@@ -13,28 +14,8 @@ class EditProfileScreen extends BaseView<EditProfileController> {
   @override
   Widget buildScreen(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        shadowColor: Colors.transparent,
-        backgroundColor: theme.main70,
-        leading: Transform.scale(
-          scale: 0.3,
-          child: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Assets.icons.leftStrokeIcon.svg(height: 16, width: 4),
-            ),
-          ),
-        ),
-        titleSpacing: 0,
-        title: TextBasicWidget(
-          text: 'Edit Profile',
-          size: 16,
-          color: Colors.white,
-          weight: FontWeight.w700,
-        ),
+      appBar: AppBarWidget(
+        title: 'Edit Profile',
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -101,7 +82,7 @@ class EditProfileScreen extends BaseView<EditProfileController> {
                 padding:
                     EdgeInsets.only(top: 14, bottom: 14, left: 24, right: 32),
                 onTap: () {
-                  Get.toNamed(Routes.PAYMENT_METHOD);
+                  Get.toNamed(Routes.LIST_PAYMENT_METHOD);
                 }),
             Divider(
               color: theme.disable,
@@ -135,7 +116,7 @@ class EditProfileScreen extends BaseView<EditProfileController> {
   }) {
     return Column(
       children: [
-        GestureDetector(
+        InkWell(
           onTap: onTap,
           child: Padding(
             padding: padding ??

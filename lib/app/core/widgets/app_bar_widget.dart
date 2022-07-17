@@ -1,66 +1,49 @@
+import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../gen/assets.gen.dart';
 import '../values/app_theme.dart';
 
 class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
-  final String? titleText;
-  final TextStyle? titleStyle;
-  final Icon? rightIcon;
-  final Function? onTapRightIcon;
-  final Icon? leftIcon;
+  final String? title;
   final Function? onTapLeftIcon;
-  final Color? bgColor;
-  final Color? leftIconColor;
-  final Color leftIconHighlightColor;
-  final Color leftIconSplashColor;
-  final bool isCenterTitle;
-  final Key? leftButtonKey;
-  final double? elevation;
-  final bool showLeftIcon;
 
   AppBarWidget({
     Key? key,
-    this.titleText,
-    this.titleStyle,
-    this.rightIcon,
-    this.onTapRightIcon,
-    this.leftIcon,
+    this.title,
     this.onTapLeftIcon,
-    this.bgColor,
-    this.leftIconColor,
-    this.leftIconHighlightColor = Colors.grey,
-    this.leftIconSplashColor = Colors.transparent,
-    this.isCenterTitle = true,
-    this.leftButtonKey,
-    this.elevation = 1 / 2,
-    this.showLeftIcon = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: bgColor ?? AppTheme.of(context).main50,
-      elevation: elevation,
+      backgroundColor: AppTheme.of(context).main70,
       automaticallyImplyLeading: false,
-      centerTitle: isCenterTitle,
-      title: titleText != null
-          ? Text(
-              titleText!,
-              style: titleStyle ??
-                  const TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
+      elevation: 0,
+      title: title != null
+          ? TextBasicWidget(
+              text: title!,
+              size: 16,
+              weight: FontWeight.w700,
+              color: Colors.white,
             )
           : null,
-      actions: rightIcon != null
-          ? [
-              IconButton(
-                onPressed: () => onTapRightIcon?.call(),
-                icon: rightIcon!,
-              ),
-            ]
-          : [],
+      titleSpacing: 0,
+      shadowColor: Colors.transparent,
+      leading: Transform.scale(
+        scale: 0.3,
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () {
+            onTapLeftIcon ?? Get.back();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Assets.icons.leftStrokeIcon.svg(height: 16, width: 4),
+          ),
+        ),
+      ),
     );
   }
 

@@ -1,44 +1,23 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/widgets/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
-import 'package:bookingdive/app/modules/profile/payment_method/payment_method_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 
-import '../../../../gen/assets.gen.dart';
-import '../../../core/widgets/text/text_basic_widget.dart';
+import '../../../../core/widgets/text/text_basic_widget.dart';
+import 'add_payment_method_controller.dart';
 
-class PaymentMethodScreen extends BaseView<PaymentMethodController> {
-  const PaymentMethodScreen({Key? key}) : super(key: key);
+class AddPaymentMethodScreen extends BaseView<AddPaymentMethodController> {
+  const AddPaymentMethodScreen({Key? key}) : super(key: key);
 
   final String? valueDummy = '1';
 
   @override
   Widget buildScreen(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        shadowColor: Colors.transparent,
-        backgroundColor: theme.main70,
-        leading: Transform.scale(
-          scale: 0.3,
-          child: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Assets.icons.leftStrokeIcon.svg(height: 16, width: 4),
-            ),
-          ),
-        ),
-        titleSpacing: 0,
-        title: TextBasicWidget(
-          text: 'Payment Method',
-          size: 16,
-          color: Colors.white,
-          weight: FontWeight.w700,
-        ),
+      appBar: AppBarWidget(
+        title: 'Payment Method',
       ),
       body: SingleChildScrollView(
         child: Padding(

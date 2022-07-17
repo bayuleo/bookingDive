@@ -10,8 +10,8 @@ import 'package:bookingdive/app/modules/profile/change_password/change_password_
 import 'package:bookingdive/app/modules/profile/change_password/change_password_screen.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_binding.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_screen.dart';
-import 'package:bookingdive/app/modules/profile/payment_method/payment_method_binding.dart';
-import 'package:bookingdive/app/modules/profile/payment_method/payment_method_screen.dart';
+import 'package:bookingdive/app/modules/profile/payment/list_payment_method/list_payment_method_binding.dart';
+import 'package:bookingdive/app/modules/profile/payment/list_payment_method/list_payment_method_screen.dart';
 import 'package:bookingdive/app/modules/search/search_binding.dart';
 import 'package:bookingdive/app/modules/search/search_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -20,6 +20,8 @@ import '../modules/auth/login/login_binding.dart';
 import '../modules/auth/login/login_screen.dart';
 import '../modules/main/main_binding.dart';
 import '../modules/main/main_screen.dart';
+import '../modules/profile/payment/add_payment_method/add_payment_method_binding.dart';
+import '../modules/profile/payment/add_payment_method/add_payment_method_screen.dart';
 import '../modules/splash/splash_binding.dart';
 import '../modules/splash/splash_screen.dart';
 import 'app_routes.dart';
@@ -74,9 +76,14 @@ class AppPages {
       binding: ChangePasswordBinding(),
     ),
     GetPage(
-      name: Routes.PAYMENT_METHOD,
-      page: () => const PaymentMethodScreen(),
-      binding: PaymentMethodBinding(),
+      name: Routes.LIST_PAYMENT_METHOD,
+      page: () => const ListPaymentMethodScreen(),
+      binding: ListPaymentMethodBinding(),
+    ),
+    GetPage(
+      name: Routes.ADD_PAYMENT_METHOD,
+      page: () => const AddPaymentMethodScreen(),
+      binding: AddPaymentMethodBinding(),
     ),
     GetPage(
       name: Routes.MAIN_CONTENT,

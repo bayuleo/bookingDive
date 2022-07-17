@@ -151,6 +151,10 @@ class $AssetsImagesGen {
   AssetGenImage get emptyList =>
       const AssetGenImage('assets/images/empty_list.png');
 
+  /// File path: assets/images/empty_state_list_payment_method.png
+  AssetGenImage get emptyStateListPaymentMethod =>
+      const AssetGenImage('assets/images/empty_state_list_payment_method.png');
+
   /// File path: assets/images/login_banner.png
   AssetGenImage get loginBanner =>
       const AssetGenImage('assets/images/login_banner.png');

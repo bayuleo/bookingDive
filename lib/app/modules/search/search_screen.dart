@@ -191,11 +191,16 @@ class SearchScreen extends BaseView<SearchController> {
           alignment: Alignment.bottomRight,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 12, right: 16),
-            child: Container(
-              padding: EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
-              child: Assets.icons.upCircleIcon.svg(),
+            child: InkWell(
+              customBorder: const CircleBorder(),
+              onTap: () {},
+              child: Container(
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Assets.icons.upCircleIcon.svg(),
+              ),
             ),
           ),
         )

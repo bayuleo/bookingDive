@@ -8,6 +8,7 @@ class TextBasicWidget extends StatelessWidget {
   final double? size;
   final FontWeight? weight;
   final TextAlign? textAlign;
+  final TextDecoration? textDecoration;
 
   const TextBasicWidget({
     Key? key,
@@ -16,6 +17,7 @@ class TextBasicWidget extends StatelessWidget {
     this.size = 14,
     this.weight,
     this.textAlign,
+    this.textDecoration,
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class TextBasicWidget extends StatelessWidget {
         color: color == null ? AppTheme.of(context).black50 : color,
         fontSize: size,
         fontWeight: weight == null ? FontWeight.normal : weight,
+        decoration: textDecoration ?? null,
       ),
     );
   }

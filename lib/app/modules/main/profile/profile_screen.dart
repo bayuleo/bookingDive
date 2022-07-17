@@ -54,6 +54,7 @@ class ProfileScreen extends BaseView<ProfileController> {
                 ],
               ),
               GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Get.toNamed(Routes.EDIT_PROFILE);
                   },
@@ -199,11 +200,11 @@ class ItemMenuProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Padding(
+    return Column(
+      children: [
+        InkWell(
+          onTap: onTap,
+          child: Padding(
             padding:
                 const EdgeInsets.only(left: 24, right: 30, bottom: 12, top: 12),
             child: Row(
@@ -227,12 +228,12 @@ class ItemMenuProfileWidget extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 64),
-            child: Divider(),
-          ),
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 64),
+          child: Divider(),
+        ),
+      ],
     );
   }
 }

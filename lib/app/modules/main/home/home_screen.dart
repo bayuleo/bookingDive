@@ -94,13 +94,14 @@ class HomeScreen extends BaseView<HomeController> {
                   width: double.infinity,
                   height: 320,
                   child: ListView.builder(
-                      padding: EdgeInsets.only(left: 24, top: 16, right: 12),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 9,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ItemSpotHomeWidget();
-                      }),
+                    padding: EdgeInsets.only(left: 24, top: 16, right: 12),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 9,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ItemSpotHomeWidget();
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 28, right: 28, top: 48),
