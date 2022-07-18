@@ -40,6 +40,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/card_icon.svg
   SvgGenImage get cardIcon => const SvgGenImage('assets/icons/card_icon.svg');
 
+  /// File path: assets/icons/chat_icon.svg
+  SvgGenImage get chatIcon => const SvgGenImage('assets/icons/chat_icon.svg');
+
   /// File path: assets/icons/clock_icon.svg
   SvgGenImage get clockIcon => const SvgGenImage('assets/icons/clock_icon.svg');
 
@@ -72,6 +75,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google_icon.svg
   SvgGenImage get googleIcon =>
       const SvgGenImage('assets/icons/google_icon.svg');
+
+  /// File path: assets/icons/heart_grey_icon.svg
+  SvgGenImage get heartGreyIcon =>
+      const SvgGenImage('assets/icons/heart_grey_icon.svg');
 
   /// File path: assets/icons/heart_icon.svg
   SvgGenImage get heartIcon => const SvgGenImage('assets/icons/heart_icon.svg');
@@ -115,6 +122,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/pen_icon.svg
   SvgGenImage get penIcon => const SvgGenImage('assets/icons/pen_icon.svg');
+
+  /// File path: assets/icons/person_grey_icon.svg
+  SvgGenImage get personGreyIcon =>
+      const SvgGenImage('assets/icons/person_grey_icon.svg');
 
   /// File path: assets/icons/person_icon.svg
   SvgGenImage get personIcon =>

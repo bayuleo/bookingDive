@@ -38,23 +38,23 @@ class MainController extends BaseController {
         label: "Home",
       ),
       BottomNavItem(
-        icon: Assets.icons.homeInactiveIcon,
-        activeIcon: Assets.icons.homeIcon,
+        icon: Assets.icons.bagIcon,
+        activeIcon: Assets.icons.bagIcon,
         label: "Booking",
       ),
       BottomNavItem(
-        icon: Assets.icons.homeInactiveIcon,
-        activeIcon: Assets.icons.heartIcon,
+        icon: Assets.icons.heartGreyIcon,
+        activeIcon: Assets.icons.heartGreyIcon,
         label: "Wishlist",
       ),
       BottomNavItem(
-        icon: Assets.icons.homeInactiveIcon,
-        activeIcon: Assets.icons.homeIcon,
+        icon: Assets.icons.chatIcon,
+        activeIcon: Assets.icons.chatIcon,
         label: "Inbox",
       ),
       BottomNavItem(
-        icon: Assets.icons.personInactiveIcon,
-        activeIcon: Assets.icons.personIcon,
+        icon: Assets.icons.personGreyIcon,
+        activeIcon: Assets.icons.personGreyIcon,
         label: "Profile",
       ),
     ];
