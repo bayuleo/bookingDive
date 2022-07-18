@@ -5,6 +5,7 @@ import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_controller.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
@@ -78,6 +79,23 @@ class EditProfileScreen extends BaseView<EditProfileController> {
                 }),
             ItemProfileDetail(
               label: 'Gender',
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 150,
+                        child: CupertinoPicker(
+                            onSelectedItemChanged: null,
+                            itemExtent: 32,
+                            children: [
+                              Text('Choose One'),
+                              Text('Male'),
+                              Text('Female'),
+                            ]),
+                      );
+                    });
+              },
             ),
             ItemProfileDetail(
                 label: 'Phone Number',
@@ -114,6 +132,61 @@ class EditProfileScreen extends BaseView<EditProfileController> {
                 }),
             ItemProfileDetail(
               label: 'Years of Diving',
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 150,
+                        child: CupertinoPicker(
+                            onSelectedItemChanged: null,
+                            itemExtent: 32,
+                            children: [
+                              Text('Pick Years'),
+                              Text('0'),
+                              Text('2'),
+                              Text('3'),
+                              Text('4'),
+                              Text('5'),
+                              Text('6'),
+                              Text('7'),
+                              Text('8'),
+                              Text('9'),
+                              Text('10'),
+                              Text('11'),
+                              Text('12'),
+                              Text('13'),
+                              Text('14'),
+                              Text('15'),
+                              Text('16'),
+                              Text('17'),
+                              Text('18'),
+                              Text('19'),
+                              Text('20'),
+                              Text('21'),
+                              Text('22'),
+                              Text('23'),
+                              Text('24'),
+                              Text('25'),
+                              Text('26'),
+                              Text('27'),
+                              Text('28'),
+                              Text('29'),
+                              Text('30'),
+                              Text('31'),
+                              Text('32'),
+                              Text('33'),
+                              Text('34'),
+                              Text('35'),
+                              Text('36'),
+                              Text('37'),
+                              Text('38'),
+                              Text('39'),
+                              Text('40'),
+                            ]),
+                      );
+                    });
+              },
             ),
             ItemProfileDetail(
               label: 'Emergency Contact',

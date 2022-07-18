@@ -6,7 +6,12 @@ import 'package:flutter/material.dart';
 import '../../../core/widgets/text/text_basic_widget.dart';
 
 class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
-  const ItemSearchLocationWidget({Key? key}) : super(key: key);
+  final bool isFavorited;
+
+  const ItemSearchLocationWidget({
+    Key? key,
+    this.isFavorited = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +134,9 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Assets.icons.heartIcon.svg(color: theme.black30),
+                isFavorited
+                    ? Assets.icons.heartRedIcon.svg()
+                    : Assets.icons.heartIcon.svg(color: theme.black30),
                 Row(
                   children: [
                     TextBasicWidget(

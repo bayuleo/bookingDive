@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/modules/main/profile/profile_screen.dart';
+import 'package:bookingdive/app/modules/main/whislist/whislist_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -18,7 +19,7 @@ class MainController extends BaseController {
     return [
       const HomeScreen(),
       const SizedBox(),
-      const SizedBox(),
+      const WhistlistScreen(),
       const SizedBox(),
       const ProfileScreen(),
     ];
@@ -44,7 +45,7 @@ class MainController extends BaseController {
       ),
       BottomNavItem(
         icon: Assets.icons.heartGreyIcon,
-        activeIcon: Assets.icons.heartGreyIcon,
+        activeIcon: Assets.icons.heartBlueIcon,
         label: "Wishlist",
       ),
       BottomNavItem(
@@ -54,7 +55,7 @@ class MainController extends BaseController {
       ),
       BottomNavItem(
         icon: Assets.icons.personGreyIcon,
-        activeIcon: Assets.icons.personGreyIcon,
+        activeIcon: Assets.icons.personBlueIcon,
         label: "Profile",
       ),
     ];
