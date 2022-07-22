@@ -6,8 +6,10 @@ import 'package:bookingdive/app/modules/search/widgets/item_search_location_widg
 import 'package:bookingdive/app/modules/search/widgets/selector_filter_widget.dart';
 import 'package:bookingdive/app/modules/search/widgets/selector_search_widget.dart';
 import 'package:bookingdive/app/modules/search/widgets/selector_sort_widget.dart';
+import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../core/base/base_view.dart';
 
@@ -135,7 +137,9 @@ class SearchScreen extends BaseView<SearchController> {
                     shrinkWrap: true,
                     itemCount: 9,
                     itemBuilder: (BuildContext context, int index) {
-                      return ItemSearchLocationWidget();
+                      return InkWell(
+                          onTap: () => Get.toNamed(Routes.LOCATION),
+                          child: ItemSearchLocationWidget());
                     }),
               ),
             ),

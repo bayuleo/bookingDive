@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/modules/main/inbox/inbox_screen.dart';
 import 'package:bookingdive/app/modules/main/profile/profile_screen.dart';
 import 'package:bookingdive/app/modules/main/whislist/whislist_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class MainController extends BaseController {
       const HomeScreen(),
       const SizedBox(),
       const WhistlistScreen(),
-      const SizedBox(),
+      const InboxScreen(),
       const ProfileScreen(),
     ];
   }
@@ -50,7 +51,7 @@ class MainController extends BaseController {
       ),
       BottomNavItem(
         icon: Assets.icons.chatIcon,
-        activeIcon: Assets.icons.chatIcon,
+        activeIcon: Assets.icons.chatBlueIcon,
         label: "Inbox",
       ),
       BottomNavItem(

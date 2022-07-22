@@ -55,6 +55,7 @@ dependencies:
   flutter_facebook_auth: ^4.3.4+2
   sign_in_with_apple: ^3.0.0
   crypto: ^3.0.1
+  youtube_player_flutter: ^8.1.0
 
 dev_dependencies:
   flutter_test:

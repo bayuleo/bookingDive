@@ -40,8 +40,16 @@ class $AssetsIconsGen {
   /// File path: assets/icons/card_icon.svg
   SvgGenImage get cardIcon => const SvgGenImage('assets/icons/card_icon.svg');
 
+  /// File path: assets/icons/chat_blue_icon.svg
+  SvgGenImage get chatBlueIcon =>
+      const SvgGenImage('assets/icons/chat_blue_icon.svg');
+
   /// File path: assets/icons/chat_icon.svg
   SvgGenImage get chatIcon => const SvgGenImage('assets/icons/chat_icon.svg');
+
+  /// File path: assets/icons/checkbox_green_icon.svg
+  SvgGenImage get checkboxGreenIcon =>
+      const SvgGenImage('assets/icons/checkbox_green_icon.svg');
 
   /// File path: assets/icons/clock_icon.svg
   SvgGenImage get clockIcon => const SvgGenImage('assets/icons/clock_icon.svg');
@@ -158,6 +166,10 @@ class $AssetsIconsGen {
   SvgGenImage get rightStroke =>
       const SvgGenImage('assets/icons/right_stroke.svg');
 
+  /// File path: assets/icons/search_icon.svg
+  SvgGenImage get searchIcon =>
+      const SvgGenImage('assets/icons/search_icon.svg');
+
   /// File path: assets/icons/setting_icon.svg
   SvgGenImage get settingIcon =>
       const SvgGenImage('assets/icons/setting_icon.svg');
@@ -181,6 +193,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/empty_list.png
   AssetGenImage get emptyList =>
       const AssetGenImage('assets/images/empty_list.png');
+
+  /// File path: assets/images/empty_state_inbox.png
+  AssetGenImage get emptyStateInbox =>
+      const AssetGenImage('assets/images/empty_state_inbox.png');
 
   /// File path: assets/images/empty_state_list_payment_method.png
   AssetGenImage get emptyStateListPaymentMethod =>

@@ -1,5 +1,5 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
-import 'package:bookingdive/app/core/widgets/app_bar_widget.dart';
+import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/main/whislist/whislist_controller.dart';
 import 'package:bookingdive/gen/assets.gen.dart';

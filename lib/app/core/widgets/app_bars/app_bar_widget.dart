@@ -2,8 +2,8 @@ import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../gen/assets.gen.dart';
-import '../values/app_theme.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../values/app_theme.dart';
 
 class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   final String? title;

@@ -9,6 +9,7 @@ class TextBasicWidget extends StatelessWidget {
   final FontWeight? weight;
   final TextAlign? textAlign;
   final TextDecoration? textDecoration;
+  final TextOverflow? textOverflow;
 
   const TextBasicWidget({
     Key? key,
@@ -18,12 +19,14 @@ class TextBasicWidget extends StatelessWidget {
     this.weight,
     this.textAlign,
     this.textDecoration,
+    this.textOverflow,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      overflow: textOverflow,
       textAlign: textAlign,
       style: TextStyle(
         color: color == null ? AppTheme.of(context).black50 : color,

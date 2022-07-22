@@ -1,8 +1,7 @@
+import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:flutter/material.dart';
 
-import '../../values/app_theme.dart';
-
-class TextFormFieldOutlineWidget extends StatelessWidget {
+class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
   final String? hint;
   final Widget? rightIcon;
   final Widget? leftIcon;
@@ -41,19 +40,20 @@ class TextFormFieldOutlineWidget extends StatelessWidget {
       onChanged: (value) => onChangedText?.call(value),
       decoration: InputDecoration(
         hintText: hint,
+        hintStyle: TextStyle(color: theme.black30),
         prefixIcon: leftIcon,
         suffixIcon: _rightIcon(),
         isDense: true,
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: AppTheme.of(context).black10),
+          borderSide: BorderSide(color: theme.black10),
           borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppTheme.of(context).main50),
+          borderSide: BorderSide(color: theme.main50),
           borderRadius: BorderRadius.circular(8),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppTheme.of(context).black10),
+          borderSide: BorderSide(color: theme.black10),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
-import 'package:bookingdive/app/core/widgets/app_bar_widget.dart';
+import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
 import 'package:flutter/material.dart';

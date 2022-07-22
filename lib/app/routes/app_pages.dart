@@ -6,6 +6,8 @@ import 'package:bookingdive/app/modules/auth/register/register_binding.dart';
 import 'package:bookingdive/app/modules/auth/register/register_screen.dart';
 import 'package:bookingdive/app/modules/auth/reset_password/reset_password_binding.dart';
 import 'package:bookingdive/app/modules/auth/reset_password/reset_password_screen.dart';
+import 'package:bookingdive/app/modules/location/location_binding.dart';
+import 'package:bookingdive/app/modules/location/location_view.dart';
 import 'package:bookingdive/app/modules/profile/change_password/change_password_binding.dart';
 import 'package:bookingdive/app/modules/profile/change_password/change_password_screen.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_binding.dart';
@@ -91,6 +93,11 @@ class AppPages {
       name: Routes.FORM_EDIT_PROFILE,
       page: () => const FormEditProfileScreen(),
       binding: FormEditProfileBinding(),
+    ),
+    GetPage(
+      name: Routes.LOCATION,
+      page: () => LocationScreen(),
+      binding: LocationBinding(),
     ),
     GetPage(
       name: Routes.MAIN_CONTENT,

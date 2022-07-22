@@ -5,14 +5,17 @@ import '../text/text_basic_widget.dart';
 
 class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
   final String text;
+  final FontWeight? fontWeight;
   final Function onTap;
   final Size? size;
   final bool isFullWidht;
   final bool enable;
   final Color? textColor;
   final Color? borderColor;
+  final Color? disableColor;
   final Widget? icon;
   final EdgeInsets? padding;
+  final double? radius;
 
   const ButtonOutlineBasicWidget({
     Key? key,
@@ -22,8 +25,11 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
     this.enable = true,
     this.textColor,
     this.borderColor,
+    this.disableColor,
     this.icon,
     this.padding,
+    this.radius,
+    this.fontWeight,
     required this.onTap,
   }) : super(key: key);
 
@@ -42,8 +48,10 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
                 ),
           TextBasicWidget(
             text: text,
-            weight: FontWeight.w600,
-            color: enable ? textColor ?? theme.main50 : theme.main30,
+            weight: fontWeight ?? FontWeight.w600,
+            color: enable
+                ? textColor ?? theme.main50
+                : disableColor ?? theme.main30,
           ),
         ],
       ),
@@ -59,8 +67,10 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
                 : size,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-              color: enable ? borderColor ?? theme.main50 : theme.main30),
-          borderRadius: BorderRadius.circular(8),
+              color: enable
+                  ? borderColor ?? theme.main50
+                  : disableColor ?? theme.main30),
+          borderRadius: BorderRadius.circular(radius ?? 8),
         ),
       ),
     );

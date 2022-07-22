@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../../../../gen/assets.gen.dart';
-import '../../../core/widgets/app_bar_widget.dart';
+import '../../../core/widgets/app_bars/app_bar_widget.dart';
 import '../../../core/widgets/text/text_basic_widget.dart';
 
 class ChangePasswordScreen extends BaseView<ChangePasswordController> {

@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/modules/main/inbox/inbox_controller.dart';
 import 'package:bookingdive/app/modules/main/profile/profile_controller.dart';
 import 'package:bookingdive/app/modules/main/whislist/whislist_controller.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,9 @@ class MainBinding implements Bindings {
     );
     Get.put<WhislistController>(
       WhislistController(),
+    );
+    Get.put<InboxController>(
+      InboxController(),
     );
   }
 }
