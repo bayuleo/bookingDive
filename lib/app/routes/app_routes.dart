@@ -13,4 +13,5 @@ abstract class Routes {
   static const ADD_PAYMENT_METHOD = '/add_payment_method';
   static const FORM_EDIT_PROFILE = '/form_edit_profile';
   static const LOCATION = '/location';
+  static const REVIEW = '/review';
 }

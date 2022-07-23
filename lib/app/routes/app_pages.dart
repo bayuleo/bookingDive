@@ -8,6 +8,8 @@ import 'package:bookingdive/app/modules/auth/reset_password/reset_password_bindi
 import 'package:bookingdive/app/modules/auth/reset_password/reset_password_screen.dart';
 import 'package:bookingdive/app/modules/location/location_binding.dart';
 import 'package:bookingdive/app/modules/location/location_view.dart';
+import 'package:bookingdive/app/modules/location/review/review_binding.dart';
+import 'package:bookingdive/app/modules/location/review/review_screen.dart';
 import 'package:bookingdive/app/modules/profile/change_password/change_password_binding.dart';
 import 'package:bookingdive/app/modules/profile/change_password/change_password_screen.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_binding.dart';
@@ -98,6 +100,11 @@ class AppPages {
       name: Routes.LOCATION,
       page: () => LocationScreen(),
       binding: LocationBinding(),
+    ),
+    GetPage(
+      name: Routes.REVIEW,
+      page: () => ReviewScreen(),
+      binding: ReviewBinding(),
     ),
     GetPage(
       name: Routes.MAIN_CONTENT,

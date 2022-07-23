@@ -47,6 +47,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/chat_icon.svg
   SvgGenImage get chatIcon => const SvgGenImage('assets/icons/chat_icon.svg');
 
+  /// File path: assets/icons/checkbox_blue_icon.svg
+  SvgGenImage get checkboxBlueIcon =>
+      const SvgGenImage('assets/icons/checkbox_blue_icon.svg');
+
   /// File path: assets/icons/checkbox_green_icon.svg
   SvgGenImage get checkboxGreenIcon =>
       const SvgGenImage('assets/icons/checkbox_green_icon.svg');
