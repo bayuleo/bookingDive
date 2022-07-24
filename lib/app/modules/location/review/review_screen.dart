@@ -135,57 +135,59 @@ class ReviewScreen extends BaseView<ReviewController> {
                 ),
               )
             : Expanded(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 24, right: 24, top: 24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextBasicWidget(
-                            text: 'Review',
-                            size: 14,
-                            weight: FontWeight.w600,
-                            color: theme.black70,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8, bottom: 16),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  size: 20,
-                                  color: Colors.amber,
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  child: TextBasicWidget(
-                                    text: '5',
-                                    size: 16,
-                                    weight: FontWeight.w700,
-                                    color: theme.black50,
-                                  ),
-                                ),
-                                TextBasicWidget(
-                                  text: 'dari 12 review',
-                                  size: 12,
-                                  weight: FontWeight.w400,
-                                  color: theme.black30,
-                                ),
-                              ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 24, right: 24, top: 24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextBasicWidget(
+                              text: 'Review',
+                              size: 14,
+                              weight: FontWeight.w600,
+                              color: theme.black70,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 8, bottom: 16),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    size: 20,
+                                    color: Colors.amber,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 4),
+                                    child: TextBasicWidget(
+                                      text: '5',
+                                      size: 16,
+                                      weight: FontWeight.w700,
+                                      color: theme.black50,
+                                    ),
+                                  ),
+                                  TextBasicWidget(
+                                    text: 'dari 12 review',
+                                    size: 12,
+                                    weight: FontWeight.w400,
+                                    color: theme.black30,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Divider(
-                      thickness: 4,
-                      color: theme.disable,
-                    ),
-                    Expanded(
-                      child: ListView.builder(
+                      Divider(
+                        thickness: 4,
+                        color: theme.disable,
+                      ),
+                      ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(left: 0, top: 8, right: 0),
                         shrinkWrap: true,
                         itemCount: 3,
@@ -200,8 +202,8 @@ class ReviewScreen extends BaseView<ReviewController> {
                           ]);
                         },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
       ],
