@@ -10,6 +10,7 @@ import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class LocationScreen extends BaseView<LocationController> {
@@ -348,12 +349,18 @@ class LocationScreen extends BaseView<LocationController> {
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 16),
-                        child: TextBasicWidget(
-                          text: 'See Map',
-                          size: 16,
-                          weight: FontWeight.w700,
-                          color: theme.main50,
-                          textDecoration: TextDecoration.underline,
+                        child: InkWell(
+                          onTap: () {
+                            MapsLauncher.launchCoordinates(
+                                -6.175392, 106.827153, 'Monas');
+                          },
+                          child: TextBasicWidget(
+                            text: 'See Map',
+                            size: 16,
+                            weight: FontWeight.w700,
+                            color: theme.main50,
+                            textDecoration: TextDecoration.underline,
+                          ),
                         ),
                       ),
                     ),
