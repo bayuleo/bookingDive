@@ -4,11 +4,13 @@ import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/location/loaction_controller.dart';
 import 'package:bookingdive/app/modules/location/widgets/item_review_widget.dart';
+import 'package:bookingdive/app/modules/location/widgets/selector_packages_widget.dart';
 import 'package:bookingdive/app/modules/search/widgets/selector_search_widget.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -118,27 +120,54 @@ class LocationScreen extends BaseView<LocationController> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 2),
-                          child: Stack(children: [
-                            Container(
-                              height: 88,
-                              width: double.infinity,
-                              child: Assets.images.loginBanner
-                                  .image(fit: BoxFit.cover),
-                            ),
-                            Container(
-                              height: 88,
-                              decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.6)),
-                              child: Center(
-                                child: TextBasicWidget(
-                                  text: '+8 Others',
-                                  size: 14,
-                                  weight: FontWeight.w400,
-                                  color: Colors.white,
+                          child: InkWell(
+                            onTap: () => showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    contentPadding: EdgeInsets.zero,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    content: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.4,
+                                      width: MediaQuery.of(context).size.width,
+                                      padding: EdgeInsets.zero,
+                                      decoration: BoxDecoration(
+                                          color: Colors.transparent),
+                                      child: ImageSlideshow(children: [
+                                        Assets.images.loginBanner.image(),
+                                        Assets.images.loginBanner.image(),
+                                        Assets.images.loginBanner.image(),
+                                        Assets.images.loginBanner.image(),
+                                        Assets.images.loginBanner.image(),
+                                      ]),
+                                    ),
+                                  );
+                                }),
+                            child: Stack(children: [
+                              Container(
+                                height: 88,
+                                width: double.infinity,
+                                child: Assets.images.loginBanner
+                                    .image(fit: BoxFit.cover),
+                              ),
+                              Container(
+                                height: 88,
+                                decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.6)),
+                                child: Center(
+                                  child: TextBasicWidget(
+                                    text: '+8 Others',
+                                    size: 14,
+                                    weight: FontWeight.w400,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            )
-                          ]),
+                            ]),
+                          ),
                         )
                       ],
                     ),
@@ -309,10 +338,7 @@ class LocationScreen extends BaseView<LocationController> {
                         scrollDirection: Axis.horizontal,
                         itemCount: 9,
                         itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: ItemReviewWidget(),
-                          );
+                          return ItemReviewWidget();
                         },
                       ),
                     ),
@@ -537,7 +563,15 @@ class LocationScreen extends BaseView<LocationController> {
                   child: ButtonBasicWidget(
                     text: 'See All Packages',
                     isFullWidht: true,
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (_) {
+                          return SelectorPackagesWidget();
+                        },
+                      );
+                    },
                   ),
                 )
               ],

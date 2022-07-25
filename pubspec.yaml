@@ -57,6 +57,7 @@ dependencies:
   crypto: ^3.0.1
   youtube_player_flutter: ^8.1.0
   maps_launcher: ^2.0.1
+  flutter_image_slideshow: ^0.1.2
 
 dev_dependencies:
   flutter_test:
