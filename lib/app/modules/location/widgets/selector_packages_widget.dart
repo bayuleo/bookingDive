@@ -1,8 +1,10 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SelectorPackagesWidget extends StatelessWidget with BaseWidgetMixin {
   const SelectorPackagesWidget({Key? key}) : super(key: key);
@@ -24,13 +26,13 @@ class SelectorPackagesWidget extends StatelessWidget with BaseWidgetMixin {
             ),
           ]),
       child: Padding(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
+        padding: EdgeInsets.only(top: 32, bottom: 42),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 24),
+              padding: const EdgeInsets.only(bottom: 12, left: 24, right: 24),
               child: TextBasicWidget(
                 text: 'Package',
                 size: 18,
@@ -46,10 +48,7 @@ class SelectorPackagesWidget extends StatelessWidget with BaseWidgetMixin {
                   shrinkWrap: true,
                   itemCount: 3,
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: ItemPackageWidget(),
-                    );
+                    return ItemPackageWidget();
                   },
                 ),
               ),
@@ -69,15 +68,19 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: theme.white, boxShadow: [
-        BoxShadow(
-          offset: Offset(0, 25),
-          blurRadius: 7,
-          spreadRadius: -25,
-          color: Colors.black.withOpacity(0.1),
-        ),
-      ]),
+      decoration: BoxDecoration(
+          color: theme.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(5, 6),
+              blurRadius: 7,
+              spreadRadius: 1,
+              color: Colors.black.withOpacity(0.1),
+            ),
+          ]),
       padding: const EdgeInsets.all(8),
+      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -190,7 +193,9 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
           ButtonBasicWidget(
             isFullWidht: true,
             text: 'Choose',
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(Routes.BOOKING);
+            },
           )
         ],
       ),

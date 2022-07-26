@@ -134,6 +134,10 @@ class $AssetsIconsGen {
   SvgGenImage get locationIcon =>
       const SvgGenImage('assets/icons/location_icon.svg');
 
+  /// File path: assets/icons/lock_blue_icon.svg
+  SvgGenImage get lockBlueIcon =>
+      const SvgGenImage('assets/icons/lock_blue_icon.svg');
+
   /// File path: assets/icons/lock_icon.svg
   SvgGenImage get lockIcon => const SvgGenImage('assets/icons/lock_icon.svg');
 
@@ -177,6 +181,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/phone_icon.svg
   SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
+
+  /// File path: assets/icons/refresh_icon.svg
+  SvgGenImage get refreshIcon =>
+      const SvgGenImage('assets/icons/refresh_icon.svg');
 
   /// File path: assets/icons/right_stroke.svg
   SvgGenImage get rightStroke =>

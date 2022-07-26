@@ -14,4 +14,5 @@ abstract class Routes {
   static const FORM_EDIT_PROFILE = '/form_edit_profile';
   static const LOCATION = '/location';
   static const REVIEW = '/review';
+  static const BOOKING = '/booking';
 }
