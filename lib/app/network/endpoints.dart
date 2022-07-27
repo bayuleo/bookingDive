@@ -1,8 +1,10 @@
 class Endpoints {
   late AuthEndpoint auth;
+  late LocationEndpoint location;
 
   Endpoints() {
     auth = AuthEndpoint();
+    location = LocationEndpoint();
   }
 }
 
@@ -17,5 +19,13 @@ class AuthEndpoint {
     this.signup = '/register',
     this.forgotPassword = '/forgot',
     this.logout = '/logout',
+  });
+}
+
+class LocationEndpoint {
+  final String popularDiving;
+
+  LocationEndpoint({
+    this.popularDiving = '/listing-popular',
   });
 }

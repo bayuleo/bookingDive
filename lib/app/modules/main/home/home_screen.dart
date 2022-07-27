@@ -97,9 +97,12 @@ class HomeScreen extends BaseView<HomeController> {
                     padding: EdgeInsets.only(left: 24, top: 16, right: 12),
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: 9,
+                    itemCount: controller.listPopularDivingLocation.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return ItemSpotHomeWidget();
+                      var item = controller.listPopularDivingLocation[index];
+                      return ItemSpotHomeWidget(
+                        data: item,
+                      );
                     },
                   ),
                 ),
@@ -129,9 +132,12 @@ class HomeScreen extends BaseView<HomeController> {
                       padding: EdgeInsets.only(left: 24, top: 16, right: 12),
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      itemCount: 9,
+                      itemCount: controller.listPopularDivingLocation.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return ItemSpotHomeWidget();
+                        var item = controller.listPopularDivingLocation[index];
+                        return ItemSpotHomeWidget(
+                          data: item,
+                        );
                       }),
                 ),
                 Padding(
