@@ -8,6 +8,8 @@ export 'auth/sign_in/request_auth_sign_in.dart';
 export 'auth/sign_in/response_auth_sign_in_data.dart';
 export 'auth/sign_in/response_auth_sign_in.dart';
 export 'auth/sign_in/response_auth_sign_in_data_profile.dart';
+export 'auth/logout/response_auth_logout.dart';
+export 'auth/logout/response_auth_logout_data.dart';
 export 'auth/register/request_register.dart';
 export 'auth/register/response_register_data.dart';
 export 'auth/register/response_register.dart';

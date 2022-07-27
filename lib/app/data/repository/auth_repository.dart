@@ -12,7 +12,7 @@ abstract class AuthRepository {
 
   Future<ResponseRegister> signUp(RequestRegister data);
 
-  Future<bool> signOut();
+  Future<ResponseAuthLogout> signOut();
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -30,10 +30,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> signOut() async {
-    await _authDataSource.signOut(); //TODO integration logout
+  Future<ResponseAuthLogout> signOut() async {
+    final res = await _authDataSource.signOut(); //TODO integration logout
     FirebaseConfig.signOutFirebase();
-    final res = await _userCredentialsDataSource.clearToken();
+    await _userCredentialsDataSource.clearToken();
     return res;
   }
 

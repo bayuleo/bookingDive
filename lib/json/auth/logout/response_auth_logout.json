@@ -1,0 +1,6 @@
+{
+  "message": "Logout Successfully",
+  "error?": "$../common/error",
+  "status": true,
+  "data": "$./response_auth_logout_data"
+}

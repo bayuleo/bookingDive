@@ -1,5 +1,7 @@
 import 'package:bookingdive/app/core/base/base_controller.dart';
 import 'package:bookingdive/app/core/model/user_credentials.dart';
+import 'package:bookingdive/app/core/utils/snackbar.dart';
+import 'package:bookingdive/app/data/model/index.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -25,7 +27,13 @@ class ProfileController extends BaseController {
   }
 
   Future<void> handleButtonLogout() async {
-    var res = await _authRepository.signOut();
-    if (res) Get.offAllNamed(Routes.LOGIN);
+    callDataService<ResponseAuthLogout>(
+      () => _authRepository.signOut(),
+      onSuccess: (res) {
+        SnackbarHelper.success(
+            title: 'Success', desc: 'You`re logout from application');
+        Get.offAllNamed(Routes.LOGIN);
+      },
+    );
   }
 }

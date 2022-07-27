@@ -131,7 +131,7 @@ class ListMenuAccount extends StatelessWidget with BaseWidgetMixin {
   }
 }
 
-class ListMenuGeneral extends StatelessWidget {
+class ListMenuGeneral extends StatelessWidget with BaseWidgetMixin {
   final ProfileController controller;
   const ListMenuGeneral({
     Key? key,
@@ -176,7 +176,45 @@ class ListMenuGeneral extends StatelessWidget {
             icon: Assets.icons.logoutIcon.svg(),
             title: "Log Out",
             showRightIcon: false,
-            onTap: controller.handleButtonLogout,
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: TextBasicWidget(text: 'Do you want to log out?'),
+                      actions: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 16),
+                          child: InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: TextBasicWidget(
+                              text: 'cancel',
+                              size: 16,
+                              weight: FontWeight.w400,
+                              color: theme.main50,
+                              textDecoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 16),
+                          child: InkWell(
+                            onTap: controller.handleButtonLogout,
+                            child: TextBasicWidget(
+                              text: 'log out',
+                              size: 16,
+                              weight: FontWeight.w400,
+                              color: theme.main50,
+                              textDecoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  });
+            },
           ),
         ],
       ),

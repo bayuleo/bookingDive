@@ -13,7 +13,7 @@ abstract class AuthDataSource {
 
   Future<ResponseRegister> signUp(RequestRegister data);
 
-  Future<void> signOut();
+  Future<ResponseAuthLogout> signOut();
 }
 
 class AuthDataSourceImpl implements AuthDataSource {
@@ -30,10 +30,9 @@ class AuthDataSourceImpl implements AuthDataSource {
   }
 
   @override
-  Future<void> signOut() async {
-    await Future.delayed(
-      const Duration(seconds: 1),
-    );
+  Future<ResponseAuthLogout> signOut() async {
+    var response = await dioConfigure.dio.post(endpoints.auth.logout);
+    return ResponseAuthLogout.fromJson(response.data);
   }
 
   @override

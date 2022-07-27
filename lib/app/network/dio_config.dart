@@ -33,9 +33,9 @@ class DioConfigure {
         connectTimeout: 15000,
         sendTimeout: 15000,
         headers: <String, String>{
-          // 'Authorization':
-          //     'Bearer ${_userCredentialsRepository.getCredentials().accessToken}',
-          // 'Content-Type': 'application/json'
+          'Authorization':
+              'Bearer ${_userCredentialsRepository.getCredentials().accessToken}',
+          'Content-Type': 'application/json',
           'app-id': '1',
         },
       ),
