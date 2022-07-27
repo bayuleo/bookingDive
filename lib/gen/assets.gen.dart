@@ -156,6 +156,10 @@ class $AssetsIconsGen {
   SvgGenImage get passwordShow =>
       const SvgGenImage('assets/icons/password_show.svg');
 
+  /// File path: assets/icons/payment_waiting_icon.svg
+  SvgGenImage get paymentWaitingIcon =>
+      const SvgGenImage('assets/icons/payment_waiting_icon.svg');
+
   /// File path: assets/icons/pen_icon.svg
   SvgGenImage get penIcon => const SvgGenImage('assets/icons/pen_icon.svg');
 

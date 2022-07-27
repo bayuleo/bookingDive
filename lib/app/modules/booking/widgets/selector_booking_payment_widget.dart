@@ -2,7 +2,9 @@ import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
+import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SelectorBookingPaymentWidget extends StatelessWidget
     with BaseWidgetMixin {
@@ -106,7 +108,9 @@ class SelectorBookingPaymentWidget extends StatelessWidget
               child: ButtonBasicWidget(
                 text: 'Submit',
                 isFullWidht: true,
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.PAYMENT);
+                },
               ),
             )
           ],

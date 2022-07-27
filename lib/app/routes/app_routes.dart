@@ -15,4 +15,5 @@ abstract class Routes {
   static const LOCATION = '/location';
   static const REVIEW = '/review';
   static const BOOKING = '/booking';
+  static const PAYMENT = '/payment';
 }
