@@ -23,6 +23,8 @@ export 'common/message.dart';
 export 'locations/popular_diving/response_popular_diving.dart';
 export 'locations/popular_diving/response_data_popular_diving.dart';
 export 'locations/popular_diving/request_popular_diving.dart';
+export 'locations/detail/response_detail_location.dart';
+export 'locations/detail/response_detail_location_data.dart';
 import 'package:quiver/core.dart';
 
 T? checkOptional<T>(Optional<T?>? optional, T? Function()? def) {

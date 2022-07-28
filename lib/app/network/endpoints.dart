@@ -24,8 +24,10 @@ class AuthEndpoint {
 
 class LocationEndpoint {
   final String popularDiving;
+  final String listLocation;
 
   LocationEndpoint({
     this.popularDiving = '/listing-popular',
+    this.listLocation = '/listing',
   });
 }

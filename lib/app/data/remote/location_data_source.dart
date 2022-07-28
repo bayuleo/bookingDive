@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 abstract class LocationDataSource {
   Future<ResponsePopularDiving> getPopularDivingLocation(
       RequestPopularDiving param);
+
+  Future<ResponseDetailLocation> getDetailLocation(String idLocation);
 }
 
 class LocationDataSourceImpl implements LocationDataSource {
@@ -21,5 +23,12 @@ class LocationDataSourceImpl implements LocationDataSource {
       queryParameters: queryParams,
     );
     return ResponsePopularDiving.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseDetailLocation> getDetailLocation(String idLocation) async {
+    var response = await dioConfigure.dio
+        .get('${endpoints.location.listLocation}/$idLocation');
+    return ResponseDetailLocation.fromJson(response.data);
   }
 }

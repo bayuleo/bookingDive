@@ -2,6 +2,7 @@ import 'package:bookingdive/app/core/base/base_controller.dart';
 import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_controller.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
+import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class HomeController extends BaseController {
@@ -35,6 +36,13 @@ class HomeController extends BaseController {
         listPopularDivingLocation = res.data;
         update();
       },
+    );
+  }
+
+  void onTapItemPopular(String locationId) async {
+    await Get.toNamed(
+      Routes.LOCATION,
+      arguments: locationId,
     );
   }
 }

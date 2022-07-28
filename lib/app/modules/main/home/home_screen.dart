@@ -100,8 +100,15 @@ class HomeScreen extends BaseView<HomeController> {
                     itemCount: controller.listPopularDivingLocation.length,
                     itemBuilder: (BuildContext context, int index) {
                       var item = controller.listPopularDivingLocation[index];
-                      return ItemSpotHomeWidget(
-                        data: item,
+                      return InkWell(
+                        onTap: () {
+                          controller.onTapItemPopular(
+                            item.productId.toString(),
+                          );
+                        },
+                        child: ItemSpotHomeWidget(
+                          data: item,
+                        ),
                       );
                     },
                   ),
@@ -135,8 +142,15 @@ class HomeScreen extends BaseView<HomeController> {
                       itemCount: controller.listPopularDivingLocation.length,
                       itemBuilder: (BuildContext context, int index) {
                         var item = controller.listPopularDivingLocation[index];
-                        return ItemSpotHomeWidget(
-                          data: item,
+                        return InkWell(
+                          onTap: () {
+                            controller.onTapItemPopular(
+                              item.productId.toString(),
+                            );
+                          },
+                          child: ItemSpotHomeWidget(
+                            data: item,
+                          ),
                         );
                       }),
                 ),

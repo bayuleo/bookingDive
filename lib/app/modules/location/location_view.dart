@@ -1,6 +1,8 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/utils/currency.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
+import 'package:bookingdive/app/core/widgets/star_rating_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/location/loaction_controller.dart';
 import 'package:bookingdive/app/modules/location/widgets/item_review_widget.dart';
@@ -60,13 +62,13 @@ class LocationScreen extends BaseView<LocationController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [
                                 TextBasicWidget(
-                                  text: 'Solomon Islands',
+                                  text: 'Solomon Islands (UNSET)',
                                   weight: FontWeight.w700,
                                   size: 16,
                                   color: Colors.white,
                                 ),
                                 TextBasicWidget(
-                                  text: '8 September 2021 • 2 divers',
+                                  text: '8 September 2021 • 2 divers (UNSET)',
                                   weight: FontWeight.w400,
                                   size: 12,
                                   color: Colors.white,
@@ -100,8 +102,17 @@ class LocationScreen extends BaseView<LocationController> {
                         padding: const EdgeInsets.only(right: 3),
                         child: Container(
                           height: 180,
-                          child: Assets.images.loginBanner
-                              .image(fit: BoxFit.cover),
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          child: Image.network(
+                            controller.data?.image ?? '',
+                            fit: BoxFit.cover,
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
+                          ),
                         ),
                       )),
                   Flexible(
@@ -181,7 +192,7 @@ class LocationScreen extends BaseView<LocationController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextBasicWidget(
-                      text: 'Scuba Diving Courses and Fun Dives',
+                      text: controller.data?.productName ?? 'Product Name',
                       size: 16,
                       weight: FontWeight.w700,
                       color: theme.black70,
@@ -193,31 +204,30 @@ class LocationScreen extends BaseView<LocationController> {
                           Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: TextBasicWidget(
-                              text: 'Semporna, Malaysia',
+                              text:
+                                  '${controller.data?.locationState ?? 'State'}, ${controller.data?.locationCountry ?? 'Country'}',
                               size: 14,
                               weight: FontWeight.w400,
                               color: theme.black30,
                             ),
                           ),
-                          for (int i = 0; i < 5; i++)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 2),
-                              child: Icon(
-                                Icons.star,
-                                size: 14,
-                                color: Colors.amber,
-                              ),
+                          StarRatingWidget(
+                              rating: controller.data?.ratingResult ?? 0),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 4),
+                            child: TextBasicWidget(
+                              text: '(${controller.data?.ratingCount ?? 0})',
+                              size: 12,
+                              weight: FontWeight.w400,
+                              color: theme.black30,
                             ),
-                          TextBasicWidget(
-                            text: '(12)',
-                            size: 12,
-                            weight: FontWeight.w400,
-                            color: theme.black30,
                           ),
                         ],
                       ),
                     ),
-                    Assets.icons.heartGreyIcon.svg(color: theme.black30),
+                    (controller.data?.isWishlist ?? false)
+                        ? Assets.icons.heartRedIcon.svg(color: theme.error50)
+                        : Assets.icons.heartGreyIcon.svg(),
                   ],
                 ),
               ),
@@ -302,7 +312,7 @@ class LocationScreen extends BaseView<LocationController> {
                                   color: Colors.amber,
                                 ),
                                 TextBasicWidget(
-                                  text: '5',
+                                  text: '${controller.data?.ratingResult ?? 0}',
                                   size: 16,
                                   weight: FontWeight.w700,
                                   color: theme.black70,
@@ -310,7 +320,8 @@ class LocationScreen extends BaseView<LocationController> {
                               ],
                             ),
                             TextBasicWidget(
-                              text: 'Dari 12 review',
+                              text:
+                                  'Dari ${controller.data?.ratingCount} review${(controller.data?.ratingCount ?? 0) > 1 ? 's' : ''}',
                               size: 12,
                               weight: FontWeight.w400,
                               color: theme.black30,
@@ -551,7 +562,8 @@ class LocationScreen extends BaseView<LocationController> {
                       color: theme.black30,
                     ),
                     TextBasicWidget(
-                      text: 'IDR 214.234',
+                      text:
+                          '${controller.data?.priceCurrency ?? ''} ${controller.data?.priceLower.addComma() ?? 0}',
                       size: 14,
                       weight: FontWeight.w600,
                       color: theme.error50,
