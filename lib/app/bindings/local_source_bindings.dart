@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/core/utils/permission_handler.dart';
 import 'package:bookingdive/app/data/local/user_credentials_data_source.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -8,6 +9,10 @@ class LocalSourceBindings implements Bindings {
   void dependencies() {
     Get.lazyPut<UserCredentialsDataSource>(
       () => UserCredentialsDataSourceImpl(),
+      fenix: true,
+    );
+    Get.lazyPut<PermissionHandler>(
+      () => PermissionHandler(),
       fenix: true,
     );
   }
