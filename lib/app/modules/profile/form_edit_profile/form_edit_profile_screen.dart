@@ -43,6 +43,8 @@ class FormEditProfileScreen extends BaseView<FormEditProfileController> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: CountryPickerDropdown(
+                        initialValue:
+                            controller.initData?.profileData?.countryId,
                         hint: TextBasicWidget(
                           text: 'Country',
                         ),

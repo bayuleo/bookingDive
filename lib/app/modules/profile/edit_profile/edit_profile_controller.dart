@@ -14,6 +14,8 @@ class EditProfileController extends BaseController {
 
   ResponseProfileData? profileData;
   RequestUpdateProfile? _requestUpdateProfile;
+  String? selectGender;
+  String? selectYearOfDiving;
 
   @override
   void onReady() {

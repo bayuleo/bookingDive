@@ -1,5 +1,4 @@
 import 'package:bookingdive/app/core/base/base_controller.dart';
-import 'package:bookingdive/app/core/model/user_credentials.dart';
 import 'package:bookingdive/app/core/utils/snackbar.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:get/get.dart';
@@ -13,16 +12,16 @@ class ProfileController extends BaseController {
   final AuthRepository _authRepository = Get.find();
   final UserCredentialsRepository _userCredentialsRepository = Get.find();
 
-  UserCredentials? userCredentials;
+  ResponseProfileData? profileData;
 
   @override
   void onReady() {
     super.onReady();
-    getDataUser();
+    getDataUserFromLocal();
   }
 
-  Future<void> getDataUser() async {
-    userCredentials = await _userCredentialsRepository.getCredentials();
+  Future<void> getDataUserFromLocal() async {
+    profileData = await _userCredentialsRepository.getCredentials().profile;
     update();
   }
 

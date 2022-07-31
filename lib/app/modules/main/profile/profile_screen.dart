@@ -13,7 +13,6 @@ class ProfileScreen extends BaseView<ProfileController> {
 
   @override
   Widget buildScreen(BuildContext context) {
-    final profile = controller.userCredentials?.profile;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,7 +26,8 @@ class ProfileScreen extends BaseView<ProfileController> {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(profile?.avatar ?? ''),
+                    backgroundImage:
+                        NetworkImage(controller.profileData?.avatar ?? ''),
                     backgroundColor: Colors.transparent,
                   ),
                   Padding(
@@ -37,13 +37,13 @@ class ProfileScreen extends BaseView<ProfileController> {
                       children: [
                         TextBasicWidget(
                           text:
-                              '${profile?.firstName ?? ''} ${profile?.lastName ?? ''}',
+                              '${controller.profileData?.firstName ?? ''} ${controller.profileData?.lastName ?? ''}',
                           color: Colors.white,
                           weight: FontWeight.w700,
                           size: 16,
                         ),
                         TextBasicWidget(
-                          text: profile?.email ?? '',
+                          text: controller.profileData?.email ?? '',
                           color: Colors.white,
                           weight: FontWeight.w400,
                           size: 16,
@@ -55,8 +55,9 @@ class ProfileScreen extends BaseView<ProfileController> {
               ),
               GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Get.toNamed(Routes.EDIT_PROFILE);
+                  onTap: () async {
+                    await Get.toNamed(Routes.EDIT_PROFILE);
+                    controller.getDataUserFromLocal();
                   },
                   child: Assets.icons.penIcon.svg()),
             ],

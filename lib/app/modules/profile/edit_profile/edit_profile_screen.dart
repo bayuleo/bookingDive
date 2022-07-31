@@ -87,20 +87,42 @@ class EditProfileScreen extends BaseView<EditProfileController> {
               value: controller.profileData?.gender,
               onTap: () {
                 showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 150,
-                        child: CupertinoPicker(
-                            onSelectedItemChanged: null,
-                            itemExtent: 32,
-                            children: [
-                              Text('Choose One'),
-                              Text('Male'),
-                              Text('Female'),
-                            ]),
-                      );
-                    });
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: 150,
+                      child: CupertinoPicker(
+                        onSelectedItemChanged: (value) {
+                          switch (value) {
+                            case 0:
+                              controller.selectGender = '';
+                              break;
+                            case 1:
+                              controller.selectGender = 'Male';
+                              break;
+                            case 2:
+                              controller.selectGender = "Female";
+                              break;
+                          }
+                        },
+                        itemExtent: 32,
+                        children: [
+                          Text('Choose One'),
+                          Text('Male'),
+                          Text('Female'),
+                        ],
+                      ),
+                    );
+                  },
+                ).whenComplete(
+                  () {
+                    if (controller.selectGender != '') {
+                      controller.onSubmitValue(InputProfileType.gender,
+                          controller.selectGender ?? '');
+                    }
+                    ;
+                  },
+                );
               },
             ),
             ItemProfileDetail(
@@ -138,58 +160,79 @@ class EditProfileScreen extends BaseView<EditProfileController> {
               value: controller.profileData?.yearDiving.toString(),
               onTap: () {
                 showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 150,
-                        child: CupertinoPicker(
-                            onSelectedItemChanged: null,
-                            itemExtent: 32,
-                            children: [
-                              Text('Pick Years'),
-                              Text('0'),
-                              Text('2'),
-                              Text('3'),
-                              Text('4'),
-                              Text('5'),
-                              Text('6'),
-                              Text('7'),
-                              Text('8'),
-                              Text('9'),
-                              Text('10'),
-                              Text('11'),
-                              Text('12'),
-                              Text('13'),
-                              Text('14'),
-                              Text('15'),
-                              Text('16'),
-                              Text('17'),
-                              Text('18'),
-                              Text('19'),
-                              Text('20'),
-                              Text('21'),
-                              Text('22'),
-                              Text('23'),
-                              Text('24'),
-                              Text('25'),
-                              Text('26'),
-                              Text('27'),
-                              Text('28'),
-                              Text('29'),
-                              Text('30'),
-                              Text('31'),
-                              Text('32'),
-                              Text('33'),
-                              Text('34'),
-                              Text('35'),
-                              Text('36'),
-                              Text('37'),
-                              Text('38'),
-                              Text('39'),
-                              Text('40'),
-                            ]),
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: 150,
+                      child: CupertinoPicker(
+                        onSelectedItemChanged: (value) {
+                          if (value != 0) {
+                            controller.selectYearOfDiving =
+                                (value - 1).toString();
+                          }
+                        },
+                        itemExtent: 32,
+                        children: [
+                          Text('Pick Years'),
+                          Text('0'),
+                          Text('1'),
+                          Text('2'),
+                          Text('3'),
+                          Text('4'),
+                          Text('5'),
+                          Text('6'),
+                          Text('7'),
+                          Text('8'),
+                          Text('9'),
+                          Text('10'),
+                          Text('11'),
+                          Text('12'),
+                          Text('13'),
+                          Text('14'),
+                          Text('15'),
+                          Text('16'),
+                          Text('17'),
+                          Text('18'),
+                          Text('19'),
+                          Text('20'),
+                          Text('21'),
+                          Text('22'),
+                          Text('23'),
+                          Text('24'),
+                          Text('25'),
+                          Text('26'),
+                          Text('27'),
+                          Text('28'),
+                          Text('29'),
+                          Text('30'),
+                          Text('31'),
+                          Text('32'),
+                          Text('33'),
+                          Text('34'),
+                          Text('35'),
+                          Text('36'),
+                          Text('37'),
+                          Text('38'),
+                          Text('39'),
+                          Text('40'),
+                        ],
+                      ),
+                    );
+                  },
+                ).whenComplete(
+                  () {
+                    if (controller.selectYearOfDiving !=
+                        controller.profileData?.yearDiving.toString()) {
+                      var currentYear = DateTime.now().year;
+                      var newYear = currentYear -
+                          int.parse(controller.selectYearOfDiving ?? '0');
+                      controller.onSubmitValue(
+                        InputProfileType.yearsOfDiving,
+                        newYear.toString(),
                       );
-                    });
+                    }
+                  },
+                );
               },
             ),
             ItemProfileDetail(
