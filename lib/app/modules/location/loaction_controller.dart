@@ -23,7 +23,8 @@ class LocationController extends BaseController {
 
   Future<void> getDetailLocation() async {
     callDataService<ResponseDetailLocation>(
-        () => _locationRepository.getDetailLocation('3'), onSuccess: (res) {
+        () => _locationRepository.getDetailLocation(locationId!),
+        onSuccess: (res) {
       data = res.data;
       update();
     });
