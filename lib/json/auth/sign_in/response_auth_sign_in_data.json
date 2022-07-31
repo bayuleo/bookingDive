@@ -1,5 +1,5 @@
 {
   "access_token": "euyyujuuy54678iujkmnbvdftuyukjl",
   "refresh_token": "rtyuiop567",
-  "profile": "$./response_auth_sign_in_data_profile"
+  "profile": "$../profile/response_profile_data"
 }

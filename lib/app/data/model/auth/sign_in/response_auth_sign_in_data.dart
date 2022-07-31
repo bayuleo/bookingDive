@@ -15,12 +15,12 @@ class ResponseAuthSignInData {
 
   final String accessToken;
   final String refreshToken;
-  final ResponseAuthSignInDataProfile profile;
+  final ResponseProfileData profile;
 
   factory ResponseAuthSignInData.fromJson(Map<String,dynamic> json) => ResponseAuthSignInData(
     accessToken: json['access_token'].toString(),
     refreshToken: json['refresh_token'].toString(),
-    profile: ResponseAuthSignInDataProfile.fromJson(json['profile'] as Map<String, dynamic>)
+    profile: ResponseProfileData.fromJson(json['profile'] as Map<String, dynamic>)
   );
   
   Map<String, dynamic> toJson() => {
@@ -39,7 +39,7 @@ class ResponseAuthSignInData {
   ResponseAuthSignInData copyWith({
     String? accessToken,
     String? refreshToken,
-    ResponseAuthSignInDataProfile? profile
+    ResponseProfileData? profile
   }) => ResponseAuthSignInData(
     accessToken: accessToken ?? this.accessToken,
     refreshToken: refreshToken ?? this.refreshToken,

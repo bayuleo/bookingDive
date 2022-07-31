@@ -1,7 +1,7 @@
+import 'package:bookingdive/app/data/model/auth/profile/response_profile_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:quiver/core.dart';
 
-import '../../data/model/auth/sign_in/response_auth_sign_in_data_profile.dart';
 import '../utils/check_optional.dart';
 
 @immutable
@@ -15,14 +15,14 @@ class UserCredentials {
 
   final String? refreshToken;
   final String? accessToken;
-  final ResponseAuthSignInDataProfile? profile;
+  final ResponseProfileData? profile;
 
   factory UserCredentials.fromJson(Map<String, dynamic> json) =>
       UserCredentials(
         refreshToken: json['refresh_token']?.toString(),
         accessToken: json['access_token']?.toString(),
         profile: json['profile'] != null
-            ? ResponseAuthSignInDataProfile.fromJson(
+            ? ResponseProfileData.fromJson(
                 json['profile'] as Map<String, dynamic>)
             : null,
       );
@@ -42,7 +42,7 @@ class UserCredentials {
   UserCredentials copyWith(
           {Optional<String?>? refreshToken,
           Optional<String?>? accessToken,
-          Optional<ResponseAuthSignInDataProfile?>? profile}) =>
+          Optional<ResponseProfileData?>? profile}) =>
       UserCredentials(
           refreshToken: checkOptional(refreshToken, () => this.refreshToken),
           accessToken: checkOptional(accessToken, () => this.accessToken),

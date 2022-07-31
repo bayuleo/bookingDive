@@ -1,8 +1,9 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
-import 'package:bookingdive/app/core/model/form_edit_argument.dart';
+import 'package:bookingdive/app/core/utils/date.dart';
 import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_controller.dart';
+import 'package:bookingdive/app/modules/profile/form_edit_profile/form_edit_profile_controller.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,41 +45,46 @@ class EditProfileScreen extends BaseView<EditProfileController> {
             ),
             ItemProfileDetail(
               label: 'First Name',
-              value: 'John',
+              value: controller.profileData?.firstName,
               onTap: () {
-                Get.toNamed(
-                  Routes.FORM_EDIT_PROFILE,
-                  arguments: FormEditArgument(
-                      title: 'Change Name',
-                      hintTop: 'First Name',
-                      hintBottom: 'Last Name'),
+                controller.onTapEdit(
+                  title: 'Change Name',
+                  hintTop: 'First Name',
+                  hintBottom: 'Last Name',
+                  inputProfileType: InputProfileType.name,
                 );
               },
             ),
             ItemProfileDetail(
                 label: 'Email',
-                value: 'Joh***@gmail.com',
+                value: controller.profileData?.email,
                 onTap: () {
-                  Get.toNamed(
-                    Routes.FORM_EDIT_PROFILE,
-                    arguments: FormEditArgument(
-                      title: 'Email',
-                      hintTop: 'Email',
-                    ),
+                  controller.onTapEdit(
+                    title: 'Email',
+                    hintTop: 'Email',
+                    inputProfileType: InputProfileType.email,
                   );
                 }),
             ItemProfileDetail(
                 label: 'Date of Birth',
+                value: controller.profileData?.dateOfBirth,
                 onTap: () {
                   showDatePicker(
                     context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime.now(),
+                    initialDate: DateHelper.formatDateStringToDateTime(
+                        controller.profileData?.dateOfBirth),
+                    firstDate: DateTime(1900),
                     lastDate: DateTime.now(),
+                  ).then(
+                    (value) => controller.onSubmitValue(
+                      InputProfileType.dateOfBirth,
+                      DateHelper.formatDate(value!),
+                    ),
                   );
                 }),
             ItemProfileDetail(
               label: 'Gender',
+              value: controller.profileData?.gender,
               onTap: () {
                 showModalBottomSheet(
                     context: context,
@@ -99,39 +105,37 @@ class EditProfileScreen extends BaseView<EditProfileController> {
             ),
             ItemProfileDetail(
                 label: 'Phone Number',
+                value: controller.profileData?.phoneNumber,
                 onTap: () {
-                  Get.toNamed(
-                    Routes.FORM_EDIT_PROFILE,
-                    arguments: FormEditArgument(
-                      title: 'Phone Number',
-                      hintTop: 'Phone Number',
-                    ),
+                  controller.onTapEdit(
+                    title: 'Phone Number',
+                    hintTop: 'Phone Number',
+                    inputProfileType: InputProfileType.phone,
                   );
                 }),
             ItemProfileDetail(
                 label: 'Country',
+                value: controller.profileData?.countryName,
                 onTap: () {
-                  Get.toNamed(
-                    Routes.FORM_EDIT_PROFILE,
-                    arguments: FormEditArgument(
-                      title: 'Country',
-                      hintTop: 'Country',
-                    ),
+                  controller.onTapEdit(
+                    title: 'Country',
+                    hintTop: 'Country',
+                    inputProfileType: InputProfileType.country,
                   );
                 }),
             ItemProfileDetail(
                 label: 'Home Address',
+                value: controller.profileData?.address,
                 onTap: () {
-                  Get.toNamed(
-                    Routes.FORM_EDIT_PROFILE,
-                    arguments: FormEditArgument(
-                      title: 'Home Address',
-                      hintTop: 'Home Address',
-                    ),
+                  controller.onTapEdit(
+                    title: 'Home Address',
+                    hintTop: 'Home Address',
+                    inputProfileType: InputProfileType.address,
                   );
                 }),
             ItemProfileDetail(
               label: 'Years of Diving',
+              value: controller.profileData?.yearDiving.toString(),
               onTap: () {
                 showModalBottomSheet(
                     context: context,
@@ -190,14 +194,13 @@ class EditProfileScreen extends BaseView<EditProfileController> {
             ),
             ItemProfileDetail(
               label: 'Emergency Contact',
+              value: controller.profileData?.emergencyContact,
               showDivider: false,
               onTap: () {
-                Get.toNamed(
-                  Routes.FORM_EDIT_PROFILE,
-                  arguments: FormEditArgument(
-                    title: 'Emergency Contact',
-                    hintTop: 'Emergency Contact',
-                  ),
+                controller.onTapEdit(
+                  title: 'Emergency Contact',
+                  hintTop: 'Emergency Contact',
+                  inputProfileType: InputProfileType.emergencyContact,
                 );
               },
             ),
@@ -265,7 +268,7 @@ class EditProfileScreen extends BaseView<EditProfileController> {
                     Padding(
                       padding: const EdgeInsets.only(right: 12),
                       child: TextBasicWidget(
-                        text: value ?? 'Set now',
+                        text: value == null || value == '' ? 'Set now' : value,
                         size: 14,
                         color: value == null ? theme.black30 : theme.black50,
                         weight: FontWeight.w400,

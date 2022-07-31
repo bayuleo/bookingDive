@@ -1,24 +1,25 @@
 import 'dart:convert';
 
 import 'package:bookingdive/app/core/model/user_credentials.dart';
+import 'package:bookingdive/app/data/model/index.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:quiver/core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../model/auth/sign_in/response_auth_sign_in_data_profile.dart';
 
 abstract class UserCredentialsDataSource {
   UserCredentials getUserCredentials();
 
   Future<bool> updateUserCredentials(UserCredentials credentials);
 
+  Future<bool> updateProfile(ResponseProfileData profileData);
+
   Future<bool> clearToken();
 
   Future<bool> saveUserCredentials({
     required String refreshToken,
     required String accessToken,
-    required ResponseAuthSignInDataProfile profile,
+    required ResponseProfileData profile,
   });
 }
 
@@ -43,7 +44,7 @@ class UserCredentialsDataSourceImpl implements UserCredentialsDataSource {
   Future<bool> saveUserCredentials(
       {required String refreshToken,
       required String accessToken,
-      required ResponseAuthSignInDataProfile profile}) {
+      required ResponseProfileData profile}) {
     final credential = getUserCredentials();
     return updateUserCredentials(
       credential.copyWith(
@@ -72,6 +73,16 @@ class UserCredentialsDataSourceImpl implements UserCredentialsDataSource {
       key,
       jsonEncode(
         credentials.toJson(),
+      ),
+    );
+  }
+
+  @override
+  Future<bool> updateProfile(ResponseProfileData profileData) {
+    final credential = getUserCredentials();
+    return updateUserCredentials(
+      credential.copyWith(
+        profile: Optional.of(profileData),
       ),
     );
   }

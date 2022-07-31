@@ -1,0 +1,14 @@
+{
+  "first_name": "string",
+  "last_name": "string",
+  "email": "string",
+  "date_of_birth?": "1993-07-01",
+  "gender?": "Male/Female",
+  "country_code?": "62",
+  "phone_number?": "0811111111",
+  "country_id?": "ID",
+  "country_name?": "Indonesia",
+  "address?": "Address",
+  "years_of_diving?": "2000",
+  "emergency_contact?": "0811111111"
+}

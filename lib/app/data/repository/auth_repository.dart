@@ -13,6 +13,11 @@ abstract class AuthRepository {
   Future<ResponseRegister> signUp(RequestRegister data);
 
   Future<ResponseAuthLogout> signOut();
+
+  Future<ResponseProfile> updateProfile({
+    required String idProfile,
+    required RequestUpdateProfile param,
+  });
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -50,5 +55,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<ResponseForgotPassword> forgotPassword(RequestForgotPassword data) {
     return _authDataSource.forgotPassword(data);
+  }
+
+  @override
+  Future<ResponseProfile> updateProfile({
+    required String idProfile,
+    required RequestUpdateProfile param,
+  }) {
+    return _authDataSource.updateProfile(
+      idProfile: idProfile,
+      param: param,
+    );
   }
 }

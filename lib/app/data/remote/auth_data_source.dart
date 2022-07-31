@@ -14,6 +14,11 @@ abstract class AuthDataSource {
   Future<ResponseRegister> signUp(RequestRegister data);
 
   Future<ResponseAuthLogout> signOut();
+
+  Future<ResponseProfile> updateProfile({
+    required String idProfile,
+    required RequestUpdateProfile param,
+  });
 }
 
 class AuthDataSourceImpl implements AuthDataSource {
@@ -56,5 +61,17 @@ class AuthDataSourceImpl implements AuthDataSource {
       ),
     );
     return ResponseForgotPassword.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseProfile> updateProfile({
+    required String idProfile,
+    required RequestUpdateProfile param,
+  }) async {
+    final queryParams = param.toJson();
+    var response = await dioConfigure.dio.put(
+        '${endpoints.auth.profile}/$idProfile',
+        queryParameters: queryParams);
+    return ResponseProfile.fromJson(response.data);
   }
 }

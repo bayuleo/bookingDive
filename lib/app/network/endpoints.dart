@@ -13,12 +13,14 @@ class AuthEndpoint {
   final String signup;
   final String forgotPassword;
   final String logout;
+  final String profile;
 
   AuthEndpoint({
     this.signin = '/login',
     this.signup = '/register',
     this.forgotPassword = '/forgot',
     this.logout = '/logout',
+    this.profile = '/profile',
   });
 }
 
