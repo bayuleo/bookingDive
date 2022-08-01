@@ -4,8 +4,11 @@ import 'package:bookingdive/app/network/endpoints.dart';
 import 'package:get/get.dart';
 
 abstract class LocationDataSource {
-  Future<ResponsePopularDiving> getPopularDivingLocation(
-      RequestPopularDiving param);
+  Future<ResponseListLocation> getPopularDivingLocation(
+      RequestPopularLocation param);
+
+  Future<ResponseListLocation> getNearbyDivingLocation(
+      RequestNearbyLocation param);
 
   Future<ResponseDetailLocation> getDetailLocation(String idLocation);
 }
@@ -15,14 +18,14 @@ class LocationDataSourceImpl implements LocationDataSource {
   final endpoints = Get.find<Endpoints>();
 
   @override
-  Future<ResponsePopularDiving> getPopularDivingLocation(
-      RequestPopularDiving param) async {
+  Future<ResponseListLocation> getPopularDivingLocation(
+      RequestPopularLocation param) async {
     final queryParams = param.toJson();
     var response = await dioConfigure.dio.get(
-      endpoints.location.popularDiving,
+      endpoints.location.popularLocation,
       queryParameters: queryParams,
     );
-    return ResponsePopularDiving.fromJson(response.data);
+    return ResponseListLocation.fromJson(response.data);
   }
 
   @override
@@ -30,5 +33,16 @@ class LocationDataSourceImpl implements LocationDataSource {
     var response = await dioConfigure.dio
         .get('${endpoints.location.listLocation}/$idLocation');
     return ResponseDetailLocation.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseListLocation> getNearbyDivingLocation(
+      RequestNearbyLocation param) async {
+    final queryParams = param.toJson();
+    var response = await dioConfigure.dio.get(
+      endpoints.location.nearbyLocation,
+      queryParameters: queryParams,
+    );
+    return ResponseListLocation.fromJson(response.data);
   }
 }

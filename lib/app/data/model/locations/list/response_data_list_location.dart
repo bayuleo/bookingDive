@@ -5,9 +5,9 @@ import '../../index.dart';
 
 
 @immutable
-class ResponseDataPopularDiving {
+class ResponseDataListLocation {
 
-  const ResponseDataPopularDiving({
+  const ResponseDataListLocation({
     required this.productId,
     required this.productName,
     required this.locationState,
@@ -31,7 +31,7 @@ class ResponseDataPopularDiving {
   final bool isWishlist;
   final String image;
 
-  factory ResponseDataPopularDiving.fromJson(Map<String,dynamic> json) => ResponseDataPopularDiving(
+  factory ResponseDataListLocation.fromJson(Map<String,dynamic> json) => ResponseDataListLocation(
     productId: json['product_id'] as int,
     productName: json['product_name'].toString(),
     locationState: json['location_state'].toString(),
@@ -57,7 +57,7 @@ class ResponseDataPopularDiving {
     'image': image
   };
 
-  ResponseDataPopularDiving clone() => ResponseDataPopularDiving(
+  ResponseDataListLocation clone() => ResponseDataListLocation(
     productId: productId,
     productName: productName,
     locationState: locationState,
@@ -71,7 +71,7 @@ class ResponseDataPopularDiving {
   );
 
 
-  ResponseDataPopularDiving copyWith({
+  ResponseDataListLocation copyWith({
     int? productId,
     String? productName,
     String? locationState,
@@ -82,7 +82,7 @@ class ResponseDataPopularDiving {
     int? ratingResult,
     bool? isWishlist,
     String? image
-  }) => ResponseDataPopularDiving(
+  }) => ResponseDataListLocation(
     productId: productId ?? this.productId,
     productName: productName ?? this.productName,
     locationState: locationState ?? this.locationState,
@@ -97,7 +97,7 @@ class ResponseDataPopularDiving {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseDataPopularDiving && productId == other.productId && productName == other.productName && locationState == other.locationState && locationCountry == other.locationCountry && priceLower == other.priceLower && priceCurrency == other.priceCurrency && ratingCount == other.ratingCount && ratingResult == other.ratingResult && isWishlist == other.isWishlist && image == other.image;
+    || other is ResponseDataListLocation && productId == other.productId && productName == other.productName && locationState == other.locationState && locationCountry == other.locationCountry && priceLower == other.priceLower && priceCurrency == other.priceCurrency && ratingCount == other.ratingCount && ratingResult == other.ratingResult && isWishlist == other.isWishlist && image == other.image;
 
   @override
   int get hashCode => productId.hashCode ^ productName.hashCode ^ locationState.hashCode ^ locationCountry.hashCode ^ priceLower.hashCode ^ priceCurrency.hashCode ^ ratingCount.hashCode ^ ratingResult.hashCode ^ isWishlist.hashCode ^ image.hashCode;

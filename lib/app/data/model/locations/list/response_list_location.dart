@@ -5,9 +5,9 @@ import '../../index.dart';
 
 
 @immutable
-class ResponsePopularDiving {
+class ResponseListLocation {
 
-  const ResponsePopularDiving({
+  const ResponseListLocation({
     required this.status,
     required this.message,
     this.error,
@@ -17,13 +17,13 @@ class ResponsePopularDiving {
   final bool status;
   final String message;
   final Error? error;
-  final List<ResponseDataPopularDiving> data;
+  final List<ResponseDataListLocation> data;
 
-  factory ResponsePopularDiving.fromJson(Map<String,dynamic> json) => ResponsePopularDiving(
+  factory ResponseListLocation.fromJson(Map<String,dynamic> json) => ResponseListLocation(
     status: json['status'] as bool,
     message: json['message'].toString(),
     error: json['error'] != null ? Error.fromJson(json['error'] as Map<String, dynamic>) : null,
-    data: (json['data'] as List? ?? []).map((e) => ResponseDataPopularDiving.fromJson(e as Map<String, dynamic>)).toList()
+    data: (json['data'] as List? ?? []).map((e) => ResponseDataListLocation.fromJson(e as Map<String, dynamic>)).toList()
   );
   
   Map<String, dynamic> toJson() => {
@@ -33,7 +33,7 @@ class ResponsePopularDiving {
     'data': data.map((e) => e.toJson()).toList()
   };
 
-  ResponsePopularDiving clone() => ResponsePopularDiving(
+  ResponseListLocation clone() => ResponseListLocation(
     status: status,
     message: message,
     error: error?.clone(),
@@ -41,12 +41,12 @@ class ResponsePopularDiving {
   );
 
 
-  ResponsePopularDiving copyWith({
+  ResponseListLocation copyWith({
     bool? status,
     String? message,
     Optional<Error?>? error,
-    List<ResponseDataPopularDiving>? data
-  }) => ResponsePopularDiving(
+    List<ResponseDataListLocation>? data
+  }) => ResponseListLocation(
     status: status ?? this.status,
     message: message ?? this.message,
     error: checkOptional(error, () => this.error),
@@ -55,7 +55,7 @@ class ResponsePopularDiving {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponsePopularDiving && status == other.status && message == other.message && error == other.error && data == other.data;
+    || other is ResponseListLocation && status == other.status && message == other.message && error == other.error && data == other.data;
 
   @override
   int get hashCode => status.hashCode ^ message.hashCode ^ error.hashCode ^ data.hashCode;

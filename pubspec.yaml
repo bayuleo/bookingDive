@@ -61,6 +61,8 @@ dependencies:
   currency_text_input_formatter: ^2.1.5
   country_pickers: ^2.0.0
   permission_handler: ^10.0.0
+  geolocator: ^9.0.1
+  geocoding: ^2.0.4
 
 dev_dependencies:
   flutter_test:

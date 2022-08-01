@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../../../gen/assets.gen.dart';
 
 class ItemSpotHomeWidget extends StatelessWidget with BaseWidgetMixin {
-  final ResponseDataPopularDiving data;
+  final ResponseDataListLocation data;
 
   const ItemSpotHomeWidget({
     Key? key,

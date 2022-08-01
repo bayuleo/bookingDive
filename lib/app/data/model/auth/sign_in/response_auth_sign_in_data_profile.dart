@@ -5,9 +5,10 @@ import '../../index.dart';
 
 
 @immutable
-class RequestUpdateProfile {
+class ResponseAuthSignInDataProfile {
 
-  const RequestUpdateProfile({
+  const ResponseAuthSignInDataProfile({
+    required this.idProfile,
     required this.firstName,
     required this.lastName,
     required this.email,
@@ -18,10 +19,12 @@ class RequestUpdateProfile {
     this.countryId,
     this.countryName,
     this.address,
-    this.yearsOfDiving,
+    this.yearDiving,
     this.emergencyContact,
+    this.avatar,
   });
 
+  final int idProfile;
   final String firstName;
   final String lastName;
   final String email;
@@ -32,10 +35,12 @@ class RequestUpdateProfile {
   final String? countryId;
   final String? countryName;
   final String? address;
-  final String? yearsOfDiving;
+  final int? yearDiving;
   final String? emergencyContact;
+  final String? avatar;
 
-  factory RequestUpdateProfile.fromJson(Map<String,dynamic> json) => RequestUpdateProfile(
+  factory ResponseAuthSignInDataProfile.fromJson(Map<String,dynamic> json) => ResponseAuthSignInDataProfile(
+    idProfile: json['id_profile'] as int,
     firstName: json['first_name'].toString(),
     lastName: json['last_name'].toString(),
     email: json['email'].toString(),
@@ -46,11 +51,13 @@ class RequestUpdateProfile {
     countryId: json['country_id']?.toString(),
     countryName: json['country_name']?.toString(),
     address: json['address']?.toString(),
-    yearsOfDiving: json['years_of_diving']?.toString(),
-    emergencyContact: json['emergency_contact']?.toString()
+    yearDiving: json['year_diving'] != null ? json['year_diving'] as int : null,
+    emergencyContact: json['emergency_contact']?.toString(),
+    avatar: json['avatar']?.toString()
   );
   
   Map<String, dynamic> toJson() => {
+    'id_profile': idProfile,
     'first_name': firstName,
     'last_name': lastName,
     'email': email,
@@ -61,11 +68,13 @@ class RequestUpdateProfile {
     'country_id': countryId,
     'country_name': countryName,
     'address': address,
-    'years_of_diving': yearsOfDiving,
-    'emergency_contact': emergencyContact
+    'year_diving': yearDiving,
+    'emergency_contact': emergencyContact,
+    'avatar': avatar
   };
 
-  RequestUpdateProfile clone() => RequestUpdateProfile(
+  ResponseAuthSignInDataProfile clone() => ResponseAuthSignInDataProfile(
+    idProfile: idProfile,
     firstName: firstName,
     lastName: lastName,
     email: email,
@@ -76,12 +85,14 @@ class RequestUpdateProfile {
     countryId: countryId,
     countryName: countryName,
     address: address,
-    yearsOfDiving: yearsOfDiving,
-    emergencyContact: emergencyContact
+    yearDiving: yearDiving,
+    emergencyContact: emergencyContact,
+    avatar: avatar
   );
 
 
-  RequestUpdateProfile copyWith({
+  ResponseAuthSignInDataProfile copyWith({
+    int? idProfile,
     String? firstName,
     String? lastName,
     String? email,
@@ -92,9 +103,11 @@ class RequestUpdateProfile {
     Optional<String?>? countryId,
     Optional<String?>? countryName,
     Optional<String?>? address,
-    Optional<String?>? yearsOfDiving,
-    Optional<String?>? emergencyContact
-  }) => RequestUpdateProfile(
+    Optional<int?>? yearDiving,
+    Optional<String?>? emergencyContact,
+    Optional<String?>? avatar
+  }) => ResponseAuthSignInDataProfile(
+    idProfile: idProfile ?? this.idProfile,
     firstName: firstName ?? this.firstName,
     lastName: lastName ?? this.lastName,
     email: email ?? this.email,
@@ -105,14 +118,15 @@ class RequestUpdateProfile {
     countryId: checkOptional(countryId, () => this.countryId),
     countryName: checkOptional(countryName, () => this.countryName),
     address: checkOptional(address, () => this.address),
-    yearsOfDiving: checkOptional(yearsOfDiving, () => this.yearsOfDiving),
+    yearDiving: checkOptional(yearDiving, () => this.yearDiving),
     emergencyContact: checkOptional(emergencyContact, () => this.emergencyContact),
+    avatar: checkOptional(avatar, () => this.avatar),
   );
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is RequestUpdateProfile && firstName == other.firstName && lastName == other.lastName && email == other.email && dateOfBirth == other.dateOfBirth && gender == other.gender && countryCode == other.countryCode && phoneNumber == other.phoneNumber && countryId == other.countryId && countryName == other.countryName && address == other.address && yearsOfDiving == other.yearsOfDiving && emergencyContact == other.emergencyContact;
+    || other is ResponseAuthSignInDataProfile && idProfile == other.idProfile && firstName == other.firstName && lastName == other.lastName && email == other.email && dateOfBirth == other.dateOfBirth && gender == other.gender && countryCode == other.countryCode && phoneNumber == other.phoneNumber && countryId == other.countryId && countryName == other.countryName && address == other.address && yearDiving == other.yearDiving && emergencyContact == other.emergencyContact && avatar == other.avatar;
 
   @override
-  int get hashCode => firstName.hashCode ^ lastName.hashCode ^ email.hashCode ^ dateOfBirth.hashCode ^ gender.hashCode ^ countryCode.hashCode ^ phoneNumber.hashCode ^ countryId.hashCode ^ countryName.hashCode ^ address.hashCode ^ yearsOfDiving.hashCode ^ emergencyContact.hashCode;
+  int get hashCode => idProfile.hashCode ^ firstName.hashCode ^ lastName.hashCode ^ email.hashCode ^ dateOfBirth.hashCode ^ gender.hashCode ^ countryCode.hashCode ^ phoneNumber.hashCode ^ countryId.hashCode ^ countryName.hashCode ^ address.hashCode ^ yearDiving.hashCode ^ emergencyContact.hashCode ^ avatar.hashCode;
 }

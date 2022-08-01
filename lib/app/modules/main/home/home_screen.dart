@@ -71,50 +71,56 @@ class HomeScreen extends BaseView<HomeController> {
                         controller.destinationBottomSelector,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 28),
-                  child: Row(
-                    children: [
-                      TextBasicWidget(
-                        text: 'Nearest',
-                        color: theme.main50,
-                        size: 18,
-                        weight: FontWeight.w700,
-                      ),
-                      TextBasicWidget(
-                        text: ' Diving Center',
-                        color: theme.black50,
-                        size: 18,
-                        weight: FontWeight.w700,
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 320,
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(left: 24, top: 16, right: 12),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.listPopularDivingLocation.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var item = controller.listPopularDivingLocation[index];
-                      return InkWell(
-                        onTap: () {
-                          controller.onTapItemPopular(
-                            item.productId.toString(),
-                          );
-                        },
-                        child: ItemSpotHomeWidget(
-                          data: item,
+                controller.listNearbyDivingLocation.length > 0
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28),
+                        child: Row(
+                          children: [
+                            TextBasicWidget(
+                              text: 'Nearest',
+                              color: theme.main50,
+                              size: 18,
+                              weight: FontWeight.w700,
+                            ),
+                            TextBasicWidget(
+                              text: ' Diving Center',
+                              color: theme.black50,
+                              size: 18,
+                              weight: FontWeight.w700,
+                            )
+                          ],
                         ),
-                      );
-                    },
-                  ),
-                ),
+                      )
+                    : Padding(padding: EdgeInsets.zero),
+                controller.listNearbyDivingLocation.length > 0
+                    ? SizedBox(
+                        width: double.infinity,
+                        height: 320,
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(
+                              left: 24, top: 16, right: 12, bottom: 48),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller.listNearbyDivingLocation.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var item =
+                                controller.listNearbyDivingLocation[index];
+                            return InkWell(
+                              onTap: () {
+                                controller.onTapItemPopular(
+                                  item.productId.toString(),
+                                );
+                              },
+                              child: ItemSpotHomeWidget(
+                                data: item,
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    : Padding(padding: EdgeInsets.zero),
                 Padding(
-                  padding: const EdgeInsets.only(left: 28, right: 28, top: 48),
+                  padding: const EdgeInsets.only(left: 28, right: 28),
                   child: Row(
                     children: [
                       TextBasicWidget(

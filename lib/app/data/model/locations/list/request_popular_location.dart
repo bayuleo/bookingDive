@@ -5,9 +5,9 @@ import '../../index.dart';
 
 
 @immutable
-class RequestPopularDiving {
+class RequestPopularLocation {
 
-  const RequestPopularDiving({
+  const RequestPopularLocation({
     required this.page,
     required this.limit,
   });
@@ -15,7 +15,7 @@ class RequestPopularDiving {
   final int page;
   final int limit;
 
-  factory RequestPopularDiving.fromJson(Map<String,dynamic> json) => RequestPopularDiving(
+  factory RequestPopularLocation.fromJson(Map<String,dynamic> json) => RequestPopularLocation(
     page: json['page'] as int,
     limit: json['limit'] as int
   );
@@ -25,23 +25,23 @@ class RequestPopularDiving {
     'limit': limit
   };
 
-  RequestPopularDiving clone() => RequestPopularDiving(
+  RequestPopularLocation clone() => RequestPopularLocation(
     page: page,
     limit: limit
   );
 
 
-  RequestPopularDiving copyWith({
+  RequestPopularLocation copyWith({
     int? page,
     int? limit
-  }) => RequestPopularDiving(
+  }) => RequestPopularLocation(
     page: page ?? this.page,
     limit: limit ?? this.limit,
   );
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is RequestPopularDiving && page == other.page && limit == other.limit;
+    || other is RequestPopularLocation && page == other.page && limit == other.limit;
 
   @override
   int get hashCode => page.hashCode ^ limit.hashCode;

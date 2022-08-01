@@ -2,5 +2,5 @@
   "status": true,
   "message": "Success Retrieve Data",
   "error?": "$../common/error",
-  "data": "$[]./response_data_popular_diving"
+  "data": "$[]./response_data_list_location"
 }

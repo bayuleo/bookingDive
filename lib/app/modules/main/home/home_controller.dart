@@ -4,6 +4,8 @@ import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -11,17 +13,24 @@ class HomeController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
   final destinationBottomSelector = BottomSheetSelectorController();
 
-  List<ResponseDataPopularDiving> listPopularDivingLocation = [];
+  List<ResponseDataListLocation> listPopularDivingLocation = [];
+  List<ResponseDataListLocation> listNearbyDivingLocation = [];
+  PermissionStatus? isGrantedGetLocation;
+  Placemark? placemark;
+  Position? position;
 
   @override
   void onInit() async {
-    _checkPermissionAccessLocation();
+    isGrantedGetLocation = await _checkPermissionAccessLocation();
     super.onInit();
   }
 
   @override
   void onReady() async {
     getListPopular();
+    if (placemark != null || position != null) {
+      getNearbyLocation();
+    }
     super.onReady();
   }
 
@@ -36,12 +45,29 @@ class HomeController extends BaseController {
   }
 
   void getListPopular() {
-    callDataService<ResponsePopularDiving>(
+    callDataService<ResponseListLocation>(
       () => _locationRepository.getPopularDivingLocation(
-        RequestPopularDiving(page: 1, limit: 20),
+        RequestPopularLocation(page: 1, limit: 20),
       ),
       onSuccess: (res) {
         listPopularDivingLocation = res.data;
+        update();
+      },
+    );
+  }
+
+  void getNearbyLocation() {
+    callDataService<ResponseListLocation>(
+      () => _locationRepository.getNearbyDivingLocation(
+        RequestNearbyLocation(
+            latitude: position!.latitude.toString(),
+            longitude: position!.longitude.toString(),
+            cities: placemark?.administrativeArea ?? '',
+            page: 1,
+            limit: 20),
+      ),
+      onSuccess: (res) {
+        listNearbyDivingLocation = res.data;
         update();
       },
     );
@@ -64,6 +90,21 @@ class HomeController extends BaseController {
         return PermissionStatus.denied;
       }
     }
+    await _getLocation();
     return PermissionStatus.granted;
+  }
+
+  Future<void> _getLocation() async {
+    position = await Geolocator.getCurrentPosition();
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position!.latitude,
+        position!.longitude,
+      );
+      placemark = placemarks[0];
+      print(placemarks[0]);
+      print(position);
+    } catch (err) {}
+    print(position);
   }
 }
