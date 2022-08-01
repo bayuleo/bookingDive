@@ -10,6 +10,7 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
   final Size? size;
   final bool isFullWidht;
   final bool enable;
+  final bool forceOnTap;
   final Color? textColor;
   final Color? borderColor;
   final Color? disableColor;
@@ -30,13 +31,14 @@ class ButtonOutlineBasicWidget extends StatelessWidget with BaseWidgetMixin {
     this.padding,
     this.radius,
     this.fontWeight,
+    this.forceOnTap = false,
     required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => enable ? onTap() : {},
+      onPressed: () => enable || forceOnTap ? onTap() : {},
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

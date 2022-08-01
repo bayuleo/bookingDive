@@ -112,8 +112,8 @@ class AppPages {
     ),
     GetPage(
       name: Routes.BOOKING,
-      page: () => BookingScreen(),
-      binding: BookingBinding(),
+      page: () => BookingDetailScreen(),
+      binding: BookingDetailBinding(),
     ),
     GetPage(
       name: Routes.PAYMENT,

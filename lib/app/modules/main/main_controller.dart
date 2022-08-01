@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/modules/main/booking/booking_screen.dart';
 import 'package:bookingdive/app/modules/main/inbox/inbox_screen.dart';
 import 'package:bookingdive/app/modules/main/profile/profile_screen.dart';
 import 'package:bookingdive/app/modules/main/whislist/whislist_screen.dart';
@@ -19,7 +20,7 @@ class MainController extends BaseController {
   List<Widget> getPages() {
     return [
       const HomeScreen(),
-      const SizedBox(),
+      const BookingScreen(),
       const WhistlistScreen(),
       const InboxScreen(),
       const ProfileScreen(),

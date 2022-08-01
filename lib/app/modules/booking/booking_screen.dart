@@ -9,7 +9,7 @@ import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class BookingScreen extends BaseView<BookingController> {
+class BookingDetailScreen extends BaseView<BookingDetailController> {
   final bool dummyCheckbox = false;
   @override
   Widget buildScreen(BuildContext context) {
