@@ -3,11 +3,12 @@ import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
-import 'package:bookingdive/app/modules/booking/booking_controller.dart';
 import 'package:bookingdive/app/modules/booking/widgets/selector_booking_payment_widget.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
+import 'booking_detail_controller.dart';
 
 class BookingDetailScreen extends BaseView<BookingDetailController> {
   final bool dummyCheckbox = false;

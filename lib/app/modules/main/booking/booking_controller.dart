@@ -10,6 +10,7 @@ class BookingController extends BaseController
   @override
   void onInit() async {
     tabController = TabController(length: 3, vsync: this);
+    tabController.addListener(onChangeTab);
     super.onInit();
   }
 
@@ -17,6 +18,12 @@ class BookingController extends BaseController
     tabActive = position;
     tabController.index = position - 1;
     update();
+  }
+
+  void onChangeTab() {
+    tabActive = tabController.index + 1;
+    update();
+    print(tabController.index);
   }
 
   @override

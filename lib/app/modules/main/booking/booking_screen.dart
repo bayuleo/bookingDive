@@ -1,11 +1,11 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
 import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
-import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'booking_controller.dart';
+import 'widgets/item_booking_widget.dart';
 
 class BookingScreen extends BaseView<BookingController> {
   const BookingScreen({Key? key}) : super(key: key);
@@ -20,9 +20,9 @@ class BookingScreen extends BaseView<BookingController> {
         children: [
           Padding(
             padding:
-                const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 16),
+                const EdgeInsets.only(top: 20, bottom: 16, left: 24, right: 24),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ButtonOutlineBasicWidget(
                   text: 'Upcoming',
@@ -64,15 +64,9 @@ class BookingScreen extends BaseView<BookingController> {
             child: TabBarView(
               controller: controller.tabController,
               children: [
-                TextBasicWidget(
-                  text: 'page1',
-                ),
-                TextBasicWidget(
-                  text: 'page2',
-                ),
-                TextBasicWidget(
-                  text: 'page3',
-                ),
+                ItemBookingWidget(),
+                ItemBookingWidget(),
+                ItemBookingWidget(),
               ],
             ),
           ),

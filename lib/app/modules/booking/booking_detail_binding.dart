@@ -1,5 +1,6 @@
-import 'package:bookingdive/app/modules/booking/booking_controller.dart';
 import 'package:get/get.dart';
+
+import 'booking_detail_controller.dart';
 
 class BookingDetailBinding extends Bindings {
   @override
