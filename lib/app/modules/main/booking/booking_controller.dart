@@ -28,6 +28,7 @@ class BookingController extends BaseController
 
   @override
   void onClose() {
+    tabController.removeListener(onChangeTab);
     tabController.dispose();
     super.onClose();
   }

@@ -26,6 +26,10 @@ class $AssetsIconsGen {
   SvgGenImage get avatarIcon =>
       const SvgGenImage('assets/icons/avatar_icon.svg');
 
+  /// File path: assets/icons/bag_active_icon.svg
+  SvgGenImage get bagActiveIcon =>
+      const SvgGenImage('assets/icons/bag_active_icon.svg');
+
   /// File path: assets/icons/bag_icon.svg
   SvgGenImage get bagIcon => const SvgGenImage('assets/icons/bag_icon.svg');
 

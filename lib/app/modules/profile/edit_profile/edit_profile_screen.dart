@@ -166,10 +166,7 @@ class EditProfileScreen extends BaseView<EditProfileController> {
                       height: 150,
                       child: CupertinoPicker(
                         onSelectedItemChanged: (value) {
-                          if (value != 0) {
-                            controller.selectYearOfDiving =
-                                (value - 1).toString();
-                          }
+                          controller.selectYearOfDiving = value;
                         },
                         itemExtent: 32,
                         children: [
@@ -221,11 +218,12 @@ class EditProfileScreen extends BaseView<EditProfileController> {
                   },
                 ).whenComplete(
                   () {
-                    if (controller.selectYearOfDiving !=
-                        controller.profileData?.yearDiving.toString()) {
+                    if (controller.selectYearOfDiving - 1 !=
+                            controller.profileData?.yearDiving &&
+                        controller.selectYearOfDiving != 0) {
                       var currentYear = DateTime.now().year;
-                      var newYear = currentYear -
-                          int.parse(controller.selectYearOfDiving ?? '0');
+                      var newYear =
+                          currentYear - (controller.selectYearOfDiving - 1);
                       controller.onSubmitValue(
                         InputProfileType.yearsOfDiving,
                         newYear.toString(),

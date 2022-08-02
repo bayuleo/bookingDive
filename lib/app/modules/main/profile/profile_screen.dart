@@ -109,7 +109,9 @@ class ListMenuAccount extends StatelessWidget with BaseWidgetMixin {
           ItemMenuProfileWidget(
             icon: Assets.icons.bagIcon.svg(),
             title: "My Booking",
-            onTap: () {},
+            onTap: () {
+              controller.onTapMyBooking();
+            },
           ),
           // ItemMenuProfileWidget(
           //   icon: Assets.icons.heartIcon.svg(color: theme.black10),

@@ -42,7 +42,7 @@ class MainController extends BaseController {
       ),
       BottomNavItem(
         icon: Assets.icons.bagIcon,
-        activeIcon: Assets.icons.bagIcon,
+        activeIcon: Assets.icons.bagActiveIcon,
         label: "Booking",
       ),
       BottomNavItem(

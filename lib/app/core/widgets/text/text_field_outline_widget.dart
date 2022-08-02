@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
   final String? hint;
+  final Widget? label;
   final Widget? rightIcon;
   final Widget? leftIcon;
   final Function? onTapRightIcon;
@@ -17,6 +18,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
   const TextFormFieldOutlineWidget(
       {Key? key,
       this.hint,
+      this.label,
       this.obsecure = false,
       this.readOnly = false,
       this.controller,
@@ -42,6 +44,8 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
       onChanged: (value) => onChangedText?.call(value),
       keyboardType: keyboardType,
       decoration: InputDecoration(
+        label: label,
+        labelStyle: TextStyle(color: theme.black30),
         hintText: hint,
         hintStyle: TextStyle(color: theme.black30),
         prefixIcon: leftIcon,
