@@ -15,6 +15,8 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
   final TextInputType? keyboardType;
   final bool obsecure;
   final bool readOnly;
+  final int? maxLines;
+  final int? minLines;
   const TextFormFieldOutlineWidget(
       {Key? key,
       this.hint,
@@ -29,6 +31,8 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
       this.onTap,
       this.keyboardType,
       this.autovalidateMode,
+      this.maxLines,
+      this.minLines,
       this.validator})
       : super(key: key);
 
@@ -39,6 +43,8 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
       onTap: onTap,
       controller: controller,
       obscureText: obsecure,
+      maxLines: maxLines ?? minLines,
+      minLines: minLines,
       autovalidateMode: autovalidateMode,
       validator: (value) => validator?.call(value),
       onChanged: (value) => onChangedText?.call(value),
@@ -46,6 +52,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
       decoration: InputDecoration(
         label: label,
         labelStyle: TextStyle(color: theme.black30),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
         hintText: hint,
         hintStyle: TextStyle(color: theme.black30),
         prefixIcon: leftIcon,

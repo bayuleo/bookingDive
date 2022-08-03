@@ -190,6 +190,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/phone_icon.svg
   SvgGenImage get phoneIcon => const SvgGenImage('assets/icons/phone_icon.svg');
 
+  /// File path: assets/icons/plus_icon.svg
+  SvgGenImage get plusIcon => const SvgGenImage('assets/icons/plus_icon.svg');
+
   /// File path: assets/icons/refresh_icon.svg
   SvgGenImage get refreshIcon =>
       const SvgGenImage('assets/icons/refresh_icon.svg');

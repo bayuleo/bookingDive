@@ -2,10 +2,12 @@ import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/modules/main/booking/widgets/confirmation_cancel_modal_bottom_widget.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 import 'confirmation_refund_modal_bottom_widget.dart';
+import 'review_modal_bottom_widget.dart';
 import 'ticket_modal_bottom_widget.dart';
 
 class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
@@ -206,6 +208,7 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                           onTap: () {
                             showModalBottomSheet(
                               backgroundColor: Colors.transparent,
+                              isScrollControlled: true,
                               context: context,
                               builder: (_) {
                                 return TicketModalBottomWidget();
@@ -234,6 +237,71 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                       ),
                     )
                   ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 4),
+                        child: ButtonBasicWidget(
+                          padding: EdgeInsets.only(top: 12, bottom: 12),
+                          text: 'Write Review',
+                          onTap: () {
+                            showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (_) {
+                                return ReviewModalBottomWidget();
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 4),
+                        child: ButtonOutlineBasicWidget(
+                          padding: EdgeInsets.only(top: 12, bottom: 12),
+                          text: 'Book Again',
+                          onTap: () {
+                            showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              context: context,
+                              builder: (_) {
+                                return Text('');
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: ButtonBasicWidget(
+                    isFullWidht: true,
+                    text: 'Book Again',
+                    onTap: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: ButtonOutlineBasicWidget(
+                    isFullWidht: true,
+                    text: 'Cancel Payment',
+                    onTap: () {
+                      showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (_) {
+                          return ConfirmationCancelModalBottomWidget();
+                        },
+                      );
+                    },
+                  ),
                 )
               ],
             ),

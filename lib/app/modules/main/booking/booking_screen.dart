@@ -16,6 +16,7 @@ class BookingScreen extends BaseView<BookingController> {
         title: 'My Booking',
         showBackButton: false,
       ),
+      resizeToAvoidBottomInset: true,
       body: Column(
         children: [
           Padding(
