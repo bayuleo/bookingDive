@@ -31,7 +31,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
       this.onTap,
       this.keyboardType,
       this.autovalidateMode,
-      this.maxLines,
+      this.maxLines = 1,
       this.minLines,
       this.validator})
       : super(key: key);
@@ -43,7 +43,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
       onTap: onTap,
       controller: controller,
       obscureText: obsecure,
-      maxLines: maxLines ?? minLines,
+      maxLines: maxLines,
       minLines: minLines,
       autovalidateMode: autovalidateMode,
       validator: (value) => validator?.call(value),

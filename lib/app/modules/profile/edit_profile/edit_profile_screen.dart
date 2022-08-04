@@ -116,7 +116,8 @@ class EditProfileScreen extends BaseView<EditProfileController> {
                   },
                 ).whenComplete(
                   () {
-                    if (controller.selectGender != '') {
+                    if (controller.selectGender != '' &&
+                        controller.selectGender != null) {
                       controller.onSubmitValue(InputProfileType.gender,
                           controller.selectGender ?? '');
                     }

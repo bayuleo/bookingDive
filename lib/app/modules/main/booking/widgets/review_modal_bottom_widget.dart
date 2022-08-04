@@ -245,6 +245,7 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
               ),
               TextFormFieldOutlineWidget(
                 label: Text('Feedback'),
+                maxLines: 10,
                 minLines: 4,
               ),
               Padding(
