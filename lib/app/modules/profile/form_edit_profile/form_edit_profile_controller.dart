@@ -38,6 +38,13 @@ class FormEditProfileController extends BaseController {
     update();
   }
 
+  @override
+  void onClose() {
+    topTextEditingController.dispose();
+    bottomTextEditingController.dispose();
+    super.onClose();
+  }
+
   void updateValueTextEditing() {
     switch (initData?.inputProfileType) {
       case InputProfileType.name:

@@ -1,0 +1,6 @@
+{
+  "message": "Berhasil",
+  "error?": "$../common/error",
+  "status?": true,
+  "data": "$./response_payment_profile_data"
+}

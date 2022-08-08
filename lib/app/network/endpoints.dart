@@ -1,10 +1,12 @@
 class Endpoints {
   late AuthEndpoint auth;
   late LocationEndpoint location;
+  late PaymentEndpoint payment;
 
   Endpoints() {
     auth = AuthEndpoint();
     location = LocationEndpoint();
+    payment = PaymentEndpoint();
   }
 }
 
@@ -28,10 +30,20 @@ class LocationEndpoint {
   final String popularLocation;
   final String listLocation;
   final String nearbyLocation;
+  final String listCity;
 
   LocationEndpoint({
     this.popularLocation = '/listing-popular',
     this.listLocation = '/listing',
     this.nearbyLocation = '/listing-nearby',
+    this.listCity = '/cities-list',
+  });
+}
+
+class PaymentEndpoint {
+  final String profilePayment;
+
+  PaymentEndpoint({
+    this.profilePayment = '/profile-payment',
   });
 }

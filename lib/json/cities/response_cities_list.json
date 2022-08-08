@@ -1,0 +1,6 @@
+{
+  "message": "Berhasil",
+  "error?": "$../common/error",
+  "status?": true,
+  "data": "$[]./response_cities_list_data"
+}

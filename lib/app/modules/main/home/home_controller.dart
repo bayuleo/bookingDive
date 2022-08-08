@@ -4,6 +4,7 @@ import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
+import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,8 @@ import 'package:permission_handler/permission_handler.dart';
 class HomeController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
   final destinationBottomSelector = BottomSheetSelectorController();
+
+  final destinationTextEditingController = TextEditingController();
 
   List<ResponseDataListLocation> listPopularDivingLocation = [];
   List<ResponseDataListLocation> listNearbyDivingLocation = [];

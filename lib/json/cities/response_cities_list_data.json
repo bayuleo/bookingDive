@@ -1,0 +1,5 @@
+{
+  "region_id": "123",
+  "region": "Red Sea",
+  "countries": "$[]./response_cities_list_countries"
+}

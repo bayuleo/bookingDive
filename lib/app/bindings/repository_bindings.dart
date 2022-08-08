@@ -1,5 +1,7 @@
 import 'package:bookingdive/app/data/repository/auth_repository.dart';
+import 'package:bookingdive/app/data/repository/cities_repository.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
+import 'package:bookingdive/app/data/repository/payment_repository.dart';
 import 'package:bookingdive/app/data/repository/user_credentials_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -18,6 +20,14 @@ class RepositoryBindings implements Bindings {
     );
     Get.lazyPut<LocationRepository>(
       () => LocationRepositoryImpl(),
+      fenix: true,
+    );
+    Get.lazyPut<PaymentRepository>(
+      () => PaymentRepositoryImpl(),
+      fenix: true,
+    );
+    Get.lazyPut<CitiesRepository>(
+      () => CitiesRepositoryImpl(),
       fenix: true,
     );
   }

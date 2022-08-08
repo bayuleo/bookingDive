@@ -1,0 +1,6 @@
+{
+  "id": "1234",
+  "name": "Indonesia",
+  "flag": "null",
+  "cities": "$[]./response_cities_list_cities"
+}

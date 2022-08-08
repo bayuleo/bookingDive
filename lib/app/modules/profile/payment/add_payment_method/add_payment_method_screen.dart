@@ -52,15 +52,24 @@ class AddPaymentMethodScreen extends BaseView<AddPaymentMethodController> {
               //     ),
               //   ],
               // ),
-              ListPaymentMethod(label: 'Card Number'),
-              ListPaymentMethod(label: 'Expired number (MM/YY)'),
-              ListPaymentMethod(label: 'BCVC/CVV'),
+              // ListPaymentMethod(label: 'Card Number'),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: TextFormFieldOutlineWidget(
+                  hint: 'Card Number',
+                  controller: controller.cardNumberTextEditingController,
+                ),
+              ),
+              // ListPaymentMethod(label: 'Expired number (MM/YY)'),
+              // ListPaymentMethod(label: 'BCVC/CVV'),
               Padding(
                 padding: const EdgeInsets.only(top: 40, bottom: 24),
                 child: ButtonBasicWidget(
                   text: 'Add Credit Card',
                   isFullWidht: true,
-                  onTap: () {},
+                  onTap: () {
+                    controller.postDataPaymentProfile();
+                  },
                 ),
               )
             ],

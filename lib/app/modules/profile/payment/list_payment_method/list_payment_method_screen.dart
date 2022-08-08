@@ -16,8 +16,6 @@ import '../../../../core/widgets/text/text_basic_widget.dart';
 class ListPaymentMethodScreen extends BaseView<ListPaymentMethodController> {
   const ListPaymentMethodScreen({Key? key}) : super(key: key);
 
-  final isHaveValue = true;
-
   @override
   Widget buildScreen(BuildContext context) {
     return Scaffold(
@@ -26,20 +24,8 @@ class ListPaymentMethodScreen extends BaseView<ListPaymentMethodController> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: isHaveValue
-            ?
-            // ? SingleChildScrollView(
-            //     child: ListView.builder(
-            //       padding: EdgeInsets.only(top: 16),
-            //       physics: NeverScrollableScrollPhysics(),
-            //       shrinkWrap: true,
-            //       itemCount: 9,
-            //       itemBuilder: (BuildContext context, int index) {
-            //         return ItemPaymentMethodWidget();
-            //       },
-            //     ),
-            //   )
-            Stack(
+        child: controller.cardNumber != '' && controller.cardNumber != null
+            ? Stack(
                 children: [
                   Center(
                     child: Column(
@@ -58,7 +44,7 @@ class ListPaymentMethodScreen extends BaseView<ListPaymentMethodController> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: TextBasicWidget(
-                            text: '143415135658694142325',
+                            text: controller.cardNumber ?? '',
                             size: 18,
                             weight: FontWeight.w500,
                             color: theme.black70,
@@ -144,7 +130,10 @@ class ListPaymentMethodScreen extends BaseView<ListPaymentMethodController> {
                                                     child: ButtonBasicWidget(
                                                       isFullWidht: true,
                                                       text: 'Remove',
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        controller
+                                                            .deleteDataPaymentProfile();
+                                                      },
                                                     ),
                                                   ),
                                                 )
@@ -166,8 +155,12 @@ class ListPaymentMethodScreen extends BaseView<ListPaymentMethodController> {
                               child: ButtonBasicWidget(
                                 isFullWidht: true,
                                 text: 'Change Card',
-                                onTap: () {
-                                  Get.toNamed(Routes.ADD_PAYMENT_METHOD);
+                                onTap: () async {
+                                  await Get.toNamed(
+                                    Routes.ADD_PAYMENT_METHOD,
+                                    arguments: controller.cardNumber,
+                                  );
+                                  controller.getDataPaymentProfile();
                                 },
                               ),
                             ),
@@ -178,14 +171,22 @@ class ListPaymentMethodScreen extends BaseView<ListPaymentMethodController> {
                   )
                 ],
               )
-            : EmptyStateWidget(),
+            : EmptyStateWidget(
+                onClick: () async {
+                  await Get.toNamed(Routes.ADD_PAYMENT_METHOD);
+                  controller.getDataPaymentProfile();
+                },
+              ),
       ),
     );
   }
 }
 
 class EmptyStateWidget extends StatelessWidget with BaseWidgetMixin {
+  final Function onClick;
+
   const EmptyStateWidget({
+    required this.onClick,
     Key? key,
   }) : super(key: key);
 
@@ -228,9 +229,7 @@ class EmptyStateWidget extends StatelessWidget with BaseWidgetMixin {
             ),
             ButtonBasicWidget(
               text: 'Add Credit Card',
-              onTap: () {
-                Get.toNamed(Routes.ADD_PAYMENT_METHOD);
-              },
+              onTap: onClick,
             )
           ],
         ),
