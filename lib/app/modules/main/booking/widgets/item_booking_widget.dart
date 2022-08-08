@@ -19,24 +19,24 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+            margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             decoration: BoxDecoration(
                 color: theme.white,
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    offset: Offset(5, 6),
+                    offset: const Offset(5, 6),
                     blurRadius: 7,
                     spreadRadius: 1,
                     color: Colors.black.withOpacity(0.1),
                   ),
                 ]),
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,9 +45,9 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                   children: [
                     Assets.images.loginBanner.image(width: 45, height: 30),
                     Container(
-                      margin: EdgeInsets.only(left: 8),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                      margin: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 10),
                       decoration: BoxDecoration(
                         color: theme.disable,
                         borderRadius: BorderRadius.circular(4),
@@ -176,9 +176,9 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                         color: theme.black50,
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 8),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                        margin: const EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 8),
                         decoration: BoxDecoration(
                           color: theme.success10,
                           borderRadius: BorderRadius.circular(20),
@@ -203,7 +203,7 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 4),
                         child: ButtonBasicWidget(
-                          padding: EdgeInsets.only(top: 12, bottom: 12),
+                          padding: const EdgeInsets.only(top: 12, bottom: 12),
                           text: 'View e-Ticket',
                           onTap: () {
                             showModalBottomSheet(
@@ -211,7 +211,7 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                               isScrollControlled: true,
                               context: context,
                               builder: (_) {
-                                return TicketModalBottomWidget();
+                                return const TicketModalBottomWidget();
                               },
                             );
                           },
@@ -222,14 +222,14 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 4),
                         child: ButtonOutlineBasicWidget(
-                          padding: EdgeInsets.only(top: 12, bottom: 12),
+                          padding: const EdgeInsets.only(top: 12, bottom: 12),
                           text: 'Refund',
                           onTap: () {
                             showModalBottomSheet(
                               backgroundColor: Colors.transparent,
                               context: context,
                               builder: (_) {
-                                return ConfirmationRefundModalBottomWidget();
+                                return const ConfirmationRefundModalBottomWidget();
                               },
                             );
                           },
@@ -244,7 +244,7 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 4),
                         child: ButtonBasicWidget(
-                          padding: EdgeInsets.only(top: 12, bottom: 12),
+                          padding: const EdgeInsets.only(top: 12, bottom: 12),
                           text: 'Write Review',
                           onTap: () {
                             showModalBottomSheet(
@@ -252,7 +252,7 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                               isScrollControlled: true,
                               context: context,
                               builder: (_) {
-                                return ReviewModalBottomWidget();
+                                return const ReviewModalBottomWidget();
                               },
                             );
                           },
@@ -263,14 +263,14 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 4),
                         child: ButtonOutlineBasicWidget(
-                          padding: EdgeInsets.only(top: 12, bottom: 12),
+                          padding: const EdgeInsets.only(top: 12, bottom: 12),
                           text: 'Book Again',
                           onTap: () {
                             showModalBottomSheet(
                               backgroundColor: Colors.transparent,
                               context: context,
                               builder: (_) {
-                                return Text('');
+                                return const Text('');
                               },
                             );
                           },
@@ -297,7 +297,7 @@ class ItemBookingWidget extends StatelessWidget with BaseWidgetMixin {
                         backgroundColor: Colors.transparent,
                         context: context,
                         builder: (_) {
-                          return ConfirmationCancelModalBottomWidget();
+                          return const ConfirmationCancelModalBottomWidget();
                         },
                       );
                     },

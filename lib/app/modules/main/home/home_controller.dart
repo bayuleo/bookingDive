@@ -22,15 +22,15 @@ class HomeController extends BaseController {
   @override
   void onInit() async {
     isGrantedGetLocation = await _checkPermissionAccessLocation();
+    getListPopular();
+    if (placemark != null || position != null) {
+      getNearbyLocation();
+    }
     super.onInit();
   }
 
   @override
   void onReady() async {
-    getListPopular();
-    if (placemark != null || position != null) {
-      getNearbyLocation();
-    }
     super.onReady();
   }
 

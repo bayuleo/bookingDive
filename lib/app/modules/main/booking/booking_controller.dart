@@ -23,7 +23,6 @@ class BookingController extends BaseController
   void onChangeTab() {
     tabActive = tabController.index + 1;
     update();
-    print(tabController.index);
   }
 
   @override

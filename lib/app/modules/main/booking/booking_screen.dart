@@ -2,7 +2,6 @@ import 'package:bookingdive/app/core/base/base_view.dart';
 import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'booking_controller.dart';
 import 'widgets/item_booking_widget.dart';
@@ -64,10 +63,12 @@ class BookingScreen extends BaseView<BookingController> {
           Expanded(
             child: TabBarView(
               controller: controller.tabController,
-              children: [
+              children: const [
                 ItemBookingWidget(),
-                ItemBookingWidget(),
-                ItemBookingWidget(),
+                Text('test2'),
+                Text('test3'),
+                // ItemBookingWidget(),
+                // ItemBookingWidget(),
               ],
             ),
           ),

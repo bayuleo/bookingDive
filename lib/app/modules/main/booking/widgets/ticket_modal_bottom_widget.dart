@@ -16,31 +16,32 @@ class TicketModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
     return Container(
       decoration: BoxDecoration(
           color: theme.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(20),
             topLeft: Radius.circular(20),
           ),
           boxShadow: [
             BoxShadow(
-              offset: Offset(0, 1),
+              offset: const Offset(0, 1),
               blurRadius: 9,
               color: Colors.black.withOpacity(0.2),
             ),
           ]),
       child: Padding(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextBasicWidget(
+              const TextBasicWidget(
                 text: 'E-Ticket',
                 size: 18,
                 weight: FontWeight.w500,
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 32, bottom: 16),
+              const Padding(
+                padding: EdgeInsets.only(top: 32, bottom: 16),
                 child: TextFormFieldOutlineWidget(
                   hint: 'Ticket ID',
                   label: Text('Ticket ID'),
@@ -52,7 +53,7 @@ class TicketModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                 child: ButtonOutlineBasicWidget(
                   isFullWidht: true,
                   text: 'Close e-Ticket',
-                  padding: EdgeInsets.symmetric(vertical: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                   onTap: () {
                     Get.back();
                   },

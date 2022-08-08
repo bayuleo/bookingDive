@@ -16,24 +16,25 @@ class ConfirmationCancelModalBottomWidget extends StatelessWidget
     return Container(
       decoration: BoxDecoration(
           color: theme.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(20),
             topLeft: Radius.circular(20),
           ),
           boxShadow: [
             BoxShadow(
-              offset: Offset(0, 1),
+              offset: const Offset(0, 1),
               blurRadius: 9,
               color: Colors.black.withOpacity(0.2),
             ),
           ]),
       child: Padding(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextBasicWidget(
+            const TextBasicWidget(
               text: 'Are you sure you want to cancel your payment?',
               size: 18,
               weight: FontWeight.w500,
@@ -54,7 +55,7 @@ class ConfirmationCancelModalBottomWidget extends StatelessWidget
                     padding: const EdgeInsets.only(right: 4),
                     child: ButtonOutlineBasicWidget(
                       text: 'No',
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       onTap: () {
                         Get.back();
                       },
@@ -66,7 +67,7 @@ class ConfirmationCancelModalBottomWidget extends StatelessWidget
                     padding: const EdgeInsets.only(left: 4),
                     child: ButtonBasicWidget(
                       text: 'Yes',
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       onTap: () {
                         Get.back();
                         showModalBottomSheet(

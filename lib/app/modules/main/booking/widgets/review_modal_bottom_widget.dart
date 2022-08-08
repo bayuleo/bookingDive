@@ -19,19 +19,20 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
     return Container(
       decoration: BoxDecoration(
           color: theme.white,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20),
-            topLeft: Radius.circular(20),
+          borderRadius: const BorderRadius.only(
+            topRight: const Radius.circular(20),
+            topLeft: const Radius.circular(20),
           ),
           boxShadow: [
             BoxShadow(
-              offset: Offset(0, 1),
+              offset: const Offset(0, 1),
               blurRadius: 9,
               color: Colors.black.withOpacity(0.2),
             ),
           ]),
       child: Padding(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
         child: SingleChildScrollView(
           dragStartBehavior: DragStartBehavior.start,
           reverse: true,
@@ -39,9 +40,9 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 28),
-                child: TextBasicWidget(
+              const Padding(
+                padding: EdgeInsets.only(bottom: 28),
+                child: const TextBasicWidget(
                   text: 'Write a Review',
                   size: 18,
                   weight: FontWeight.w500,
@@ -54,8 +55,8 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
@@ -82,8 +83,8 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
@@ -110,8 +111,8 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
@@ -138,8 +139,8 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
@@ -166,8 +167,8 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
@@ -194,8 +195,8 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
@@ -222,8 +223,8 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
@@ -243,8 +244,8 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                   ),
                 ),
               ),
-              TextFormFieldOutlineWidget(
-                label: Text('Feedback'),
+              const TextFormFieldOutlineWidget(
+                label: const Text('Feedback'),
                 maxLines: 10,
                 minLines: 4,
               ),
@@ -265,7 +266,7 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: ButtonOutlineBasicWidget(
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         text: 'Cancel',
                         onTap: () {
                           Get.back();
@@ -277,7 +278,7 @@ class ReviewModalBottomWidget extends StatelessWidget with BaseWidgetMixin {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: ButtonBasicWidget(
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         text: 'Refund',
                         onTap: () {},
                       ),
