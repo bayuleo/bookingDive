@@ -1,5 +1,4 @@
 import 'package:bookingdive/app/modules/main/booking/booking_controller.dart';
-import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_destination_controller.dart';
 import 'package:bookingdive/app/modules/main/inbox/inbox_controller.dart';
 import 'package:bookingdive/app/modules/main/profile/profile_controller.dart';
 import 'package:bookingdive/app/modules/main/whislist/whislist_controller.dart';
@@ -31,8 +30,8 @@ class MainBinding implements Bindings {
     Get.put<BookingController>(
       BookingController(),
     );
-    Get.put<BottomSheetDestinationController>(
-      BottomSheetDestinationController(),
-    );
+    // Get.put<BottomSheetDestinationController>(
+    //   BottomSheetDestinationController(),
+    // );
   }
 }

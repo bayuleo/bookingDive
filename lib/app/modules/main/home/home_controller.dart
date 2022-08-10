@@ -1,7 +1,8 @@
 import 'package:bookingdive/app/core/base/base_controller.dart';
+import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/utils/permission_handler.dart';
-import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_controller.dart';
 import 'package:bookingdive/app/data/model/index.dart';
+import 'package:bookingdive/app/data/repository/cities_repository.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +13,27 @@ import 'package:permission_handler/permission_handler.dart';
 
 class HomeController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
-  final destinationBottomSelector = BottomSheetSelectorController();
 
   final destinationTextEditingController = TextEditingController();
+  final dateTextEditingController = TextEditingController();
+  final diverTextEditingController = TextEditingController();
+  final diverInputController = TextEditingController();
+
+  final CitiesRepository _citiesRepository = Get.find();
+
+  final listCities = <ResponseCitiesListData>[].obs;
+  final selectedCountryName = ''.obs;
+  final selectedCities = <String>[].obs;
 
   List<ResponseDataListLocation> listPopularDivingLocation = [];
   List<ResponseDataListLocation> listNearbyDivingLocation = [];
   PermissionStatus? isGrantedGetLocation;
   Placemark? placemark;
   Position? position;
+  int numberDiverInput = 0;
+  ResponseCitiesListCountries? selectedDestinationFilter;
+  SearchBy? searchBy;
+  bool isLoadingSearchDestination = false;
 
   @override
   void onInit() async {
@@ -34,6 +47,7 @@ class HomeController extends BaseController {
 
   @override
   void onReady() async {
+    getCities();
     super.onReady();
   }
 
@@ -43,7 +57,6 @@ class HomeController extends BaseController {
 
   @override
   void onClose() async {
-    destinationBottomSelector.dispose();
     super.onClose();
   }
 
@@ -57,6 +70,19 @@ class HomeController extends BaseController {
         update();
       },
     );
+  }
+
+  void getCities() {
+    isLoadingSearchDestination = true;
+    update();
+    callDataService<ResponseCitiesList>(
+      () => _citiesRepository.getCities(),
+      onSuccess: (res) {
+        listCities.value = res.data;
+      },
+    );
+    isLoadingSearchDestination = false;
+    update();
   }
 
   void getNearbyLocation() {

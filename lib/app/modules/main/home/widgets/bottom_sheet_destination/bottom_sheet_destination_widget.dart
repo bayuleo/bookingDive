@@ -1,20 +1,21 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
+import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
-import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_destination_controller.dart';
+import 'package:bookingdive/app/data/model/index.dart';
+import 'package:bookingdive/app/modules/main/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BottomSheetDestinationWidget extends StatelessWidget
     with BaseWidgetMixin {
-  // final fakeData = SpotMockData().successResponse;
-  final controller = Get.find<BottomSheetDestinationController>();
-
-  BottomSheetDestinationWidget({Key? key}) : super(key: key);
+  BottomSheetDestinationWidget({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Container(
+    return GetBuilder<HomeController>(builder: (controller) {
+      return Container(
         decoration: BoxDecoration(
             color: theme.white,
             borderRadius: const BorderRadius.only(
@@ -53,130 +54,170 @@ class BottomSheetDestinationWidget extends StatelessWidget
               const Divider(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.5,
-                child: ListView.builder(
-                    padding: const EdgeInsets.only(left: 0, top: 16, right: 0),
-                    shrinkWrap: true,
-                    itemCount: controller.listCities.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final itemRegion = controller.listCities[index];
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24),
-                            child: TextBasicWidget(
-                              text:
-                                  '${itemRegion.region.toUpperCase()}(${itemRegion.countries.length})',
-                              size: 16,
-                              weight: FontWeight.w700,
-                              color: theme.main70,
-                            ),
-                          ),
-                          ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: itemRegion.countries.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                final itemCountry = itemRegion.countries[index];
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Divider(),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24),
-                                      child: InkWell(
-                                        onTap: () {
-                                          controller.selectedCountryName.value =
-                                              itemCountry.name;
-                                          controller.selectedCities.value =
-                                              itemCountry.cities
-                                                  .map((e) => e.name)
-                                                  .toList();
-                                          Get.back();
-                                        },
-                                        child: Row(
-                                          children: [
-                                            itemCountry.flag == '' ||
-                                                    itemCountry.flag ==
-                                                        'null' ||
-                                                    itemCountry.flag == null
-                                                ? const Padding(
-                                                    padding: EdgeInsets.only(
-                                                        right: 8),
-                                                    child: Icon(
-                                                        Icons.flag_outlined),
-                                                  )
-                                                : Padding(
-                                                    padding: EdgeInsets.only(
-                                                        right: 8),
-                                                    child: Image.network(
-                                                      itemCountry.flag,
-                                                      width: 16,
-                                                      height: 16,
+                child: controller.isLoadingSearchDestination
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
+                        padding:
+                            const EdgeInsets.only(left: 0, top: 16, right: 0),
+                        shrinkWrap: true,
+                        itemCount: controller.listCities.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final itemRegion = controller.listCities[index];
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 24),
+                                child: TextBasicWidget(
+                                  text:
+                                      '${itemRegion.region.toUpperCase()}(${itemRegion.countries.length})',
+                                  size: 16,
+                                  weight: FontWeight.w700,
+                                  color: theme.main70,
+                                ),
+                              ),
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: itemRegion.countries.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    final itemCountry =
+                                        itemRegion.countries[index];
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Divider(),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          child: InkWell(
+                                            onTap: () {
+                                              controller
+                                                      .selectedDestinationFilter =
+                                                  ResponseCitiesListCountries(
+                                                      id: itemCountry.id,
+                                                      name: itemCountry.name,
+                                                      flag: itemCountry.flag,
+                                                      cities:
+                                                          itemCountry.cities);
+                                              controller.searchBy =
+                                                  SearchBy.country;
+                                              controller
+                                                  .destinationTextEditingController
+                                                  .text = itemCountry.name;
+                                              Get.back();
+                                            },
+                                            child: Row(
+                                              children: [
+                                                itemCountry.flag == '' ||
+                                                        itemCountry.flag ==
+                                                            'null' ||
+                                                        itemCountry.flag == null
+                                                    ? const Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 8),
+                                                        child: Icon(Icons
+                                                            .flag_outlined),
+                                                      )
+                                                    : Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 8),
+                                                        child: Image.network(
+                                                          itemCountry.flag,
+                                                          width: 16,
+                                                          height: 16,
+                                                        ),
+                                                      ),
+                                                TextBasicWidget(
+                                                  text: itemCountry.name,
+                                                  size: 14,
+                                                  weight: FontWeight.w600,
+                                                  color: theme.black50,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          itemCount: itemCountry.cities.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            final itemCity =
+                                                itemCountry.cities[index];
+                                            return Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Divider(),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 24),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      controller
+                                                              .selectedDestinationFilter =
+                                                          ResponseCitiesListCountries(
+                                                        id: itemCountry.id,
+                                                        name: itemCountry.name,
+                                                        flag: itemCountry.flag,
+                                                        cities: [itemCity],
+                                                      );
+                                                      controller.searchBy =
+                                                          SearchBy.city;
+                                                      controller
+                                                          .destinationTextEditingController
+                                                          .text = itemCity.name;
+                                                      Get.back();
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 36),
+                                                          child:
+                                                              TextBasicWidget(
+                                                            text: itemCity.name,
+                                                            size: 14,
+                                                            weight:
+                                                                FontWeight.w400,
+                                                            color:
+                                                                theme.black50,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
-                                            TextBasicWidget(
-                                              text: itemCountry.name,
-                                              size: 14,
-                                              weight: FontWeight.w600,
-                                              color: theme.black50,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    ListView.builder(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount: itemCountry.cities.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        final itemCity =
-                                            itemCountry.cities[index];
-                                        return Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const Divider(),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 24),
-                                              child: GestureDetector(
-                                                onTap:
-                                                    () {}, // TODO handle on click city
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 36),
-                                                  child: TextBasicWidget(
-                                                    text: itemCity.name,
-                                                    size: 14,
-                                                    weight: FontWeight.w400,
-                                                    color: theme.black50,
-                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                );
-                              }),
-                          if ((itemRegion.countries.length) > 0)
-                            const Divider(),
-                        ],
-                      );
-                    }),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  }),
+                              if ((itemRegion.countries.length) > 0)
+                                const Divider(),
+                            ],
+                          );
+                        }),
               ),
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

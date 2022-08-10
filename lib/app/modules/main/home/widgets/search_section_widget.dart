@@ -1,10 +1,10 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
-import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/bottom_sheet_selector_controller.dart';
-import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_date_widget.dart';
-import 'package:bookingdive/app/core/widgets/bottom_sheet_selector/selector_number_diver_widget.dart';
+import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/modules/main/home/home_controller.dart';
+import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_date_widget.dart';
 import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_destination_widget.dart';
+import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_diver_widget.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +13,8 @@ import 'package:get/get.dart';
 import '../../../../core/widgets/text/text_field_outline_widget.dart';
 
 class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
-  final Function? onTapDestination;
-  final BottomSheetSelectorController bottomSheetSelectorController;
-
   const SearchSectionWidget({
     Key? key,
-    this.onTapDestination,
-    required this.bottomSheetSelectorController,
   }) : super(key: key);
 
   @override
@@ -51,10 +46,6 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
                 readOnly: true,
                 rightIcon: Assets.icons.downStrokeIcon
                     .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
-                onTapRightIcon: () => showBottomSheetDestination(
-                  context,
-                  BottomSheetDestinationWidget(),
-                ),
                 onTap: () => showBottomSheetDestination(
                   context,
                   BottomSheetDestinationWidget(),
@@ -68,16 +59,13 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
                     padding: const EdgeInsets.all(12.0),
                     child: Assets.icons.dateIcon.svg(),
                   ),
+                  controller: controller.dateTextEditingController,
                   readOnly: true,
                   rightIcon: Assets.icons.downStrokeIcon
                       .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
-                  onTapRightIcon: () => showBottomSheetDestination(
-                    context,
-                    SelectorDateWidget(),
-                  ),
                   onTap: () => showBottomSheetDestination(
                     context,
-                    SelectorDateWidget(),
+                    BottomSheetDateWidget(),
                   ),
                 ),
               ),
@@ -89,24 +77,39 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
                     padding: const EdgeInsets.all(12.0),
                     child: Assets.icons.personInactiveIcon.svg(),
                   ),
+                  controller: controller.diverTextEditingController,
                   readOnly: true,
                   rightIcon: Assets.icons.downStrokeIcon
                       .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
-                  onTapRightIcon: () => showBottomSheetDestination(
-                    context,
-                    SelectorNumberDiverWidget(),
-                  ),
-                  onTap: () => showBottomSheetDestination(
-                    context,
-                    SelectorNumberDiverWidget(),
-                  ),
+                  onTap: () {
+                    controller.numberDiverInput = (controller
+                                .diverTextEditingController.text
+                                .trim() !=
+                            '')
+                        ? int.parse(
+                            controller.diverTextEditingController.text.trim())
+                        : 0;
+                    showBottomSheetDestination(
+                      context,
+                      BottomSheetDiverWidget(),
+                    );
+                  },
                 ),
               ),
               ButtonBasicWidget(
                 text: 'Search',
                 isFullWidht: true,
                 onTap: () {
-                  Get.toNamed(Routes.SEARCH);
+                  Get.toNamed(
+                    Routes.SEARCH,
+                    arguments: SearchArguments(
+                      selectedDestination:
+                          controller.selectedDestinationFilter!,
+                      date: controller.dateTextEditingController.text.trim(),
+                      diver: controller.diverTextEditingController.text.trim(),
+                      searchBy: controller.searchBy!,
+                    ),
+                  );
                 },
               ),
             ],

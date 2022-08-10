@@ -65,11 +65,7 @@ class HomeScreen extends BaseView<HomeController> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 48),
-                  child: SearchSectionWidget(
-                    onTapDestination: controller.onTapDestination,
-                    bottomSheetSelectorController:
-                        controller.destinationBottomSelector,
-                  ),
+                  child: SearchSectionWidget(),
                 ),
                 controller.listNearbyDivingLocation.length > 0
                     ? Padding(

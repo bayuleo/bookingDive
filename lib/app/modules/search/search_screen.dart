@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/search/search_controller.dart';
@@ -38,15 +39,27 @@ class SearchScreen extends BaseView<SearchController> {
                           padding: const EdgeInsets.only(left: 24),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               TextBasicWidget(
-                                text: 'Solomon Islands',
+                                text: controller.searchArguments?.searchBy ==
+                                        SearchBy.country
+                                    ? controller.searchArguments
+                                            ?.selectedDestination.name ??
+                                        ''
+                                    : controller
+                                            .searchArguments
+                                            ?.selectedDestination
+                                            .cities
+                                            .first
+                                            .name ??
+                                        '',
                                 weight: FontWeight.w700,
                                 size: 16,
                                 color: Colors.white,
                               ),
                               TextBasicWidget(
-                                text: '8 September 2021 • 2 divers',
+                                text:
+                                    '${controller.searchArguments?.date ?? ''} • ${controller.searchArguments?.diver ?? '-'} divers',
                                 weight: FontWeight.w400,
                                 size: 12,
                                 color: Colors.white,

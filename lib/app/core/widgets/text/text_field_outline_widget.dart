@@ -11,6 +11,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
   final Function? onChangedText;
   final VoidCallback? onTap;
   final TextEditingController? controller;
+  final TextAlign textAlign;
   final AutovalidateMode? autovalidateMode;
   final TextInputType? keyboardType;
   final bool obsecure;
@@ -32,6 +33,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
       this.keyboardType,
       this.autovalidateMode,
       this.maxLines = 1,
+      this.textAlign = TextAlign.start,
       this.minLines,
       this.validator})
       : super(key: key);
@@ -39,6 +41,7 @@ class TextFormFieldOutlineWidget extends StatelessWidget with BaseWidgetMixin {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlign: textAlign,
       readOnly: readOnly,
       onTap: onTap,
       controller: controller,
