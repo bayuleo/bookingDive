@@ -97,6 +97,7 @@ class _SelectorFilterWidgetState extends State<SelectorFilterWidget>
                                               groupValue: dummyValRadio,
                                               value: itemFilterBy.key,
                                               label: itemFilterBy.label,
+                                              onChanged: (value) {},
                                             )
                                           : ListCheckBox(
                                               label: itemFilterBy.label,

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io' show Platform;
+import 'dart:io' show Platform, SocketException;
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';

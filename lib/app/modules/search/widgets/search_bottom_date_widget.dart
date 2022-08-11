@@ -1,16 +1,15 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/utils/time.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
-import 'package:bookingdive/app/modules/main/home/home_controller.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bookingdive/app/modules/search/search_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class BottomSheetDateWidget extends StatelessWidget with BaseWidgetMixin {
+class SearchBottomDateWidget extends StatelessWidget with BaseWidgetMixin {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
+    return GetBuilder<SearchController>(
       builder: (controller) {
         return Container(
           decoration: BoxDecoration(

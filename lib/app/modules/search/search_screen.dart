@@ -59,7 +59,7 @@ class SearchScreen extends BaseView<SearchController> {
                               ),
                               TextBasicWidget(
                                 text:
-                                    '${controller.searchArguments?.date ?? ''} • ${controller.searchArguments?.diver ?? '-'} divers',
+                                    '${controller.searchArguments?.date} • ${controller.searchArguments?.diver} divers',
                                 weight: FontWeight.w400,
                                 size: 12,
                                 color: Colors.white,
@@ -144,6 +144,7 @@ class SearchScreen extends BaseView<SearchController> {
             ),
             Expanded(
               child: SingleChildScrollView(
+                controller: controller.listProductController,
                 child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.only(left: 24, top: 16, right: 24),
@@ -204,19 +205,24 @@ class SearchScreen extends BaseView<SearchController> {
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 12, right: 16),
-            child: InkWell(
-              customBorder: const CircleBorder(),
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Assets.icons.upCircleIcon.svg(),
+        Visibility(
+          visible: controller.isShowButtonToFirstData,
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 12, right: 16),
+              child: InkWell(
+                customBorder: const CircleBorder(),
+                onTap: () {
+                  controller.goToFirstData();
+                },
+                child: Container(
+                  padding: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Assets.icons.upCircleIcon.svg(),
+                ),
               ),
             ),
           ),

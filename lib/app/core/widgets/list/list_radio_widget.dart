@@ -9,16 +9,21 @@ class ListRadioWidget extends StatelessWidget with BaseWidgetMixin {
     required this.groupValue,
     required this.value,
     required this.label,
+    this.selected = false,
+    required this.onChanged,
   }) : super(key: key);
 
   final String groupValue;
   final String value;
   final String label;
+  final bool selected;
+  final Function(Object?) onChanged;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       dense: true,
+      selected: selected,
       minVerticalPadding: 0,
       contentPadding: EdgeInsets.zero,
       visualDensity: VisualDensity(horizontal: 0, vertical: -2),
@@ -32,7 +37,7 @@ class ListRadioWidget extends StatelessWidget with BaseWidgetMixin {
         value: value,
         groupValue: groupValue,
         onChanged: (value) {
-          print(value);
+          onChanged(value);
         },
         activeColor: theme.main50,
       ),

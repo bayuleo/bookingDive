@@ -1,6 +1,8 @@
 import 'package:bookingdive/app/core/base/base_state_mixin.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/modules/search/search_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/widgets/button/button_basic_widget.dart';
 import '../../../core/widgets/list/list_radio_widget.dart';
@@ -14,66 +16,78 @@ class SelectorSortWidget extends StatefulWidget {
 
 class _SelectorSortWidgetState extends State<SelectorSortWidget>
     with BaseStateMixin {
-  var dummyVal = '1';
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: theme.white,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20),
-            topLeft: Radius.circular(20),
+    return GetBuilder<SearchController>(builder: (controller) {
+      return Container(
+        decoration: BoxDecoration(
+            color: theme.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20),
+              topLeft: Radius.circular(20),
+            ),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 1),
+                blurRadius: 9,
+                color: Colors.black.withOpacity(0.2),
+              ),
+            ]),
+        child: Padding(
+          padding: EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: TextBasicWidget(
+                  text: 'Sort By',
+                  weight: FontWeight.w500,
+                  size: 18,
+                  color: theme.black90,
+                ),
+              ),
+              ListRadioWidget(
+                label: 'Highest Rating',
+                groupValue: controller.sort,
+                value: '0',
+                onChanged: (value) {
+                  controller.sort = '0';
+                  controller.update();
+                },
+              ),
+              ListRadioWidget(
+                label: 'Lowest Price',
+                groupValue: controller.sort,
+                value: '1',
+                onChanged: (value) {
+                  controller.sort = '1';
+                  controller.update();
+                },
+              ),
+              ListRadioWidget(
+                label: 'Highest Price',
+                groupValue: controller.sort,
+                value: '2',
+                onChanged: (value) {
+                  controller.sort = '2';
+                  controller.update();
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: ButtonBasicWidget(
+                  text: 'Search',
+                  isFullWidht: true,
+                  onTap: () {},
+                ),
+              ),
+            ],
           ),
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0, 1),
-              blurRadius: 9,
-              color: Colors.black.withOpacity(0.2),
-            ),
-          ]),
-      child: Padding(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 42),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 24),
-              child: TextBasicWidget(
-                text: 'Sort By',
-                weight: FontWeight.w500,
-                size: 18,
-                color: theme.black90,
-              ),
-            ),
-            ListRadioWidget(
-              label: 'Highest Rating',
-              groupValue: dummyVal,
-              value: '1',
-            ),
-            ListRadioWidget(
-              label: 'Lowest Price',
-              groupValue: dummyVal,
-              value: '2',
-            ),
-            ListRadioWidget(
-              label: 'Highest Price',
-              groupValue: dummyVal,
-              value: '3',
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: ButtonBasicWidget(
-                text: 'Search',
-                isFullWidht: true,
-                onTap: () {},
-              ),
-            ),
-          ],
         ),
-      ),
-    );
+      );
+    });
   }
 
   Future<dynamic> showBottomSheetDestination(

@@ -57,6 +57,10 @@ class HomeController extends BaseController {
 
   @override
   void onClose() async {
+    destinationTextEditingController.dispose();
+    dateTextEditingController.dispose();
+    diverInputController.dispose();
+    diverTextEditingController.dispose();
     super.onClose();
   }
 

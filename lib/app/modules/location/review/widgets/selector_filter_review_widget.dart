@@ -54,31 +54,37 @@ class SelectorFilterReviewWidget extends StatelessWidget with BaseWidgetMixin {
               groupValue: dummyValRadio,
               value: '1',
               label: 'All (12)',
+              onChanged: (value) {},
             ),
             ListRadioWidget(
               groupValue: dummyValRadio,
               value: '2',
               label: '5-stars (10)',
+              onChanged: (value) {},
             ),
             ListRadioWidget(
               groupValue: dummyValRadio,
               value: '3',
               label: '4-stars (1)',
+              onChanged: (value) {},
             ),
             ListRadioWidget(
               groupValue: dummyValRadio,
               value: '4',
               label: '3-stars (0)',
+              onChanged: (value) {},
             ),
             ListRadioWidget(
               groupValue: dummyValRadio,
               value: '5',
               label: '2-stars (0)',
+              onChanged: (value) {},
             ),
             ListRadioWidget(
               groupValue: dummyValRadio,
               value: '6',
               label: '1-stars (0)',
+              onChanged: (value) {},
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16),

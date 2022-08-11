@@ -1,14 +1,13 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
+import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
 import 'package:bookingdive/app/modules/search/search_controller.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../text/text_basic_widget.dart';
-import '../text/text_field_outline_widget.dart';
-
-class SelectorNumberDiverWidget extends StatelessWidget with BaseWidgetMixin {
+class SearchBottomDiverWidget extends StatelessWidget with BaseWidgetMixin {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchController>(
