@@ -108,6 +108,7 @@ class SearchScreen extends BaseView<SearchController> {
                           onClick: () {
                             showModalBottomSheet(
                               context: context,
+                              isDismissible: false,
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
                               builder: (_) {
@@ -149,11 +150,13 @@ class SearchScreen extends BaseView<SearchController> {
                     physics: NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.only(left: 24, top: 16, right: 24),
                     shrinkWrap: true,
-                    itemCount: 9,
+                    itemCount: controller.listLocations.length,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
                           onTap: () => Get.toNamed(Routes.LOCATION),
-                          child: ItemSearchLocationWidget());
+                          child: ItemSearchLocationWidget(
+                            data: controller.listLocations[index],
+                          ));
                     }),
               ),
             ),

@@ -1,0 +1,10 @@
+{
+  "city": "gotham",
+  "date": "20 June 2026",
+  "longitude?": "11.00000",
+  "latitude?": "11.00000",
+  "radius?": "11.00000",
+  "inclusion?": ["string"],
+  "exlcusion?": ["string"],
+  "sort_by?": "string"
+}

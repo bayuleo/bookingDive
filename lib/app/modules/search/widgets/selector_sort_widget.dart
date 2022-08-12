@@ -51,27 +51,27 @@ class _SelectorSortWidgetState extends State<SelectorSortWidget>
               ListRadioWidget(
                 label: 'Highest Rating',
                 groupValue: controller.sort,
-                value: '0',
+                value: 'recommedation',
                 onChanged: (value) {
-                  controller.sort = '0';
+                  controller.sort = 'recommedation';
                   controller.update();
                 },
               ),
               ListRadioWidget(
                 label: 'Lowest Price',
                 groupValue: controller.sort,
-                value: '1',
+                value: 'lower_price',
                 onChanged: (value) {
-                  controller.sort = '1';
+                  controller.sort = 'lower_price';
                   controller.update();
                 },
               ),
               ListRadioWidget(
                 label: 'Highest Price',
                 groupValue: controller.sort,
-                value: '2',
+                value: 'highest_price',
                 onChanged: (value) {
-                  controller.sort = '2';
+                  controller.sort = 'highest_price';
                   controller.update();
                 },
               ),
@@ -80,7 +80,10 @@ class _SelectorSortWidgetState extends State<SelectorSortWidget>
                 child: ButtonBasicWidget(
                   text: 'Search',
                   isFullWidht: true,
-                  onTap: () {},
+                  onTap: () {
+                    controller.getLocations();
+                    Get.back();
+                  },
                 ),
               ),
             ],

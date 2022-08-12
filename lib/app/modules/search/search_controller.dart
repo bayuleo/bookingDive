@@ -2,7 +2,9 @@ import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/data/model/cities/response_cities_list.dart';
 import 'package:bookingdive/app/data/model/cities/response_cities_list_countries.dart';
 import 'package:bookingdive/app/data/model/cities/response_cities_list_data.dart';
+import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/cities_repository.dart';
+import 'package:bookingdive/app/data/repository/location_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +14,8 @@ import '../../core/widgets/bottom_sheet_selector/bottom_sheet_selector_controlle
 enum SortBy { highRating, lowPrice, highPrice }
 
 class SearchController extends BaseController {
+  final LocationRepository _locationRepository = Get.find();
+
   final CitiesRepository _citiesRepository = Get.find();
   final listCities = <ResponseCitiesListData>[].obs;
   final destinationBottomSelector = BottomSheetSelectorController();
@@ -21,6 +25,8 @@ class SearchController extends BaseController {
   final diverInputController = TextEditingController();
   final listProductController = ScrollController();
 
+  List<ResponseDataListLocations> listLocations = [];
+
   SearchArguments? searchArguments;
   int numberDiverInput = 0;
   ResponseCitiesListCountries? selectedDestinationFilter;
@@ -28,7 +34,7 @@ class SearchController extends BaseController {
   bool isLoadingSearchDestination = false;
   bool isShowButtonToFirstData = false;
   SortBy? sortBy;
-  String sort = '0';
+  String sort = 'recommedation';
 
   @override
   void onInit() {
@@ -41,6 +47,7 @@ class SearchController extends BaseController {
     searchArguments = Get.arguments;
     initValue();
     getCities();
+    getLocations();
     update();
     super.onReady();
   }
@@ -106,5 +113,23 @@ class SearchController extends BaseController {
   void goToFirstData() {
     listProductController.animateTo(0,
         duration: const Duration(milliseconds: 500), curve: Curves.linear);
+  }
+
+  void getLocations() async {
+    callDataService<ResponseListLocations>(
+      () => _locationRepository.getLocations(
+        RequestListLocation(
+          city: searchArguments?.searchBy == SearchBy.country
+              ? searchArguments?.selectedDestination.name ?? ''
+              : searchArguments?.selectedDestination.cities.first.name ?? '',
+          date: searchArguments?.date ?? '',
+          sortBy: sort,
+        ),
+      ),
+      onSuccess: (res) {
+        listLocations = res.data;
+        update();
+      },
+    );
   }
 }

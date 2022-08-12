@@ -53,9 +53,7 @@ class WhistlistScreen extends BaseView<WhislistController> {
                   shrinkWrap: true,
                   itemCount: 9,
                   itemBuilder: (BuildContext context, int index) {
-                    return ItemSearchLocationWidget(
-                      isFavorited: true,
-                    );
+                    return ItemSearchLocationWidget();
                   }),
             ),
     );

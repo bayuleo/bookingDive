@@ -30,10 +30,14 @@ export 'cities/response_cities_list_data.dart';
 export 'cities/response_cities_list.dart';
 export 'locations/detail/response_detail_location.dart';
 export 'locations/detail/response_detail_location_data.dart';
+export 'locations/list/response_data_list_locations.dart';
+export 'locations/list/response_data_list_inclusion.dart';
 export 'locations/list/response_data_list_location.dart';
 export 'locations/list/request_nearby_location.dart';
 export 'locations/list/response_list_location.dart';
 export 'locations/list/request_popular_location.dart';
+export 'locations/list/request_list_location.dart';
+export 'locations/list/response_list_locations.dart';
 import 'package:quiver/core.dart';
 
 T? checkOptional<T>(Optional<T?>? optional, T? Function()? def) {

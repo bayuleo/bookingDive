@@ -1,16 +1,18 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
+import 'package:bookingdive/app/core/utils/currency.dart';
 import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
+import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/widgets/text/text_basic_widget.dart';
 
 class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
-  final bool isFavorited;
+  final ResponseDataListLocations? data;
 
   const ItemSearchLocationWidget({
     Key? key,
-    this.isFavorited = false,
+    this.data,
   }) : super(key: key);
 
   @override
@@ -42,17 +44,25 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
                 physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: 5,
+                itemCount: 1,
                 itemBuilder: (BuildContext context, int index) {
-                  var item = Assets.images.bannerHome.image(
+                  // var item = Assets.images.bannerHome.image(
+                  //     fit: BoxFit.cover,
+                  //     width: MediaQuery.of(context).size.width - 50);
+                  // return index != 4
+                  //     ? Padding(
+                  //         padding: const EdgeInsets.only(right: 8),
+                  //         child: item,
+                  //       )
+                  //     : item;
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Image.network(
+                      data?.image ?? '',
                       fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width - 50);
-                  return index != 4
-                      ? Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: item,
-                        )
-                      : item;
+                      width: MediaQuery.of(context).size.width - 50,
+                    ),
+                  );
                 }),
           ),
           Padding(
@@ -78,11 +88,14 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Flexible(
-                  child: TextBasicWidget(
-                    text: 'Scuba Diving Courses and Fun Dives',
-                    size: 18,
-                    weight: FontWeight.w500,
-                    color: theme.black50,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: TextBasicWidget(
+                      text: data?.productName ?? '',
+                      size: 18,
+                      weight: FontWeight.w500,
+                      color: theme.black50,
+                    ),
                   ),
                 ),
                 Row(
@@ -94,11 +107,12 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
                     Padding(
                       padding: const EdgeInsets.only(left: 4, right: 2),
                       child: TextBasicWidget(
-                        text: '5',
+                        text: data?.ratingResult.toString() ?? '-',
                         weight: FontWeight.w700,
                       ),
                     ),
-                    TextBasicWidget(text: '(12)'),
+                    TextBasicWidget(
+                        text: '(${data?.ratingCount.toString() ?? '-'})'),
                   ],
                 )
               ],
@@ -107,7 +121,7 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 4),
             child: TextBasicWidget(
-              text: 'Semporna, Malaysia',
+              text: '${data?.locationState}, ${data?.locationCountry}',
               color: theme.black30,
               size: 12,
               weight: FontWeight.w600,
@@ -134,7 +148,7 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                isFavorited
+                (data?.isWishlist ?? false)
                     ? Assets.icons.heartRedIcon.svg()
                     : Assets.icons.heartIcon.svg(color: theme.black30),
                 Row(
@@ -146,7 +160,8 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
                       weight: FontWeight.w400,
                     ),
                     TextBasicWidget(
-                      text: 'IDR 500,000',
+                      text:
+                          '${data?.priceCurrency} ${data?.priceLower.addComma()}',
                       color: theme.main50,
                       weight: FontWeight.w700,
                       size: 16,

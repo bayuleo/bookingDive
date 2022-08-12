@@ -5,9 +5,9 @@ import '../../index.dart';
 
 
 @immutable
-class ResponseListLocation {
+class ResponseListLocations {
 
-  const ResponseListLocation({
+  const ResponseListLocations({
     this.status,
     required this.message,
     this.error,
@@ -17,13 +17,13 @@ class ResponseListLocation {
   final bool? status;
   final String message;
   final Error? error;
-  final List<ResponseDataListLocation> data;
+  final List<ResponseDataListLocations> data;
 
-  factory ResponseListLocation.fromJson(Map<String,dynamic> json) => ResponseListLocation(
+  factory ResponseListLocations.fromJson(Map<String,dynamic> json) => ResponseListLocations(
     status: json['status'] != null ? json['status'] as bool : null,
     message: json['message'].toString(),
     error: json['error'] != null ? Error.fromJson(json['error'] as Map<String, dynamic>) : null,
-    data: (json['data'] as List? ?? []).map((e) => ResponseDataListLocation.fromJson(e as Map<String, dynamic>)).toList()
+    data: (json['data'] as List? ?? []).map((e) => ResponseDataListLocations.fromJson(e as Map<String, dynamic>)).toList()
   );
   
   Map<String, dynamic> toJson() => {
@@ -33,7 +33,7 @@ class ResponseListLocation {
     'data': data.map((e) => e.toJson()).toList()
   };
 
-  ResponseListLocation clone() => ResponseListLocation(
+  ResponseListLocations clone() => ResponseListLocations(
     status: status,
     message: message,
     error: error?.clone(),
@@ -41,12 +41,12 @@ class ResponseListLocation {
   );
 
 
-  ResponseListLocation copyWith({
+  ResponseListLocations copyWith({
     Optional<bool?>? status,
     String? message,
     Optional<Error?>? error,
-    List<ResponseDataListLocation>? data
-  }) => ResponseListLocation(
+    List<ResponseDataListLocations>? data
+  }) => ResponseListLocations(
     status: checkOptional(status, () => this.status),
     message: message ?? this.message,
     error: checkOptional(error, () => this.error),
@@ -55,7 +55,7 @@ class ResponseListLocation {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseListLocation && status == other.status && message == other.message && error == other.error && data == other.data;
+    || other is ResponseListLocations && status == other.status && message == other.message && error == other.error && data == other.data;
 
   @override
   int get hashCode => status.hashCode ^ message.hashCode ^ error.hashCode ^ data.hashCode;

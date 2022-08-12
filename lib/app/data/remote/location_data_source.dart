@@ -11,6 +11,8 @@ abstract class LocationDataSource {
       RequestNearbyLocation param);
 
   Future<ResponseDetailLocation> getDetailLocation(String idLocation);
+
+  Future<ResponseListLocations> getLocations(RequestListLocation param);
 }
 
 class LocationDataSourceImpl implements LocationDataSource {
@@ -44,5 +46,16 @@ class LocationDataSourceImpl implements LocationDataSource {
       queryParameters: queryParams,
     );
     return ResponseListLocation.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseListLocations> getLocations(RequestListLocation param) async {
+    final queryParams = param.toJson();
+    queryParams.removeWhere((key, value) => value == '' || value == null);
+    var response = await dioConfigure.dioMock.get(
+      endpoints.location.listLocation,
+      queryParameters: queryParams,
+    );
+    return ResponseListLocations.fromJson(response.data);
   }
 }

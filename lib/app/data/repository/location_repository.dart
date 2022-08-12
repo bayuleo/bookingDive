@@ -10,6 +10,8 @@ abstract class LocationRepository {
       RequestNearbyLocation param);
 
   Future<ResponseDetailLocation> getDetailLocation(String idLocation);
+
+  Future<ResponseListLocations> getLocations(RequestListLocation param);
 }
 
 class LocationRepositoryImpl implements LocationRepository {
@@ -30,5 +32,10 @@ class LocationRepositoryImpl implements LocationRepository {
   Future<ResponseListLocation> getNearbyDivingLocation(
       RequestNearbyLocation param) {
     return _locationDataSource.getNearbyDivingLocation(param);
+  }
+
+  @override
+  Future<ResponseListLocations> getLocations(RequestListLocation param) {
+    return _locationDataSource.getLocations(param);
   }
 }
