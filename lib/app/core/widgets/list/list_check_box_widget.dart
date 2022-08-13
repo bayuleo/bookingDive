@@ -3,8 +3,12 @@ import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListCheckBox extends StatelessWidget with BaseWidgetMixin {
-  const ListCheckBox({
+  final bool? value;
+  final Function(bool)? onTap;
+  ListCheckBox({
     Key? key,
+    this.value,
+    this.onTap,
     required this.label,
   }) : super(key: key);
 

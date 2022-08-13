@@ -26,6 +26,8 @@ class SearchController extends BaseController {
   final listProductController = ScrollController();
 
   List<ResponseDataListLocations> listLocations = [];
+  List<String> listFilterSelectedInclusion = [];
+  List<String> listFilterSelectedExclusion = [];
 
   SearchArguments? searchArguments;
   int numberDiverInput = 0;
@@ -124,6 +126,8 @@ class SearchController extends BaseController {
               : searchArguments?.selectedDestination.cities.first.name ?? '',
           date: searchArguments?.date ?? '',
           sortBy: sort,
+          inclusion: listFilterSelectedInclusion,
+          exlcusion: listFilterSelectedExclusion,
         ),
       ),
       onSuccess: (res) {
@@ -131,5 +135,29 @@ class SearchController extends BaseController {
         update();
       },
     );
+  }
+
+  void onFilterInclusionChange(String filter, bool value) {
+    if (value) {
+      print('true');
+      listFilterSelectedInclusion.add(filter);
+    } else {
+      print('else');
+      listFilterSelectedInclusion.removeWhere((element) => element == filter);
+    }
+    update();
+    print(listFilterSelectedInclusion);
+  }
+
+  void onFilterExclusionChange(String filter, bool value) {
+    if (value) {
+      print('true');
+      listFilterSelectedExclusion.add(filter);
+    } else {
+      print('else');
+      listFilterSelectedExclusion.removeWhere((element) => element == filter);
+    }
+    update();
+    print(listFilterSelectedExclusion);
   }
 }

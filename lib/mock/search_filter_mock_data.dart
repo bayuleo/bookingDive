@@ -22,9 +22,11 @@ class SearchFilterMockData {
       },
       {
         "group": "Exclusion",
-        "type": "Single",
+        "type": "Multiple",
         "filterBy": [
-          {"key": "9", "label": "Dive computer"}
+          {"key": "9", "label": "Dive computer"},
+          {"key": "10", "label": "Marine park fees"},
+          {"key": "11", "label": "National pak fees"},
         ]
       }
     ]

@@ -1,6 +1,5 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/utils/currency.dart';
-import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +118,7 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 4),
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 36),
             child: TextBasicWidget(
               text: '${data?.locationState}, ${data?.locationCountry}',
               color: theme.black30,
@@ -127,21 +126,21 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
               weight: FontWeight.w600,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ButtonOutlineBasicWidget(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-                    text: 'Request to Book',
-                    textColor: theme.black50,
-                    borderColor: theme.black10,
-                    icon: Assets.icons.clockIcon.svg(),
-                    onTap: () {}),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: [
+          //       ButtonOutlineBasicWidget(
+          //           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+          //           text: 'Request to Book',
+          //           textColor: theme.black50,
+          //           borderColor: theme.black10,
+          //           icon: Assets.icons.clockIcon.svg(),
+          //           onTap: () {}),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 18),
             child: Row(
