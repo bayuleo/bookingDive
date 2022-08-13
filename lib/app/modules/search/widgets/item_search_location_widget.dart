@@ -64,23 +64,49 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
                   );
                 }),
           ),
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextBasicWidget(
-                  text: 'Equipment rental set',
-                  color: theme.black30,
-                ),
-                TextBasicWidget(text: '•', color: theme.black30),
-                TextBasicWidget(text: 'Regulator', color: theme.black30),
-                TextBasicWidget(text: '•', color: theme.black30),
-                TextBasicWidget(text: 'Certification', color: theme.black30),
-              ],
+          Container(
+            clipBehavior: Clip.hardEdge,
+            height: 20,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                topLeft: Radius.circular(10),
+              ),
             ),
+            child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: data?.inclusion.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var item = data?.inclusion[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: TextBasicWidget(
+                        text:
+                            '${item?.name}${index < ((data?.inclusion.length ?? 0) - 1) ? '     • ' : ''}',
+                        color: theme.black30),
+                  );
+                }),
           ),
+          // Padding(
+          //   padding:
+          //       const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 4),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       TextBasicWidget(
+          //         text: 'Equipment rental set',
+          //         color: theme.black30,
+          //       ),
+          //       TextBasicWidget(text: '•', color: theme.black30),
+          //       TextBasicWidget(text: 'Regulator', color: theme.black30),
+          //       TextBasicWidget(text: '•', color: theme.black30),
+          //       TextBasicWidget(text: 'Certification', color: theme.black30),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 6),
             child: Row(

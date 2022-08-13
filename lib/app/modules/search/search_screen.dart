@@ -129,6 +129,7 @@ class SearchScreen extends BaseView<SearchController> {
                             showModalBottomSheet(
                               context: context,
                               isScrollControlled: true,
+                              isDismissible: false,
                               backgroundColor: Colors.transparent,
                               builder: (_) {
                                 return SelectorFilterWidget();
