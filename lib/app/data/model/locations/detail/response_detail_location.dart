@@ -8,19 +8,19 @@ import '../../index.dart';
 class ResponseDetailLocation {
 
   const ResponseDetailLocation({
-    required this.status,
+    this.status,
     required this.message,
     this.error,
     required this.data,
   });
 
-  final bool status;
+  final bool? status;
   final String message;
   final Error? error;
   final ResponseDetailLocationData data;
 
   factory ResponseDetailLocation.fromJson(Map<String,dynamic> json) => ResponseDetailLocation(
-    status: json['status'] as bool,
+    status: json['status'] != null ? json['status'] as bool : null,
     message: json['message'].toString(),
     error: json['error'] != null ? Error.fromJson(json['error'] as Map<String, dynamic>) : null,
     data: ResponseDetailLocationData.fromJson(json['data'] as Map<String, dynamic>)
@@ -42,12 +42,12 @@ class ResponseDetailLocation {
 
 
   ResponseDetailLocation copyWith({
-    bool? status,
+    Optional<bool?>? status,
     String? message,
     Optional<Error?>? error,
     ResponseDetailLocationData? data
   }) => ResponseDetailLocation(
-    status: status ?? this.status,
+    status: checkOptional(status, () => this.status),
     message: message ?? this.message,
     error: checkOptional(error, () => this.error),
     data: data ?? this.data,

@@ -1,14 +1,17 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/data/model/locations/detail/response_detail_location_packages.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
+  final ResponseDetailLocationPackages? data;
   const ItemPackageWidget({
     Key? key,
+    this.data,
   }) : super(key: key);
 
   @override
@@ -44,7 +47,7 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextBasicWidget(
-                      text: 'Refresher Dive',
+                      text: data?.packageName ?? '',
                       size: 14,
                       weight: FontWeight.w600,
                     ),

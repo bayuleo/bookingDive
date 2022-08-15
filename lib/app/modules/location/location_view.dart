@@ -28,13 +28,7 @@ class LocationScreen extends BaseView<LocationController> {
     'title 5'
   ];
 
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'KCCs-Nr_LnI',
-    flags: YoutubePlayerFlags(
-      autoPlay: false,
-      mute: false,
-    ),
-  );
+  final imagesWidget = <Widget>[];
 
   @override
   Widget buildScreen(BuildContext context) {
@@ -104,7 +98,7 @@ class LocationScreen extends BaseView<LocationController> {
                           height: 180,
                           width: MediaQuery.of(context).size.width * 0.7,
                           child: Image.network(
-                            controller.data?.image ?? '',
+                            controller.data?.images?.first ?? '',
                             fit: BoxFit.cover,
                             loadingBuilder: (context, child, loadingProgress) {
                               if (loadingProgress == null) return child;
@@ -125,8 +119,17 @@ class LocationScreen extends BaseView<LocationController> {
                           child: Container(
                             height: 88,
                             width: double.infinity,
-                            child: Assets.images.loginBanner
-                                .image(fit: BoxFit.cover),
+                            child: Image.network(
+                              controller.data?.images?[1] ?? '',
+                              fit: BoxFit.cover,
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
+                            ),
                           ),
                         ),
                         Padding(
@@ -147,13 +150,29 @@ class LocationScreen extends BaseView<LocationController> {
                                       padding: EdgeInsets.zero,
                                       decoration: BoxDecoration(
                                           color: Colors.transparent),
-                                      child: ImageSlideshow(children: [
-                                        Assets.images.loginBanner.image(),
-                                        Assets.images.loginBanner.image(),
-                                        Assets.images.loginBanner.image(),
-                                        Assets.images.loginBanner.image(),
-                                        Assets.images.loginBanner.image(),
-                                      ]),
+                                      child: ImageSlideshow(
+                                        children: [
+                                          for (int i = 0;
+                                              i <
+                                                  (controller.data?.images
+                                                          ?.length ??
+                                                      0);
+                                              i++)
+                                            Image.network(
+                                              controller.data?.images?[i] ?? '',
+                                              fit: BoxFit.cover,
+                                              loadingBuilder: (context, child,
+                                                  loadingProgress) {
+                                                if (loadingProgress == null)
+                                                  return child;
+                                                return Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                );
+                                              },
+                                            ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 }),
@@ -161,8 +180,17 @@ class LocationScreen extends BaseView<LocationController> {
                               Container(
                                 height: 88,
                                 width: double.infinity,
-                                child: Assets.images.loginBanner
-                                    .image(fit: BoxFit.cover),
+                                child: Image.network(
+                                  controller.data?.images?[2] ?? '',
+                                  fit: BoxFit.cover,
+                                  loadingBuilder:
+                                      (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  },
+                                ),
                               ),
                               Container(
                                 height: 88,
@@ -256,8 +284,7 @@ class LocationScreen extends BaseView<LocationController> {
                         size: 14,
                         weight: FontWeight.w400,
                         color: theme.black50,
-                        text:
-                            'South Male Atoll is a year round destination. Scuba diving in South Male is possible throughout the year, though surface conditions are generally best during the Northeast Monsoon season from late December to May. The Southwest Monsoon runs from June to November and brings with it a greater chance of rain and less calmer seas. Water temperatures at South Male Atoll around 26 to 29C/78 to 84F. Visibility is 15-30m/49-98ft all year round, depending on which side of the atoll you dive in which season.',
+                        text: 'Not Set',
                       ),
                     ),
                     for (var i in exampleList)
@@ -377,8 +404,7 @@ class LocationScreen extends BaseView<LocationController> {
                       child: Assets.images.loginBanner.image(),
                     ),
                     TextBasicWidget(
-                      text:
-                          'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien.',
+                      text: controller.data?.formattedLocation ?? '',
                       size: 14,
                       weight: FontWeight.w400,
                       color: theme.black30,
@@ -423,31 +449,115 @@ class LocationScreen extends BaseView<LocationController> {
                     SizedBox(
                       width: double.infinity,
                       height: 40,
-                      child: ListView.builder(
+                      child: ListView(
                         padding: EdgeInsets.only(left: 0, top: 8, right: 0),
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: 9,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
+                        children: [
+                          Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: ButtonOutlineBasicWidget(
-                              text: 'Button1',
+                              text: 'About Place',
                               fontWeight: FontWeight.w400,
                               disableColor: theme.black30,
                               radius: 20,
-                              enable: index == 0 ? true : false,
-                              onTap: () {},
+                              enable: controller.selectedDescription == 0,
+                              forceOnTap: true,
+                              onTap: () {
+                                controller.onChangeDescription(0);
+                              },
                             ),
-                          );
-                        },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: ButtonOutlineBasicWidget(
+                              text: 'Refund Policy',
+                              fontWeight: FontWeight.w400,
+                              disableColor: theme.black30,
+                              radius: 20,
+                              enable: controller.selectedDescription == 1,
+                              forceOnTap: true,
+                              onTap: () {
+                                controller.onChangeDescription(1);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: ButtonOutlineBasicWidget(
+                              text: 'Neighborhood',
+                              fontWeight: FontWeight.w400,
+                              disableColor: theme.black30,
+                              radius: 20,
+                              enable: controller.selectedDescription == 2,
+                              forceOnTap: true,
+                              onTap: () {
+                                controller.onChangeDescription(2);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: ButtonOutlineBasicWidget(
+                              text: 'Interaction',
+                              fontWeight: FontWeight.w400,
+                              disableColor: theme.black30,
+                              radius: 20,
+                              enable: controller.selectedDescription == 3,
+                              forceOnTap: true,
+                              onTap: () {
+                                controller.onChangeDescription(3);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: ButtonOutlineBasicWidget(
+                              text: 'Other',
+                              fontWeight: FontWeight.w400,
+                              disableColor: theme.black30,
+                              radius: 20,
+                              enable: controller.selectedDescription == 4,
+                              forceOnTap: true,
+                              onTap: () {
+                                controller.onChangeDescription(4);
+                              },
+                            ),
+                          ),
+                        ],
+                        // itemCount: 9,
+                        // itemBuilder: (BuildContext context, int index) {
+                        //   return Padding(
+                        //     padding: const EdgeInsets.only(right: 8),
+                        //     child: ButtonOutlineBasicWidget(
+                        //       text: 'Button1',
+                        //       fontWeight: FontWeight.w400,
+                        //       disableColor: theme.black30,
+                        //       radius: 20,
+                        //       enable: index == 0 ? true : false,
+                        //       onTap: () {},
+                        //     ),
+                        //   );
+                        // },
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: TextBasicWidget(
-                        text:
-                            'South Male Atoll is a year round destination. Scuba diving in South Male is possible throughout the year, though surface conditions are generally best during the Northeast Monsoon season from late December to May. The Southwest Monsoon runs from June to November and brings with it a greater chance of rain and less calmer seas. Water temperatures at South Male Atoll around 26 to 29C/78 to 84F. Visibility is 15-30m/49-98ft all year round, depending on which side of the atoll you dive in which season.',
+                        text: controller.selectedDescription == 0
+                            ? controller.data?.description.about ?? ''
+                            : controller.selectedDescription == 1
+                                ? controller.data?.description.refund ?? ''
+                                : controller.selectedDescription == 2
+                                    ? controller
+                                            .data?.description.neighborhood ??
+                                        ''
+                                    : controller.selectedDescription == 3
+                                        ? controller.data?.description
+                                                .interaction ??
+                                            ''
+                                        : controller.data?.description.other ??
+                                            '',
                         size: 14,
                         weight: FontWeight.w400,
                         color: theme.black50,
@@ -476,8 +586,11 @@ class LocationScreen extends BaseView<LocationController> {
                       ),
                     ),
                     YoutubePlayer(
-                      controller: _controller,
+                      controller: controller.youtubePlayerController,
                       showVideoProgressIndicator: true,
+                      onReady: () {
+                        controller.getDetailLocation();
+                      },
                     ),
                   ],
                 ),
@@ -530,7 +643,9 @@ class LocationScreen extends BaseView<LocationController> {
                       padding: const EdgeInsets.only(top: 12),
                       child: ButtonOutlineBasicWidget(
                         text: 'Message Host',
-                        onTap: () {},
+                        onTap: () {
+                          controller.youtubePlayerController.cue('ERxBfanHP-0');
+                        },
                       ),
                     ),
                   ],

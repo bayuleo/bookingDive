@@ -1,5 +1,5 @@
 {
-  "product_id": 3,
+  "product_id": "3",
   "product_name": "Universal Diver",
   "location_state": "Terengganu",
   "location_country": "Malaysia",
@@ -7,6 +7,15 @@
   "price_currency": "RM",
   "rating_count": 0,
   "rating_result": 0,
-  "is_wishlist": false,
-  "image": "https://bookingdive-27iu7.ondigitalocean.app/images/property/3/1651025043_UD1.jpeg"
+  "is_wishlist?": false,
+  "images?": ["string"],
+  "packages": "$[]./response_detail_location_packages",
+  "lat": "12345678",
+  "lng": "12345679",
+  "formatted_location": "Jalan Arumba, Malang, Jawa Timur, Indonesia",
+  "description": "$./response_detail_location_description",
+  "video": "https://",
+  "host_id": "1234",
+  "hostname": "Bajul",
+  "host_since": "20/03/2020"
 }

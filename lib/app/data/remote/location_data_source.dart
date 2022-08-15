@@ -32,7 +32,7 @@ class LocationDataSourceImpl implements LocationDataSource {
 
   @override
   Future<ResponseDetailLocation> getDetailLocation(String idLocation) async {
-    var response = await dioConfigure.dio
+    var response = await dioConfigure.dioMock
         .get('${endpoints.location.listLocation}/$idLocation');
     return ResponseDetailLocation.fromJson(response.data);
   }
