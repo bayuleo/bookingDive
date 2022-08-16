@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
+import 'package:bookingdive/app/core/utils/currency.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/data/model/locations/detail/response_detail_location_packages.dart';
@@ -9,9 +10,11 @@ import 'package:get/get.dart';
 
 class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
   final ResponseDetailLocationPackages? data;
+  final String? currency;
   const ItemPackageWidget({
     Key? key,
     this.data,
+    this.currency,
   }) : super(key: key);
 
   @override
@@ -38,7 +41,11 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 16),
-                child: Assets.images.loginBanner.image(width: 70),
+                // child: Assets.images.loginBanner.image(width: 70),
+                child: Image.network(
+                  data?.image ?? 'https://dummyimage.com/200x100/000/fff',
+                  width: 70,
+                ),
               ),
               Expanded(
                   child: Container(
@@ -52,7 +59,7 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
                       weight: FontWeight.w600,
                     ),
                     TextBasicWidget(
-                      text: 'Package Type: Refresher Course',
+                      text: 'Package Type: NOT SET',
                       size: 12,
                       weight: FontWeight.w400,
                       color: theme.black30,
@@ -71,7 +78,8 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
                                 color: theme.black50,
                               ),
                               TextBasicWidget(
-                                text: '3 Days 1 Night',
+                                text:
+                                    '${data?.dayCount} Days ${data?.nightCount} Night',
                                 size: 12,
                                 weight: FontWeight.w700,
                                 color: theme.black70,
@@ -95,7 +103,7 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
                                 color: theme.black50,
                               ),
                               TextBasicWidget(
-                                text: '4 Dives',
+                                text: '${data?.diveCount} Dives',
                                 size: 12,
                                 weight: FontWeight.w700,
                                 color: theme.black70,
@@ -117,7 +125,7 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
                               color: theme.black50,
                             ),
                             TextBasicWidget(
-                              text: '2 Divers',
+                              text: '${data?.minimumDiver} Divers',
                               size: 12,
                               weight: FontWeight.w700,
                               color: theme.black70,
@@ -134,7 +142,7 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 14),
             child: TextBasicWidget(
-              text: 'IDR 500.000',
+              text: '${currency} ${data?.price.addComma()}',
               size: 16,
               weight: FontWeight.w700,
             ),

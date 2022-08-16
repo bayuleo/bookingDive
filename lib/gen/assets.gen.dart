@@ -240,6 +240,13 @@ class $AssetsImagesGen {
   /// File path: assets/images/login_banner.png
   AssetGenImage get loginBanner =>
       const AssetGenImage('assets/images/login_banner.png');
+
+  /// File path: assets/images/marker.png
+  AssetGenImage get marker => const AssetGenImage('assets/images/marker.png');
+
+  /// File path: assets/images/person_blue.png
+  AssetGenImage get personBlue =>
+      const AssetGenImage('assets/images/person_blue.png');
 }
 
 class Assets {

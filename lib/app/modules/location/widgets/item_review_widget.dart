@@ -1,10 +1,15 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class ItemReviewWidget extends StatelessWidget with BaseWidgetMixin {
-  const ItemReviewWidget({Key? key}) : super(key: key);
+  final ResponseReviewData data;
+  ItemReviewWidget({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +22,7 @@ class ItemReviewWidget extends StatelessWidget with BaseWidgetMixin {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,21 +30,29 @@ class ItemReviewWidget extends StatelessWidget with BaseWidgetMixin {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 4),
-                    child: Assets.icons.personBlueIcon.svg(),
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Image.network(
+                      width: 8,
+                      height: 8,
+                      data.avatar,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Assets.images.personBlue
+                            .image(width: 24, height: 24);
+                      },
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TextBasicWidget(
-                        text: 'Jane Doe',
+                        text: data.name,
                         size: 14,
                         weight: FontWeight.w400,
                         color: theme.black50,
                       ),
                       TextBasicWidget(
-                        text: '22 Jan 2022 ',
+                        text: data.posted,
                         size: 12,
                         weight: FontWeight.w400,
                         color: theme.black30,
@@ -58,7 +72,7 @@ class ItemReviewWidget extends StatelessWidget with BaseWidgetMixin {
                     ),
                   ),
                   TextBasicWidget(
-                    text: '5',
+                    text: data.star,
                     size: 18,
                     weight: FontWeight.w700,
                     color: theme.black50,
@@ -72,11 +86,12 @@ class ItemReviewWidget extends StatelessWidget with BaseWidgetMixin {
             color: theme.disable,
           ),
           TextBasicWidget(
-            text:
-                'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit...',
+            text: data.review,
             size: 12,
+            maxLine: 3,
             weight: FontWeight.w400,
             color: theme.black50,
+            textOverflow: TextOverflow.ellipsis,
           ),
           SizedBox(
             width: double.infinity,
@@ -85,12 +100,22 @@ class ItemReviewWidget extends StatelessWidget with BaseWidgetMixin {
               padding: EdgeInsets.only(left: 0, top: 16, right: 0),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: 5,
+              itemCount: data.images.length,
               itemBuilder: (BuildContext context, int index) {
+                var item = data.images[index];
                 return Padding(
                   padding: const EdgeInsets.only(right: 4),
-                  child: Assets.images.loginBanner
-                      .image(width: 48, height: 48, fit: BoxFit.cover),
+                  // child: Assets.images.loginBanner
+                  //     .image(width: 48, height: 48, fit: BoxFit.cover),
+                  child: Image.network(
+                    item,
+                    width: 8,
+                    height: 8,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Assets.images.loginBanner
+                          .image(width: 48, height: 48);
+                    },
+                  ),
                 );
               },
             ),

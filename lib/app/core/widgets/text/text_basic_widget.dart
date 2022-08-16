@@ -6,6 +6,7 @@ class TextBasicWidget extends StatelessWidget {
   final String text;
   final Color? color;
   final double? size;
+  final int? maxLine;
   final FontWeight? weight;
   final TextAlign? textAlign;
   final TextDecoration? textDecoration;
@@ -16,6 +17,7 @@ class TextBasicWidget extends StatelessWidget {
     this.text = '',
     this.color,
     this.size = 14,
+    this.maxLine,
     this.weight,
     this.textAlign,
     this.textDecoration,
@@ -28,6 +30,7 @@ class TextBasicWidget extends StatelessWidget {
       text,
       overflow: textOverflow,
       textAlign: textAlign,
+      maxLines: maxLine,
       style: TextStyle(
         color: color == null ? AppTheme.of(context).black50 : color,
         fontSize: size,

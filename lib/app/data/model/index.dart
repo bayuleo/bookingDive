@@ -40,6 +40,9 @@ export 'locations/list/response_list_location.dart';
 export 'locations/list/request_popular_location.dart';
 export 'locations/list/request_list_location.dart';
 export 'locations/list/response_list_locations.dart';
+export 'review/response_review_section.dart';
+export 'review/response_review.dart';
+export 'review/response_review_data.dart';
 import 'package:quiver/core.dart';
 
 T? checkOptional<T>(Optional<T?>? optional, T? Function()? def) {

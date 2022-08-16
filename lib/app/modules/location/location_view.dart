@@ -13,7 +13,9 @@ import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:flutter_map/plugin_api.dart';
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -374,9 +376,12 @@ class LocationScreen extends BaseView<LocationController> {
                         padding: EdgeInsets.only(left: 0, top: 16, right: 0),
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: 9,
+                        itemCount: controller.listReview.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return ItemReviewWidget();
+                          var item = controller.listReview[index];
+                          return ItemReviewWidget(
+                            data: item,
+                          );
                         },
                       ),
                     ),
@@ -401,7 +406,48 @@ class LocationScreen extends BaseView<LocationController> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Assets.images.loginBanner.image(),
+                      // child: Assets.images.loginBanner.image(),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 124,
+                        child: FlutterMap(
+                          options: MapOptions(
+                            center: LatLng(
+                              // TODO update lat lng
+                              //   double.parse(controller.data?.lat ?? '0'),
+                              -6.175392,
+                              // double.parse(controller.data?.lng ?? '0'),
+                              106.827153,
+                            ),
+                            zoom: 10,
+                          ),
+                          layers: [
+                            TileLayerOptions(
+                              urlTemplate:
+                                  "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                              userAgentPackageName: 'com.example.app',
+                            ),
+                            MarkerLayerOptions(
+                              markers: [
+                                Marker(
+                                  point: LatLng(
+                                    // TODO update lat lng
+                                    //   double.parse(controller.data?.lat ?? '0'),
+                                    -6.175392,
+                                    // double.parse(controller.data?.lng ?? '0'),
+                                    106.827153,
+                                  ),
+                                  width: 80,
+                                  height: 80,
+                                  builder: (context) {
+                                    return Assets.images.marker.image();
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     TextBasicWidget(
                       text: controller.data?.formattedLocation ?? '',
@@ -415,7 +461,13 @@ class LocationScreen extends BaseView<LocationController> {
                         child: InkWell(
                           onTap: () {
                             MapsLauncher.launchCoordinates(
-                                -6.175392, 106.827153, 'Monas');
+                                // -6.175392, 106.827153, 'Monas');
+                                // TODO update lat lng
+                                //   double.parse(controller.data?.lat ?? '0'),
+                                -6.175392,
+                                // double.parse(controller.data?.lng ?? '0'),
+                                106.827153,
+                                controller.data?.productName ?? 'location');
                           },
                           child: TextBasicWidget(
                             text: 'See Map',
@@ -590,6 +642,7 @@ class LocationScreen extends BaseView<LocationController> {
                       showVideoProgressIndicator: true,
                       onReady: () {
                         controller.getDetailLocation();
+                        controller.getReview();
                       },
                     ),
                   ],
@@ -624,13 +677,14 @@ class LocationScreen extends BaseView<LocationController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextBasicWidget(
-                              text: 'JOHN DOE',
+                              text: controller.data?.hostname ?? '',
                               size: 14,
                               weight: FontWeight.w600,
                               color: theme.black50,
                             ),
                             TextBasicWidget(
-                              text: 'Member since Jan 2022',
+                              text:
+                                  'Member since ${controller.data?.hostSince ?? ''}',
                               size: 12,
                               weight: FontWeight.w400,
                               color: theme.black30,
@@ -643,9 +697,7 @@ class LocationScreen extends BaseView<LocationController> {
                       padding: const EdgeInsets.only(top: 12),
                       child: ButtonOutlineBasicWidget(
                         text: 'Message Host',
-                        onTap: () {
-                          controller.youtubePlayerController.cue('ERxBfanHP-0');
-                        },
+                        onTap: () {},
                       ),
                     ),
                   ],

@@ -8,6 +8,7 @@ class LocationController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
 
   ResponseDetailLocationData? data;
+  List<ResponseReviewData> listReview = [];
   String? locationId;
   int selectedDescription = 1;
   String? dummyVideoUrl = 'https://youtu.be/cQGfLDnmWS8';
@@ -50,6 +51,14 @@ class LocationController extends BaseController {
         onSuccess: (res) {
       data = res.data;
       youtubePlayerController.cue('cQGfLDnmWS8');
+      update();
+    });
+  }
+
+  Future<void> getReview() async {
+    callDataService<ResponseReview>(
+        () => _locationRepository.getReview(locationId!), onSuccess: (res) {
+      listReview = res.data;
       update();
     });
   }

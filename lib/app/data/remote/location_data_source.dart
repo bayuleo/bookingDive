@@ -13,6 +13,8 @@ abstract class LocationDataSource {
   Future<ResponseDetailLocation> getDetailLocation(String idLocation);
 
   Future<ResponseListLocations> getLocations(RequestListLocation param);
+
+  Future<ResponseReview> getReview(String idLocation);
 }
 
 class LocationDataSourceImpl implements LocationDataSource {
@@ -57,5 +59,13 @@ class LocationDataSourceImpl implements LocationDataSource {
       queryParameters: queryParams,
     );
     return ResponseListLocations.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseReview> getReview(String idLocation) async {
+    var response = await dioConfigure.dioMock.get(
+      '${endpoints.location.review}/$idLocation',
+    );
+    return ResponseReview.fromJson(response.data);
   }
 }

@@ -12,6 +12,8 @@ abstract class LocationRepository {
   Future<ResponseDetailLocation> getDetailLocation(String idLocation);
 
   Future<ResponseListLocations> getLocations(RequestListLocation param);
+
+  Future<ResponseReview> getReview(String idLocation);
 }
 
 class LocationRepositoryImpl implements LocationRepository {
@@ -37,5 +39,10 @@ class LocationRepositoryImpl implements LocationRepository {
   @override
   Future<ResponseListLocations> getLocations(RequestListLocation param) {
     return _locationDataSource.getLocations(param);
+  }
+
+  @override
+  Future<ResponseReview> getReview(String idLocation) {
+    return _locationDataSource.getReview(idLocation);
   }
 }

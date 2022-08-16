@@ -52,6 +52,7 @@ class SelectorPackagesWidget extends StatelessWidget with BaseWidgetMixin {
                       var item = controller.data?.packages[index];
                       return ItemPackageWidget(
                         data: item,
+                        currency: controller.data?.priceCurrency,
                       );
                     },
                   ),
