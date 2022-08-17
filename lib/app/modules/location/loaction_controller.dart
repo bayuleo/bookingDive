@@ -10,7 +10,7 @@ class LocationController extends BaseController {
   ResponseDetailLocationData? data;
   List<ResponseReviewData> listReview = [];
   String? locationId;
-  int selectedDescription = 1;
+  int selectedDescription = 0;
   String? dummyVideoUrl = 'https://youtu.be/cQGfLDnmWS8';
   String videoUrl = '';
 
@@ -50,7 +50,8 @@ class LocationController extends BaseController {
         () => _locationRepository.getDetailLocation(locationId!),
         onSuccess: (res) {
       data = res.data;
-      youtubePlayerController.cue('cQGfLDnmWS8');
+      youtubePlayerController
+          .cue(YoutubePlayer?.convertUrlToId(data?.video ?? '') ?? '');
       update();
     });
   }

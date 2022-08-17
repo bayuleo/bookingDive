@@ -413,11 +413,8 @@ class LocationScreen extends BaseView<LocationController> {
                         child: FlutterMap(
                           options: MapOptions(
                             center: LatLng(
-                              // TODO update lat lng
-                              //   double.parse(controller.data?.lat ?? '0'),
-                              -6.175392,
-                              // double.parse(controller.data?.lng ?? '0'),
-                              106.827153,
+                              double.parse(controller.data?.lat ?? '0'),
+                              double.parse(controller.data?.lng ?? '0'),
                             ),
                             zoom: 10,
                           ),
@@ -431,11 +428,8 @@ class LocationScreen extends BaseView<LocationController> {
                               markers: [
                                 Marker(
                                   point: LatLng(
-                                    // TODO update lat lng
-                                    //   double.parse(controller.data?.lat ?? '0'),
-                                    -6.175392,
-                                    // double.parse(controller.data?.lng ?? '0'),
-                                    106.827153,
+                                    double.parse(controller.data?.lat ?? '0'),
+                                    double.parse(controller.data?.lng ?? '0'),
                                   ),
                                   width: 80,
                                   height: 80,
@@ -462,11 +456,8 @@ class LocationScreen extends BaseView<LocationController> {
                           onTap: () {
                             MapsLauncher.launchCoordinates(
                                 // -6.175392, 106.827153, 'Monas');
-                                // TODO update lat lng
-                                //   double.parse(controller.data?.lat ?? '0'),
-                                -6.175392,
-                                // double.parse(controller.data?.lng ?? '0'),
-                                106.827153,
+                                double.parse(controller.data?.lat ?? '0'),
+                                double.parse(controller.data?.lng ?? '0'),
                                 controller.data?.productName ?? 'location');
                           },
                           child: TextBasicWidget(

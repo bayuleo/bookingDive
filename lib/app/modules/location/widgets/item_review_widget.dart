@@ -85,55 +85,46 @@ class ItemReviewWidget extends StatelessWidget with BaseWidgetMixin {
             thickness: 2,
             color: theme.disable,
           ),
-          TextBasicWidget(
-            text: data.review,
-            size: 12,
-            maxLine: 3,
-            weight: FontWeight.w400,
-            color: theme.black50,
-            textOverflow: TextOverflow.ellipsis,
-          ),
           SizedBox(
-            width: double.infinity,
-            height: 60,
-            child: ListView.builder(
-              padding: EdgeInsets.only(left: 0, top: 16, right: 0),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: data.images.length,
-              itemBuilder: (BuildContext context, int index) {
-                var item = data.images[index];
-                return Padding(
-                  padding: const EdgeInsets.only(right: 4),
-                  // child: Assets.images.loginBanner
-                  //     .image(width: 48, height: 48, fit: BoxFit.cover),
-                  child: Image.network(
-                    item,
-                    width: 8,
-                    height: 8,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Assets.images.loginBanner
-                          .image(width: 48, height: 48);
-                    },
-                  ),
-                );
-              },
+            height: 48,
+            child: TextBasicWidget(
+              text: data.review,
+              size: 12,
+              maxLine: 3,
+              weight: FontWeight.w400,
+              color: theme.black50,
+              textOverflow: TextOverflow.ellipsis,
             ),
           ),
-          // Row(
-          //   children: [
-          //     Assets.images.loginBanner
-          //         .image(width: 48, height: 48, fit: BoxFit.cover),
-          //     Assets.images.loginBanner
-          //         .image(width: 48, height: 48, fit: BoxFit.cover),
-          //     Assets.images.loginBanner
-          //         .image(width: 48, height: 48, fit: BoxFit.cover),
-          //     Assets.images.loginBanner
-          //         .image(width: 48, height: 48, fit: BoxFit.cover),
-          //     Assets.images.loginBanner
-          //         .image(width: 48, height: 48, fit: BoxFit.cover),
-          //   ],
-          // )
+          Expanded(
+            child: SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ListView.builder(
+                padding: EdgeInsets.only(left: 0, top: 16, right: 0),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: data.images.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var item = data.images[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    // child: Assets.images.loginBanner
+                    //     .image(width: 48, height: 48, fit: BoxFit.cover),
+                    child: Image.network(
+                      item,
+                      width: 48,
+                      height: 48,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Assets.images.loginBanner
+                            .image(width: 48, height: 48);
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
