@@ -153,8 +153,19 @@ class SearchScreen extends BaseView<SearchController> {
                     shrinkWrap: true,
                     itemCount: controller.listLocations.length,
                     itemBuilder: (BuildContext context, int index) {
+                      var item = controller.listLocations[index];
                       return InkWell(
-                          onTap: () => Get.toNamed(Routes.LOCATION),
+                          onTap: () {
+                            var detailLocationSearch = SearchDetailArguments(
+                                locationName: item.productName,
+                                date: controller.searchArguments?.date ?? '',
+                                diver: controller.searchArguments?.diver ?? '',
+                                id: item.productId);
+                            Get.toNamed(
+                              Routes.LOCATION,
+                              arguments: detailLocationSearch,
+                            );
+                          },
                           child: ItemSearchLocationWidget(
                             data: controller.listLocations[index],
                           ));

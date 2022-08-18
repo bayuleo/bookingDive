@@ -56,15 +56,18 @@ class LocationScreen extends BaseView<LocationController> {
                             padding: const EdgeInsets.only(left: 24),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 TextBasicWidget(
-                                  text: 'Solomon Islands (UNSET)',
+                                  text: controller.searchDetailArguments
+                                          ?.locationName ??
+                                      '',
                                   weight: FontWeight.w700,
                                   size: 16,
                                   color: Colors.white,
                                 ),
                                 TextBasicWidget(
-                                  text: '8 September 2021 • 2 divers (UNSET)',
+                                  text:
+                                      '${controller.searchDetailArguments?.date} • ${controller.searchDetailArguments?.diver} divers',
                                   weight: FontWeight.w400,
                                   size: 12,
                                   color: Colors.white,

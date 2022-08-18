@@ -15,3 +15,17 @@ class SearchArguments {
     required this.searchBy,
   });
 }
+
+class SearchDetailArguments {
+  final String locationName;
+  final String date;
+  final String diver;
+  final String id;
+
+  SearchDetailArguments({
+    required this.locationName,
+    required this.date,
+    required this.diver,
+    required this.id,
+  });
+}

@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_controller.dart';
+import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ class LocationController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
 
   ResponseDetailLocationData? data;
+  SearchDetailArguments? searchDetailArguments;
   List<ResponseReviewData> listReview = [];
   String? locationId;
   int selectedDescription = 0;
@@ -25,12 +27,14 @@ class LocationController extends BaseController {
         mute: false,
       ),
     );
-    locationId = Get.arguments ?? '0';
     super.onInit();
   }
 
   @override
   void onReady() async {
+    searchDetailArguments = Get.arguments;
+    locationId = searchDetailArguments?.id ?? '0';
+    update();
     super.onReady();
   }
 
