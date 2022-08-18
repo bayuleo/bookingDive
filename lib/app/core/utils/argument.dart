@@ -29,3 +29,17 @@ class SearchDetailArguments {
     required this.id,
   });
 }
+
+class ReviewArguments {
+  final String locationName;
+  final int rating;
+  final int totalReview;
+  final String id;
+
+  ReviewArguments({
+    required this.locationName,
+    required this.rating,
+    required this.totalReview,
+    required this.id,
+  });
+}

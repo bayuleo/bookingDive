@@ -39,15 +39,15 @@ class ReviewScreen extends BaseView<ReviewController> {
                       padding: const EdgeInsets.only(left: 24),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          TextBasicWidget(
+                        children: [
+                          const TextBasicWidget(
                             text: 'Review',
                             weight: FontWeight.w700,
                             size: 16,
                             color: Colors.white,
                           ),
                           TextBasicWidget(
-                            text: 'Scuba Diving Courses and Fun Dives ',
+                            text: controller.arguments?.locationName ?? '',
                             weight: FontWeight.w400,
                             size: 12,
                             color: Colors.white,
@@ -69,7 +69,7 @@ class ReviewScreen extends BaseView<ReviewController> {
                 color: Colors.grey.withOpacity(0.1),
                 spreadRadius: 1,
                 blurRadius: 10,
-                offset: Offset(0, 1), // changes position of shadow
+                offset: const Offset(0, 1), // changes position of shadow
               ),
             ],
           ),
@@ -90,7 +90,7 @@ class ReviewScreen extends BaseView<ReviewController> {
                     padding: const EdgeInsets.only(right: 8),
                     child: Assets.icons.filterIcon.svg(),
                   ),
-                  TextBasicWidget(
+                  const TextBasicWidget(
                     text: 'Filter',
                   ),
                   Padding(
@@ -155,7 +155,7 @@ class ReviewScreen extends BaseView<ReviewController> {
                                   const EdgeInsets.only(top: 8, bottom: 16),
                               child: Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     size: 20,
                                     color: Colors.amber,
@@ -164,14 +164,16 @@ class ReviewScreen extends BaseView<ReviewController> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 4),
                                     child: TextBasicWidget(
-                                      text: '5',
+                                      text:
+                                          '${controller.arguments?.rating ?? 0}',
                                       size: 16,
                                       weight: FontWeight.w700,
                                       color: theme.black50,
                                     ),
                                   ),
                                   TextBasicWidget(
-                                    text: 'dari 12 review',
+                                    text:
+                                        'dari ${controller.arguments?.totalReview ?? 0} review',
                                     size: 12,
                                     weight: FontWeight.w400,
                                     color: theme.black30,
@@ -187,13 +189,17 @@ class ReviewScreen extends BaseView<ReviewController> {
                         color: theme.disable,
                       ),
                       ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.only(left: 0, top: 8, right: 0),
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding:
+                            const EdgeInsets.only(left: 0, top: 8, right: 0),
                         shrinkWrap: true,
-                        itemCount: 3,
+                        itemCount: controller.listReview.length,
                         itemBuilder: (BuildContext context, int index) {
+                          var item = controller.listReview[index];
                           return Column(children: [
-                            ItemReviewDetailWidget(),
+                            ItemReviewDetailWidget(
+                              data: item,
+                            ),
                             if (index - 2 != 0)
                               Divider(
                                 thickness: 4,

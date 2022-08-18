@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/utils/currency.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_outline_basic_widget.dart';
@@ -361,7 +362,15 @@ class LocationScreen extends BaseView<LocationController> {
                           ],
                         ),
                         InkWell(
-                          onTap: () => Get.toNamed(Routes.REVIEW),
+                          onTap: () => Get.toNamed(
+                            Routes.REVIEW,
+                            arguments: ReviewArguments(
+                                locationName:
+                                    controller.data?.productName ?? '',
+                                rating: controller.data?.ratingResult ?? 0,
+                                totalReview: controller.data?.ratingCount ?? 0,
+                                id: controller.searchDetailArguments!.id),
+                          ),
                           child: TextBasicWidget(
                             text: 'See All',
                             textDecoration: TextDecoration.underline,

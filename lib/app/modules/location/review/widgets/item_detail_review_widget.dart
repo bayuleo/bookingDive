@@ -1,12 +1,17 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
 import 'package:bookingdive/app/core/widgets/star_rating_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/data/model/review/response_review_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../gen/assets.gen.dart';
 
 class ItemReviewDetailWidget extends StatelessWidget with BaseWidgetMixin {
-  const ItemReviewDetailWidget({Key? key}) : super(key: key);
+  final ResponseReviewData data;
+  const ItemReviewDetailWidget({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +32,19 @@ class ItemReviewDetailWidget extends StatelessWidget with BaseWidgetMixin {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextBasicWidget(
-                    text: 'user232123',
+                    text: data.name,
                     size: 14,
                     weight: FontWeight.w600,
                     color: theme.black70,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8, bottom: 8),
-                    child: StarRatingWidget(rating: 4),
+                    child: StarRatingWidget(
+                      rating: int.parse(data.star),
+                    ),
                   ),
                   TextBasicWidget(
-                    text: '22 July 2022 | Fun Diving Package',
+                    text: '${data.posted} | ${data.package}',
                     size: 12,
                     weight: FontWeight.w400,
                     color: theme.black30,
@@ -53,7 +60,7 @@ class ItemReviewDetailWidget extends StatelessWidget with BaseWidgetMixin {
                         return Padding(
                             padding: const EdgeInsets.only(right: 24),
                             child: TextBasicWidget(
-                              text: 'Accuracy 4.5',
+                              text: 'Accuracy 4.5 not set',
                               size: 12,
                               weight: FontWeight.w600,
                               color: theme.main50,
@@ -64,8 +71,7 @@ class ItemReviewDetailWidget extends StatelessWidget with BaseWidgetMixin {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
                     child: TextBasicWidget(
-                      text:
-                          'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante.',
+                      text: data.review,
                       size: 12,
                       weight: FontWeight.w400,
                       color: theme.black50,
@@ -77,14 +83,19 @@ class ItemReviewDetailWidget extends StatelessWidget with BaseWidgetMixin {
                       padding: EdgeInsets.only(left: 0, top: 0, right: 0),
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      itemCount: 10,
+                      itemCount: data.images.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 8),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(4),
-                            child: Assets.images.loginBanner
-                                .image(width: 80, fit: BoxFit.cover),
+                            // child: Assets.images.loginBanner
+                            //     .image(width: 80, fit: BoxFit.cover),
+                            child: Image.network(
+                              data.images[index],
+                              width: 80,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         );
                       },
