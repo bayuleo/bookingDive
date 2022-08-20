@@ -2,14 +2,16 @@ import 'package:bookingdive/app/core/base/base_controller.dart';
 import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
+import 'package:bookingdive/app/modules/main/home/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class LocationController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
+  final HomeController homeController = Get.find();
 
   ResponseDetailLocationData? data;
-  SearchDetailArguments? searchDetailArguments;
+  LocationArguments? searchDetailArguments;
   List<ResponseReviewData> listReview = [];
   String? locationId;
   int selectedDescription = 0;
@@ -51,8 +53,13 @@ class LocationController extends BaseController {
 
   Future<void> getDetailLocation() async {
     callDataService<ResponseDetailLocation>(
-        () => _locationRepository.getDetailLocation(locationId!),
-        onSuccess: (res) {
+        () => _locationRepository.getDetailLocation(
+              locationId!,
+              RequestDetailLocation(
+                date: homeController.dateTextEditingController.text.trim(),
+                diver: homeController.diverTextEditingController.text.trim(),
+              ),
+            ), onSuccess: (res) {
       data = res.data;
       youtubePlayerController
           .cue(YoutubePlayer?.convertUrlToId(data?.video ?? '') ?? '');

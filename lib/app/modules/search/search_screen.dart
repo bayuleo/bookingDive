@@ -41,15 +41,15 @@ class SearchScreen extends BaseView<SearchController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               TextBasicWidget(
-                                text: controller.searchArguments?.searchBy ==
+                                text: controller.homeController.searchBy ==
                                         SearchBy.country
-                                    ? controller.searchArguments
-                                            ?.selectedDestination.name ??
+                                    ? controller.homeController
+                                            .selectedDestinationFilter?.name ??
                                         ''
                                     : controller
-                                            .searchArguments
-                                            ?.selectedDestination
-                                            .cities
+                                            .homeController
+                                            .selectedDestinationFilter
+                                            ?.cities
                                             .first
                                             .name ??
                                         '',
@@ -59,7 +59,7 @@ class SearchScreen extends BaseView<SearchController> {
                               ),
                               TextBasicWidget(
                                 text:
-                                    '${controller.searchArguments?.date} • ${controller.searchArguments?.diver} divers',
+                                    '${controller.homeController.dateTextEditingController.text.trim()} • ${controller.homeController.diverTextEditingController.text.trim()} divers',
                                 weight: FontWeight.w400,
                                 size: 12,
                                 color: Colors.white,
@@ -156,10 +156,14 @@ class SearchScreen extends BaseView<SearchController> {
                       var item = controller.listLocations[index];
                       return InkWell(
                           onTap: () {
-                            var detailLocationSearch = SearchDetailArguments(
+                            var detailLocationSearch = LocationArguments(
                                 locationName: item.productName,
-                                date: controller.searchArguments?.date ?? '',
-                                diver: controller.searchArguments?.diver ?? '',
+                                date: controller.homeController
+                                    .dateTextEditingController.text
+                                    .trim(),
+                                diver: controller.homeController
+                                    .diverTextEditingController.text
+                                    .trim(),
                                 id: item.productId);
                             Get.toNamed(
                               Routes.LOCATION,

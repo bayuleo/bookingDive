@@ -1,5 +1,4 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
-import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/modules/main/home/home_controller.dart';
 import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_date_widget.dart';
@@ -102,13 +101,6 @@ class SearchSectionWidget extends StatelessWidget with BaseWidgetMixin {
                 onTap: () {
                   Get.toNamed(
                     Routes.SEARCH,
-                    arguments: SearchArguments(
-                      selectedDestination:
-                          controller.selectedDestinationFilter!,
-                      date: controller.dateTextEditingController.text.trim(),
-                      diver: controller.diverTextEditingController.text.trim(),
-                      searchBy: controller.searchBy!,
-                    ),
                   );
                 },
               ),

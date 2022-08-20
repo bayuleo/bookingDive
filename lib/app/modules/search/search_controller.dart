@@ -5,6 +5,7 @@ import 'package:bookingdive/app/data/model/cities/response_cities_list_data.dart
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/cities_repository.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
+import 'package:bookingdive/app/modules/main/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,7 @@ enum SortBy { highRating, lowPrice, highPrice }
 
 class SearchController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
+  final HomeController homeController = Get.find();
 
   final CitiesRepository _citiesRepository = Get.find();
   final listCities = <ResponseCitiesListData>[].obs;
@@ -30,7 +32,6 @@ class SearchController extends BaseController {
   List<String> listFilterSelectedInclusion = [];
   List<String> listFilterSelectedExclusion = [];
 
-  SearchArguments? searchArguments;
   int numberDiverInput = 0;
   ResponseCitiesListCountries? selectedDestinationFilter;
   SearchBy? searchBy;
@@ -42,7 +43,7 @@ class SearchController extends BaseController {
 
   @override
   void onInit() async {
-    listProductController.addListener(_onLoadMoreList);
+    listProductController.addListener(_listListener);
     debounce<String>(
       keyword,
       (_) async {
@@ -55,8 +56,6 @@ class SearchController extends BaseController {
 
   @override
   void onReady() {
-    searchArguments = Get.arguments;
-    initValue();
     getCities();
     getLocations();
     update();
@@ -65,7 +64,7 @@ class SearchController extends BaseController {
 
   @override
   void onClose() {
-    listProductController.removeListener(_onLoadMoreList);
+    listProductController.removeListener(_listListener);
     listProductController.dispose();
     destinationBottomSelector.dispose();
     destinationTextEditingController.dispose();
@@ -73,15 +72,6 @@ class SearchController extends BaseController {
     diverTextEditingController.dispose();
     diverInputController.dispose();
     super.onClose();
-  }
-
-  void initValue() {
-    destinationTextEditingController.text =
-        searchArguments?.searchBy == SearchBy.country
-            ? searchArguments!.selectedDestination.name
-            : searchArguments!.selectedDestination.cities.first.name;
-    dateTextEditingController.text = searchArguments!.date;
-    diverTextEditingController.text = searchArguments!.diver;
   }
 
   getCities() {
@@ -102,17 +92,7 @@ class SearchController extends BaseController {
     update();
   }
 
-  void changeSearchData() {
-    searchArguments = SearchArguments(
-      selectedDestination: selectedDestinationFilter!,
-      date: dateTextEditingController.text.trim(),
-      diver: diverTextEditingController.text.trim(),
-      searchBy: searchBy!,
-    );
-    update();
-  }
-
-  void _onLoadMoreList() {
+  void _listListener() {
     if (listProductController.position.pixels >
         listProductController.position.minScrollExtent + 500) {
       if (!isShowButtonToFirstData) {
@@ -134,13 +114,13 @@ class SearchController extends BaseController {
     callDataService<ResponseListLocations>(
       () => _locationRepository.getLocations(
         RequestListLocation(
-          city: searchArguments?.searchBy == SearchBy.country
-              ? searchArguments?.selectedDestination.name ?? ''
-              : searchArguments?.selectedDestination.cities.first.name ?? '',
-          date: searchArguments?.date ?? '',
-          sortBy: sort,
-          inclusion: listFilterSelectedInclusion,
-          exlcusion: listFilterSelectedExclusion,
+          city: homeController.searchBy == SearchBy.country
+              ? homeController.selectedDestinationFilter?.name ?? ''
+              : homeController.selectedDestinationFilter?.cities.first.name ??
+                  '',
+          date: homeController.dateTextEditingController.text.trim(),
+          inclusion: listFilterSelectedInclusion.join(','),
+          exlcusion: listFilterSelectedExclusion.join(','),
         ),
       ),
       onSuccess: (res) {

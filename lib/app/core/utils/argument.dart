@@ -16,13 +16,13 @@ class SearchArguments {
   });
 }
 
-class SearchDetailArguments {
+class LocationArguments {
   final String locationName;
   final String date;
   final String diver;
   final String id;
 
-  SearchDetailArguments({
+  LocationArguments({
     required this.locationName,
     required this.date,
     required this.diver,

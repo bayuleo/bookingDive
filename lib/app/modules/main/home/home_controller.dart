@@ -15,12 +15,6 @@ import 'package:permission_handler/permission_handler.dart';
 class HomeController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
 
-  final destinationTextEditingController = TextEditingController();
-  final destinationBottomInputTextEditingController = TextEditingController();
-  final dateTextEditingController = TextEditingController();
-  final diverTextEditingController = TextEditingController();
-  final diverInputController = TextEditingController();
-
   final CitiesRepository _citiesRepository = Get.find();
 
   final listCities = <ResponseCitiesListData>[].obs;
@@ -36,7 +30,15 @@ class HomeController extends BaseController {
   ResponseCitiesListCountries? selectedDestinationFilter;
   SearchBy? searchBy = SearchBy.country;
   bool isLoadingSearchDestination = false;
+
+  //Data bottom sheet search
+  final destinationBottomInputTextEditingController = TextEditingController();
+  final diverInputController = TextEditingController();
   final keyword = ''.obs;
+
+  final destinationTextEditingController = TextEditingController();
+  final dateTextEditingController = TextEditingController();
+  final diverTextEditingController = TextEditingController();
 
   @override
   void onInit() async {
@@ -132,15 +134,20 @@ class HomeController extends BaseController {
   }
 
   void onTapItemPopular(ResponseDataListLocation item) async {
-    await Get.toNamed(
-      Routes.LOCATION,
-      // arguments: SearchArguments(
-      //   selectedDestination: item.productName,
-      //   date: dateTextEditingController.text.trim(),
-      //   diver: diverTextEditingController.text.trim(),
-      //   searchBy: searchBy!,
-      // ),
-    );
+    await Get.toNamed(Routes.LOCATION,
+        arguments: LocationArguments(
+          locationName: item.productName,
+          date: TimeHelper.formatDate(DateTime.now(), 'dd MMM yyyy'),
+          diver: "1",
+          id: item.productId.toString(),
+        )
+        // arguments: SearchDetailArguments(
+        //   selectedDestination: item.productName,
+        //   date: dateTextEditingController.text.trim(),
+        //   diver: diverTextEditingController.text.trim(),
+        //   searchBy: searchBy!,
+        // ),
+        );
   }
 
   Future<PermissionStatus> _checkPermissionAccessLocation() async {

@@ -9,7 +9,8 @@ abstract class LocationRepository {
   Future<ResponseListLocation> getNearbyDivingLocation(
       RequestNearbyLocation param);
 
-  Future<ResponseDetailLocation> getDetailLocation(String idLocation);
+  Future<ResponseDetailLocation> getDetailLocation(
+      String idLocation, RequestDetailLocation param);
 
   Future<ResponseListLocations> getLocations(RequestListLocation param);
 
@@ -26,8 +27,9 @@ class LocationRepositoryImpl implements LocationRepository {
   }
 
   @override
-  Future<ResponseDetailLocation> getDetailLocation(String idLocation) async {
-    return _locationDataSource.getDetailLocation(idLocation);
+  Future<ResponseDetailLocation> getDetailLocation(
+      String idLocation, RequestDetailLocation param) async {
+    return _locationDataSource.getDetailLocation(idLocation, param);
   }
 
   @override

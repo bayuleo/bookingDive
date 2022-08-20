@@ -1,9 +1,8 @@
 import 'package:bookingdive/app/core/base/base_state_mixin.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
+import 'package:bookingdive/app/modules/location/loaction_controller.dart';
 import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_date_widget.dart';
-import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_destination_widget.dart';
 import 'package:bookingdive/app/modules/main/home/widgets/bottom_sheet_destination/bottom_sheet_diver_widget.dart';
-import 'package:bookingdive/app/modules/search/search_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +23,7 @@ class _SelectorSearchWidgetState extends State<SelectorSearchWidget>
     with BaseStateMixin {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SearchController>(builder: (controller) {
+    return GetBuilder<LocationController>(builder: (controller) {
       return Container(
         decoration: BoxDecoration(
             color: theme.white,
@@ -54,22 +53,22 @@ class _SelectorSearchWidgetState extends State<SelectorSearchWidget>
                   color: theme.black90,
                 ),
               ),
-              TextFormFieldOutlineWidget(
-                hint: 'Destination',
-                leftIcon: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Assets.icons.destinationIcon.svg(),
-                ),
-                controller:
-                    controller.homeController.destinationTextEditingController,
-                readOnly: true,
-                rightIcon: Assets.icons.downStrokeIcon
-                    .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
-                onTap: () => showBottomSheetDestination(
-                  context,
-                  BottomSheetDestinationWidget(),
-                ),
-              ),
+              // TextFormFieldOutlineWidget(
+              //   hint: 'Destination',
+              //   leftIcon: Padding(
+              //     padding: const EdgeInsets.all(12.0),
+              //     child: Assets.icons.destinationIcon.svg(),
+              //   ),
+              //   controller:
+              //       controller.homeController.destinationTextEditingController,
+              //   readOnly: true,
+              //   rightIcon: Assets.icons.downStrokeIcon
+              //       .svg(width: 8, height: 8, fit: BoxFit.scaleDown),
+              //   onTap: () => showBottomSheetDestination(
+              //     context,
+              //     BottomSheetDestinationWidget(),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: TextFormFieldOutlineWidget(
@@ -112,7 +111,7 @@ class _SelectorSearchWidgetState extends State<SelectorSearchWidget>
                 text: 'Search',
                 isFullWidht: true,
                 onTap: () {
-                  controller.getLocations();
+                  controller.getDetailLocation();
                   Get.back();
                 },
               ),

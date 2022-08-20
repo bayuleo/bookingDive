@@ -8,7 +8,7 @@ import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/location/loaction_controller.dart';
 import 'package:bookingdive/app/modules/location/widgets/item_review_widget.dart';
 import 'package:bookingdive/app/modules/location/widgets/selector_packages_widget.dart';
-import 'package:bookingdive/app/modules/search/widgets/selector_search_widget.dart';
+import 'package:bookingdive/app/modules/location/widgets/selector_search_widget.dart';
 import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';

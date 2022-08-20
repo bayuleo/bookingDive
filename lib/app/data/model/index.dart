@@ -33,6 +33,7 @@ export 'cities/request_citiest_list.dart';
 export 'cities/response_cities_list_data.dart';
 export 'cities/response_cities_list.dart';
 export 'locations/detail/response_detail_location_packages.dart';
+export 'locations/detail/request_detail_location.dart';
 export 'locations/detail/response_detail_location_description.dart';
 export 'locations/detail/response_detail_location.dart';
 export 'locations/detail/response_detail_location_data.dart';

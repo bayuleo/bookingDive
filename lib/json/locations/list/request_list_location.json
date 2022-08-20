@@ -4,7 +4,7 @@
   "longitude?": "11.00000",
   "latitude?": "11.00000",
   "radius?": "11.00000",
-  "inclusion?": ["string"],
-  "exlcusion?": ["string"],
+  "inclusion?": "string",
+  "exlcusion?": "string",
   "sort_by?": "string"
 }

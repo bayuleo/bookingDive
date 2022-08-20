@@ -12,12 +12,12 @@ import 'package:get/get.dart';
 class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
   final ResponseDetailLocationPackages? data;
   final String? currency;
-  final SearchDetailArguments? searchDetailArguments;
+  final LocationArguments? locationArguments;
   const ItemPackageWidget({
     Key? key,
     this.data,
     this.currency,
-    this.searchDetailArguments,
+    this.locationArguments,
   }) : super(key: key);
 
   @override

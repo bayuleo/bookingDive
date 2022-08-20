@@ -23,8 +23,8 @@ class RequestListLocation {
   final String? longitude;
   final String? latitude;
   final String? radius;
-  final List<String>? inclusion;
-  final List<String>? exlcusion;
+  final String? inclusion;
+  final String? exlcusion;
   final String? sortBy;
 
   factory RequestListLocation.fromJson(Map<String,dynamic> json) => RequestListLocation(
@@ -33,8 +33,8 @@ class RequestListLocation {
     longitude: json['longitude']?.toString(),
     latitude: json['latitude']?.toString(),
     radius: json['radius']?.toString(),
-    inclusion: json['inclusion'] != null ? (json['inclusion'] as List? ?? []).map((e) => e as String).toList() : null,
-    exlcusion: json['exlcusion'] != null ? (json['exlcusion'] as List? ?? []).map((e) => e as String).toList() : null,
+    inclusion: json['inclusion']?.toString(),
+    exlcusion: json['exlcusion']?.toString(),
     sortBy: json['sort_by']?.toString()
   );
   
@@ -44,8 +44,8 @@ class RequestListLocation {
     'longitude': longitude,
     'latitude': latitude,
     'radius': radius,
-    'inclusion': inclusion?.map((e) => e.toString()).toList(),
-    'exlcusion': exlcusion?.map((e) => e.toString()).toList(),
+    'inclusion': inclusion,
+    'exlcusion': exlcusion,
     'sort_by': sortBy
   };
 
@@ -55,8 +55,8 @@ class RequestListLocation {
     longitude: longitude,
     latitude: latitude,
     radius: radius,
-    inclusion: inclusion?.toList(),
-    exlcusion: exlcusion?.toList(),
+    inclusion: inclusion,
+    exlcusion: exlcusion,
     sortBy: sortBy
   );
 
@@ -67,8 +67,8 @@ class RequestListLocation {
     Optional<String?>? longitude,
     Optional<String?>? latitude,
     Optional<String?>? radius,
-    Optional<List<String>?>? inclusion,
-    Optional<List<String>?>? exlcusion,
+    Optional<String?>? inclusion,
+    Optional<String?>? exlcusion,
     Optional<String?>? sortBy
   }) => RequestListLocation(
     city: city ?? this.city,

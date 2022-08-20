@@ -10,7 +10,8 @@ abstract class LocationDataSource {
   Future<ResponseListLocation> getNearbyDivingLocation(
       RequestNearbyLocation param);
 
-  Future<ResponseDetailLocation> getDetailLocation(String idLocation);
+  Future<ResponseDetailLocation> getDetailLocation(
+      String idLocation, RequestDetailLocation param);
 
   Future<ResponseListLocations> getLocations(RequestListLocation param);
 
@@ -35,9 +36,14 @@ class LocationDataSourceImpl implements LocationDataSource {
   }
 
   @override
-  Future<ResponseDetailLocation> getDetailLocation(String idLocation) async {
-    var response = await dioConfigure.dioMock
-        .get('${endpoints.location.listLocation}/$idLocation');
+  Future<ResponseDetailLocation> getDetailLocation(
+      String idLocation, RequestDetailLocation param) async {
+    final queryParams = param.toJson();
+    queryParams.removeWhere((key, value) => value == '' || value == null);
+    var response = await dioConfigure.dioMock.get(
+      '${endpoints.location.listLocation}/$idLocation',
+      queryParameters: queryParams,
+    );
     return ResponseDetailLocation.fromJson(response.data);
   }
 
