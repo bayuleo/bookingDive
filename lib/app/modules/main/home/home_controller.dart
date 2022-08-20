@@ -1,6 +1,7 @@
 import 'package:bookingdive/app/core/base/base_controller.dart';
 import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/utils/permission_handler.dart';
+import 'package:bookingdive/app/core/utils/time.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/cities_repository.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
@@ -15,6 +16,7 @@ class HomeController extends BaseController {
   final LocationRepository _locationRepository = Get.find();
 
   final destinationTextEditingController = TextEditingController();
+  final destinationBottomInputTextEditingController = TextEditingController();
   final dateTextEditingController = TextEditingController();
   final diverTextEditingController = TextEditingController();
   final diverInputController = TextEditingController();
@@ -22,7 +24,7 @@ class HomeController extends BaseController {
   final CitiesRepository _citiesRepository = Get.find();
 
   final listCities = <ResponseCitiesListData>[].obs;
-  final selectedCountryName = ''.obs;
+  final selectedCountryName = 'Malaysia'.obs;
   final selectedCities = <String>[].obs;
 
   List<ResponseDataListLocation> listPopularDivingLocation = [];
@@ -30,10 +32,11 @@ class HomeController extends BaseController {
   PermissionStatus? isGrantedGetLocation;
   Placemark? placemark;
   Position? position;
-  int numberDiverInput = 0;
+  int numberDiverInput = 1;
   ResponseCitiesListCountries? selectedDestinationFilter;
-  SearchBy? searchBy;
+  SearchBy? searchBy = SearchBy.country;
   bool isLoadingSearchDestination = false;
+  final keyword = ''.obs;
 
   @override
   void onInit() async {
@@ -42,13 +45,31 @@ class HomeController extends BaseController {
     if (placemark != null || position != null) {
       getNearbyLocation();
     }
+    debounce<String>(
+      keyword,
+      (_) async {
+        await getCities();
+      },
+      time: const Duration(milliseconds: 500),
+    );
     super.onInit();
   }
 
   @override
   void onReady() async {
+    initDataSearch();
     getCities();
     super.onReady();
+  }
+
+  initDataSearch() {
+    selectedDestinationFilter = ResponseCitiesListCountries(
+        id: "1", name: placemark?.country ?? 'Malaysia', flag: '', cities: []);
+    destinationTextEditingController.text = placemark?.country ?? 'Malaysia';
+    dateTextEditingController.text =
+        TimeHelper.formatDate(DateTime.now(), 'dd MMMM yyyy');
+    diverTextEditingController.text = "1";
+    update();
   }
 
   onTapDestination() {
@@ -76,11 +97,15 @@ class HomeController extends BaseController {
     );
   }
 
-  void getCities() {
+  getCities() {
     isLoadingSearchDestination = true;
     update();
     callDataService<ResponseCitiesList>(
-      () => _citiesRepository.getCities(),
+      () => _citiesRepository.getCities(
+        RequestCitiestList(
+          keyword: destinationBottomInputTextEditingController.text.trim(),
+        ),
+      ),
       onSuccess: (res) {
         listCities.value = res.data;
       },
@@ -106,10 +131,15 @@ class HomeController extends BaseController {
     );
   }
 
-  void onTapItemPopular(String locationId) async {
+  void onTapItemPopular(ResponseDataListLocation item) async {
     await Get.toNamed(
       Routes.LOCATION,
-      arguments: locationId,
+      // arguments: SearchArguments(
+      //   selectedDestination: item.productName,
+      //   date: dateTextEditingController.text.trim(),
+      //   diver: diverTextEditingController.text.trim(),
+      //   searchBy: searchBy!,
+      // ),
     );
   }
 
@@ -139,5 +169,9 @@ class HomeController extends BaseController {
       print(position);
     } catch (err) {}
     print(position);
+  }
+
+  void onChangeSearchTextField(String text) {
+    keyword.value = text;
   }
 }

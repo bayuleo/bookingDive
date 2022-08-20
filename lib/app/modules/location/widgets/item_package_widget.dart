@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
+import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/utils/currency.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
@@ -11,10 +12,12 @@ import 'package:get/get.dart';
 class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
   final ResponseDetailLocationPackages? data;
   final String? currency;
+  final SearchDetailArguments? searchDetailArguments;
   const ItemPackageWidget({
     Key? key,
     this.data,
     this.currency,
+    this.searchDetailArguments,
   }) : super(key: key);
 
   @override
@@ -57,12 +60,6 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
                       text: data?.packageName ?? '',
                       size: 14,
                       weight: FontWeight.w600,
-                    ),
-                    TextBasicWidget(
-                      text: 'Package Type: NOT SET',
-                      size: 12,
-                      weight: FontWeight.w400,
-                      color: theme.black30,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16, bottom: 6),
@@ -151,7 +148,9 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
             isFullWidht: true,
             text: 'Choose',
             onTap: () {
-              Get.toNamed(Routes.BOOKING);
+              Get.toNamed(
+                Routes.BOOKING,
+              );
             },
           )
         ],

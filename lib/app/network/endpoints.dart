@@ -32,13 +32,16 @@ class LocationEndpoint {
   final String nearbyLocation;
   final String listCity;
   final String review;
+  final String order;
 
-  LocationEndpoint(
-      {this.popularLocation = '/listing-popular',
-      this.listLocation = '/listing',
-      this.nearbyLocation = '/listing-nearby',
-      this.listCity = '/cities-list',
-      this.review = '/review'});
+  LocationEndpoint({
+    this.popularLocation = '/listing-popular',
+    this.listLocation = '/listing',
+    this.nearbyLocation = '/listing-nearby',
+    this.listCity = '/cities-list',
+    this.review = '/review',
+    this.order = '/order',
+  });
 }
 
 class PaymentEndpoint {

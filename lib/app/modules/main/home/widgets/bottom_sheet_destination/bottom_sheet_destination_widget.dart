@@ -43,12 +43,16 @@ class BottomSheetDestinationWidget extends StatelessWidget
                   weight: FontWeight.w500,
                 ),
               ),
-              const Padding(
+              Padding(
                 padding:
                     EdgeInsets.only(top: 16, bottom: 16, right: 24, left: 24),
                 child: TextFormFieldOutlineWidget(
                   hint: 'Search',
                   leftIcon: Icon(Icons.search),
+                  controller:
+                      controller.destinationBottomInputTextEditingController,
+                  onChangedText: (value) =>
+                      controller.onChangeSearchTextField(value),
                 ),
               ),
               const Divider(),

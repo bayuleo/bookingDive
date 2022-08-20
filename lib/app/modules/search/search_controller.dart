@@ -20,6 +20,7 @@ class SearchController extends BaseController {
   final listCities = <ResponseCitiesListData>[].obs;
   final destinationBottomSelector = BottomSheetSelectorController();
   final destinationTextEditingController = TextEditingController();
+  final destinationBottomInputTextEditingController = TextEditingController();
   final dateTextEditingController = TextEditingController();
   final diverTextEditingController = TextEditingController();
   final diverInputController = TextEditingController();
@@ -37,10 +38,18 @@ class SearchController extends BaseController {
   bool isShowButtonToFirstData = false;
   SortBy? sortBy;
   String sort = 'recommedation';
+  final keyword = ''.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     listProductController.addListener(_onLoadMoreList);
+    debounce<String>(
+      keyword,
+      (_) async {
+        await getCities();
+      },
+      time: const Duration(milliseconds: 500),
+    );
     super.onInit();
   }
 
@@ -75,12 +84,16 @@ class SearchController extends BaseController {
     diverTextEditingController.text = searchArguments!.diver;
   }
 
-  void getCities() {
+  getCities() {
     isLoadingSearchDestination = true;
     update();
     callDataService<ResponseCitiesList>(
       loading: false,
-      () => _citiesRepository.getCities(),
+      () => _citiesRepository.getCities(
+        RequestCitiestList(
+          keyword: destinationBottomInputTextEditingController.text.trim(),
+        ),
+      ),
       onSuccess: (res) {
         listCities.value = res.data;
       },
@@ -159,5 +172,9 @@ class SearchController extends BaseController {
     }
     update();
     print(listFilterSelectedExclusion);
+  }
+
+  void onChangeSearchTextField(String text) {
+    keyword.value = text;
   }
 }

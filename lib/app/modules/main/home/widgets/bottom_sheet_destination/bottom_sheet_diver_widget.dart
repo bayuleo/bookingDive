@@ -51,7 +51,7 @@ class BottomSheetDiverWidget extends StatelessWidget with BaseWidgetMixin {
                     children: [
                       Expanded(
                           flex: 1,
-                          child: controller.numberDiverInput > 0
+                          child: controller.numberDiverInput > 1
                               ? InkWell(
                                   onTap: () {
                                     controller.numberDiverInput--;

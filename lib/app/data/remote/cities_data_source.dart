@@ -4,7 +4,7 @@ import 'package:bookingdive/app/network/endpoints.dart';
 import 'package:get/get.dart';
 
 abstract class CitiesDataSource {
-  Future<ResponseCitiesList> getCities();
+  Future<ResponseCitiesList> getCities(RequestCitiestList param);
 }
 
 class CitiesDataSourceImpl implements CitiesDataSource {
@@ -12,8 +12,13 @@ class CitiesDataSourceImpl implements CitiesDataSource {
   final endpoints = Get.find<Endpoints>();
 
   @override
-  Future<ResponseCitiesList> getCities() async {
-    var response = await dioConfigure.dioMock.get(endpoints.location.listCity);
+  Future<ResponseCitiesList> getCities(RequestCitiestList param) async {
+    final queryParams = param.toJson();
+    queryParams.removeWhere((key, value) => value == '' || value == null);
+    var response = await dioConfigure.dioMock.get(
+      endpoints.location.listCity,
+      queryParameters: queryParams,
+    );
     return ResponseCitiesList.fromJson(response.data);
   }
 }

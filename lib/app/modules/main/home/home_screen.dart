@@ -104,7 +104,7 @@ class HomeScreen extends BaseView<HomeController> {
                             return InkWell(
                               onTap: () {
                                 controller.onTapItemPopular(
-                                  item.productId.toString(),
+                                  item,
                                 );
                               },
                               child: ItemSpotHomeWidget(
@@ -147,7 +147,7 @@ class HomeScreen extends BaseView<HomeController> {
                         return InkWell(
                           onTap: () {
                             controller.onTapItemPopular(
-                              item.productId.toString(),
+                              item,
                             );
                           },
                           child: ItemSpotHomeWidget(

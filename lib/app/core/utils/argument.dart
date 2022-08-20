@@ -43,3 +43,19 @@ class ReviewArguments {
     required this.id,
   });
 }
+
+class OrderArguments {
+  final String locationName;
+  final String packageName;
+  final String duration;
+  final int dives;
+  final int divers;
+
+  OrderArguments({
+    required this.locationName,
+    required this.packageName,
+    required this.duration,
+    required this.dives,
+    required this.divers,
+  });
+}
