@@ -18,6 +18,10 @@ abstract class LocationDataSource {
   Future<ResponseReview> getReview(String idLocation);
 
   Future<ResponseOrder> postOrder(RequestOrder param);
+
+  Future<ResponseListLocations> getWishlist();
+
+  Future<String> postWishlist(RequestWishlist param);
 }
 
 class LocationDataSourceImpl implements LocationDataSource {
@@ -86,5 +90,24 @@ class LocationDataSourceImpl implements LocationDataSource {
       queryParameters: queryParams,
     );
     return ResponseOrder.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseListLocations> getWishlist() async {
+    var response = await dioConfigure.dioMock.get(
+      endpoints.location.wishlist,
+    );
+    return ResponseListLocations.fromJson(response.data);
+  }
+
+  @override
+  Future<String> postWishlist(RequestWishlist param) async {
+    final queryParams = param.toJson();
+    queryParams.removeWhere((key, value) => value == '' || value == null);
+    var response = await dioConfigure.dioMock.post(
+      endpoints.location.wishlist,
+      queryParameters: queryParams,
+    );
+    return ResponseWishlist.fromJson(response.data).message;
   }
 }

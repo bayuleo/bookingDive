@@ -1,0 +1,16 @@
+{
+  "product_id": "1234",
+  "product_name": "Universal Diver Studioi",
+  "location_state": "Semporna",
+  "location_country": "Malaysia",
+  "price_lower": "5000",
+  "price_currency": "RM",
+  "rating_count": 123,
+  "rating_result": 4,
+  "is_wishlist": false,
+  "image": "https://bookingdive.com/public/images/property/5/1652442434_scuba_diving_course.jpg",
+  "lat": "12345678",
+  "lng": "12345679",
+  "inclusion": "$./response_wishlist_data_inclusion",
+  "exclusion": "$./response_wishlist_data_exclusion"
+}

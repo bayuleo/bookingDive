@@ -109,6 +109,9 @@ class HomeScreen extends BaseView<HomeController> {
                               },
                               child: ItemSpotHomeWidget(
                                 data: item,
+                                onTapFavorite: () => controller.postWishlist(
+                                  item.productId.toString(),
+                                ),
                               ),
                             );
                           },
@@ -152,6 +155,9 @@ class HomeScreen extends BaseView<HomeController> {
                           },
                           child: ItemSpotHomeWidget(
                             data: item,
+                            onTapFavorite: () => controller.postWishlist(
+                              item.productId.toString(),
+                            ),
                           ),
                         );
                       }),

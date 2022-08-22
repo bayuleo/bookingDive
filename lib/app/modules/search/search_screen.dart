@@ -172,6 +172,11 @@ class SearchScreen extends BaseView<SearchController> {
                           },
                           child: ItemSearchLocationWidget(
                             data: controller.listLocations[index],
+                            onTapFavorite: () {
+                              controller.postWishlist(
+                                item.productId.toString(),
+                              );
+                            },
                           ));
                     }),
               ),

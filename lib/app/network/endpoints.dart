@@ -32,6 +32,7 @@ class LocationEndpoint {
   final String nearbyLocation;
   final String listCity;
   final String review;
+  final String wishlist;
   final String order;
 
   LocationEndpoint({
@@ -40,6 +41,7 @@ class LocationEndpoint {
     this.nearbyLocation = '/listing-nearby',
     this.listCity = '/cities-list',
     this.review = '/review',
+    this.wishlist = '/wishlist',
     this.order = '/order',
   });
 }

@@ -8,10 +8,12 @@ import '../../../core/widgets/text/text_basic_widget.dart';
 
 class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
   final ResponseDataListLocations? data;
+  final Function onTapFavorite;
 
   const ItemSearchLocationWidget({
     Key? key,
     this.data,
+    required this.onTapFavorite,
   }) : super(key: key);
 
   @override
@@ -45,15 +47,6 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
                 scrollDirection: Axis.horizontal,
                 itemCount: 1,
                 itemBuilder: (BuildContext context, int index) {
-                  // var item = Assets.images.bannerHome.image(
-                  //     fit: BoxFit.cover,
-                  //     width: MediaQuery.of(context).size.width - 50);
-                  // return index != 4
-                  //     ? Padding(
-                  //         padding: const EdgeInsets.only(right: 8),
-                  //         child: item,
-                  //       )
-                  //     : item;
                   return Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: Image.network(
@@ -90,23 +83,6 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
                   );
                 }),
           ),
-          // Padding(
-          //   padding:
-          //       const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 4),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       TextBasicWidget(
-          //         text: 'Equipment rental set',
-          //         color: theme.black30,
-          //       ),
-          //       TextBasicWidget(text: '•', color: theme.black30),
-          //       TextBasicWidget(text: 'Regulator', color: theme.black30),
-          //       TextBasicWidget(text: '•', color: theme.black30),
-          //       TextBasicWidget(text: 'Certification', color: theme.black30),
-          //     ],
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 6),
             child: Row(
@@ -152,30 +128,18 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
               weight: FontWeight.w600,
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.end,
-          //     children: [
-          //       ButtonOutlineBasicWidget(
-          //           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-          //           text: 'Request to Book',
-          //           textColor: theme.black50,
-          //           borderColor: theme.black10,
-          //           icon: Assets.icons.clockIcon.svg(),
-          //           onTap: () {}),
-          //     ],
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 18),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                (data?.isWishlist ?? false)
-                    ? Assets.icons.heartRedIcon.svg()
-                    : Assets.icons.heartIcon.svg(color: theme.black30),
+                InkWell(
+                  onTap: () => onTapFavorite(),
+                  child: (data?.isWishlist ?? false)
+                      ? Assets.icons.heartRedIcon.svg(color: theme.error50)
+                      : Assets.icons.heartIcon.svg(color: theme.black30),
+                ),
                 Row(
                   children: [
                     TextBasicWidget(

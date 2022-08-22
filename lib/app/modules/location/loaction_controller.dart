@@ -1,5 +1,6 @@
 import 'package:bookingdive/app/core/base/base_controller.dart';
 import 'package:bookingdive/app/core/utils/argument.dart';
+import 'package:bookingdive/app/core/utils/snackbar.dart';
 import 'package:bookingdive/app/data/model/index.dart';
 import 'package:bookingdive/app/data/repository/location_repository.dart';
 import 'package:bookingdive/app/modules/main/home/home_controller.dart';
@@ -71,6 +72,18 @@ class LocationController extends BaseController {
     callDataService<ResponseReview>(
         () => _locationRepository.getReview(locationId!), onSuccess: (res) {
       listReview = res.data;
+      update();
+    });
+  }
+
+  void postWishlist() {
+    callDataService<String>(
+        () => _locationRepository.postWishlist(
+              RequestWishlist(
+                listingId: (data?.productId ?? '').toString(),
+              ),
+            ), onSuccess: (res) {
+      SnackbarHelper.success(title: "Favorited", desc: res);
       update();
     });
   }

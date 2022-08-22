@@ -259,9 +259,12 @@ class LocationScreen extends BaseView<LocationController> {
                         ],
                       ),
                     ),
-                    (controller.data?.isWishlist ?? false)
-                        ? Assets.icons.heartRedIcon.svg(color: theme.error50)
-                        : Assets.icons.heartGreyIcon.svg(),
+                    InkWell(
+                      onTap: controller.postWishlist,
+                      child: (controller.data?.isWishlist ?? false)
+                          ? Assets.icons.heartRedIcon.svg(color: theme.error50)
+                          : Assets.icons.heartGreyIcon.svg(),
+                    ),
                   ],
                 ),
               ),

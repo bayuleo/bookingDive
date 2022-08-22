@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/utils/argument.dart';
+import 'package:bookingdive/app/core/utils/snackbar.dart';
 import 'package:bookingdive/app/data/model/cities/response_cities_list.dart';
 import 'package:bookingdive/app/data/model/cities/response_cities_list_countries.dart';
 import 'package:bookingdive/app/data/model/cities/response_cities_list_data.dart';
@@ -156,5 +157,14 @@ class SearchController extends BaseController {
 
   void onChangeSearchTextField(String text) {
     keyword.value = text;
+  }
+
+  void postWishlist(String id) {
+    callDataService<String>(
+        () => _locationRepository.postWishlist(RequestWishlist(listingId: id)),
+        onSuccess: (res) {
+      SnackbarHelper.success(title: "Favorited", desc: res);
+      update();
+    });
   }
 }

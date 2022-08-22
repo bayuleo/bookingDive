@@ -8,10 +8,12 @@ import '../../../../../gen/assets.gen.dart';
 
 class ItemSpotHomeWidget extends StatelessWidget with BaseWidgetMixin {
   final ResponseDataListLocation data;
+  final Function onTapFavorite;
 
   const ItemSpotHomeWidget({
     Key? key,
     required this.data,
+    required this.onTapFavorite,
   }) : super(key: key);
 
   @override
@@ -91,9 +93,12 @@ class ItemSpotHomeWidget extends StatelessWidget with BaseWidgetMixin {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12),
-                child: data.isWishlist
-                    ? Assets.icons.heartRedIcon.svg()
-                    : Assets.icons.heartIcon.svg(color: Colors.white),
+                child: InkWell(
+                  onTap: () => onTapFavorite(),
+                  child: data.isWishlist
+                      ? Assets.icons.heartRedIcon.svg()
+                      : Assets.icons.heartIcon.svg(color: Colors.white),
+                ),
               ),
             ],
           ),

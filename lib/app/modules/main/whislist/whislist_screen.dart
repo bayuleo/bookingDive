@@ -51,9 +51,14 @@ class WhistlistScreen extends BaseView<WhislistController> {
                   physics: NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.only(left: 24, top: 16, right: 24),
                   shrinkWrap: true,
-                  itemCount: 9,
+                  itemCount: controller.wishlist?.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
-                    return ItemSearchLocationWidget();
+                    var item = controller.wishlist?[index];
+                    return ItemSearchLocationWidget(
+                      data: item,
+                      onTapFavorite: () => controller
+                          .postWishlist((item?.productId ?? '').toString()),
+                    );
                   }),
             ),
     );
