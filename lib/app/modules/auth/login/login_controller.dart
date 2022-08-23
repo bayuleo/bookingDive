@@ -51,7 +51,9 @@ class LoginController extends BaseController {
       ),
       onSuccess: ((response) async {
         Get.find<DioConfigure>().updateToken();
-        Get.offAllNamed(Routes.MAIN_CONTENT);
+        // Get.offAllNamed(Routes.MAIN_CONTENT);
+        // Get.offNamedUntil(Routes.BOOKING, (route) => true);
+        Get.until((route) => route.settings.name == Routes.BOOKING);
       }),
     );
   }

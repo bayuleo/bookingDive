@@ -59,3 +59,15 @@ class OrderArguments {
     required this.divers,
   });
 }
+
+class BookingArguments {
+  final ResponseDetailLocationPackages? package;
+  final LocationArguments? location;
+  final String? currency;
+
+  BookingArguments({
+    this.package,
+    this.location,
+    this.currency,
+  });
+}

@@ -18,4 +18,13 @@ class DateHelper {
     if (year == null) return DateTime.parse('1990-01-01');
     return DateTime.parse('$year-01-01');
   }
+
+  static getNextDateFromString(String? dateTimeString, [int addDays = 0]) {
+    var inputFormat = DateFormat('dd MMMM yyyy');
+    var dateTime = dateTimeString == null
+        ? DateTime.parse('1990-01-01')
+        : inputFormat.parse(dateTimeString);
+    var newDate = dateTime.add(new Duration(days: addDays));
+    return DateFormat('dd MMMM yyyy').format(newDate);
+  }
 }

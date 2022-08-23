@@ -150,6 +150,11 @@ class ItemPackageWidget extends StatelessWidget with BaseWidgetMixin {
             onTap: () {
               Get.toNamed(
                 Routes.BOOKING,
+                arguments: BookingArguments(
+                  package: data,
+                  location: locationArguments,
+                  currency: currency,
+                ),
               );
             },
           )

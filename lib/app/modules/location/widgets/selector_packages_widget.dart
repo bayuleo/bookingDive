@@ -1,4 +1,5 @@
 import 'package:bookingdive/app/core/base/base_widget_mixin.dart';
+import 'package:bookingdive/app/core/utils/argument.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/location/loaction_controller.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,14 @@ class SelectorPackagesWidget extends StatelessWidget with BaseWidgetMixin {
                       return ItemPackageWidget(
                         data: item,
                         currency: controller.data?.priceCurrency,
+                        locationArguments: LocationArguments(
+                            locationName: controller
+                                    .searchDetailArguments?.locationName ??
+                                '',
+                            date: controller.searchDetailArguments?.date ?? '',
+                            diver:
+                                controller.searchDetailArguments?.diver ?? '',
+                            id: controller.data?.productId ?? ''),
                       );
                     },
                   ),

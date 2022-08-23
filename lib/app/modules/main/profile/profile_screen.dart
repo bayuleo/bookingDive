@@ -53,13 +53,16 @@ class ProfileScreen extends BaseView<ProfileController> {
                   ),
                 ],
               ),
-              GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () async {
-                    await Get.toNamed(Routes.EDIT_PROFILE);
-                    controller.getDataUserFromLocal();
-                  },
-                  child: Assets.icons.penIcon.svg()),
+              Visibility(
+                visible: controller.userCredentials?.accessToken != null,
+                child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () async {
+                      await Get.toNamed(Routes.EDIT_PROFILE);
+                      controller.getDataUserFromLocal();
+                    },
+                    child: Assets.icons.penIcon.svg()),
+              ),
             ],
           ),
         ),
@@ -175,49 +178,52 @@ class ListMenuGeneral extends StatelessWidget with BaseWidgetMixin {
             title: "Terms of Service",
             onTap: () {},
           ),
-          ItemMenuProfileWidget(
-            icon: Assets.icons.logoutIcon.svg(),
-            title: "Log Out",
-            showRightIcon: false,
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: TextBasicWidget(text: 'Do you want to log out?'),
-                      actions: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: InkWell(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: TextBasicWidget(
-                              text: 'cancel',
-                              size: 16,
-                              weight: FontWeight.w400,
-                              color: theme.main50,
-                              textDecoration: TextDecoration.underline,
+          Visibility(
+            visible: controller.userCredentials?.accessToken != null,
+            child: ItemMenuProfileWidget(
+              icon: Assets.icons.logoutIcon.svg(),
+              title: "Log Out",
+              showRightIcon: false,
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: TextBasicWidget(text: 'Do you want to log out?'),
+                        actions: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: TextBasicWidget(
+                                text: 'cancel',
+                                size: 16,
+                                weight: FontWeight.w400,
+                                color: theme.main50,
+                                textDecoration: TextDecoration.underline,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: InkWell(
-                            onTap: controller.handleButtonLogout,
-                            child: TextBasicWidget(
-                              text: 'log out',
-                              size: 16,
-                              weight: FontWeight.w400,
-                              color: theme.main50,
-                              textDecoration: TextDecoration.underline,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: InkWell(
+                              onTap: controller.handleButtonLogout,
+                              child: TextBasicWidget(
+                                text: 'log out',
+                                size: 16,
+                                weight: FontWeight.w400,
+                                color: theme.main50,
+                                textDecoration: TextDecoration.underline,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    );
-                  });
-            },
+                        ],
+                      );
+                    });
+              },
+            ),
           ),
         ],
       ),

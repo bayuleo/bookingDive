@@ -1,17 +1,19 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/utils/currency.dart';
+import 'package:bookingdive/app/core/utils/date.dart';
 import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
 import 'package:bookingdive/app/modules/booking/widgets/selector_booking_payment_widget.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'booking_detail_controller.dart';
 
 class BookingDetailScreen extends BaseView<BookingDetailController> {
-  final bool dummyCheckbox = false;
   @override
   Widget buildScreen(BuildContext context) {
     return Scaffold(
@@ -29,13 +31,17 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 12),
-                    child: Assets.images.loginBanner.image(width: 105),
+                    child: Image.network(
+                      controller.data?.package?.image ??
+                          'https://dummyimage.com/200x100/000/fff',
+                      width: 105,
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextBasicWidget(
-                        text: 'Scuba Diving Courses and Fun Dives',
+                        text: controller.data?.location?.locationName ?? '',
                         weight: FontWeight.w600,
                         size: 14,
                         color: Colors.black,
@@ -43,14 +49,15 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8),
                         child: TextBasicWidget(
-                          text: 'Refresher Dive',
+                          text: controller.data?.package?.packageName ?? '',
                           weight: FontWeight.w400,
                           size: 12,
                           color: theme.black30,
                         ),
                       ),
                       TextBasicWidget(
-                        text: '3 Days 1 Night  •  4 Dives  •  2 Divers',
+                        text:
+                            '${controller.data?.package?.dayCount ?? ''} Days ${controller.data?.package?.nightCount ?? ''} Night •  ${controller.data?.package?.diveCount ?? ''} Dives  •  ${controller.data?.package?.minimumDiver ?? ''} Divers',
                         weight: FontWeight.w400,
                         size: 10,
                         color: theme.black50,
@@ -65,7 +72,7 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
               color: theme.disable,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               child: Column(
                 children: [
                   Padding(
@@ -78,7 +85,7 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                           color: theme.black50,
                         ),
                         TextBasicWidget(
-                          text: '22 July 2022',
+                          text: controller.data?.location?.date ?? '',
                           color: theme.black30,
                         ),
                       ],
@@ -92,7 +99,10 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                         color: theme.black50,
                       ),
                       TextBasicWidget(
-                        text: '25 July 2022',
+                        text: DateHelper.getNextDateFromString(
+                          controller.data?.location?.date,
+                          int.parse(controller.data?.package?.dayCount ?? '0'),
+                        ),
                         color: theme.black30,
                       ),
                     ],
@@ -100,51 +110,63 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                 ],
               ),
             ),
-            Divider(
-              thickness: 4,
-              height: 4,
-              color: theme.disable,
+            Visibility(
+              visible: controller.userCredentials?.accessToken == null,
+              child: Divider(
+                thickness: 4,
+                height: 4,
+                color: theme.disable,
+              ),
             ),
-            Container(
-              margin: EdgeInsets.zero,
-              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-              color: theme.main10,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: CircleAvatar(
-                      radius: 12,
-                      backgroundColor: Colors.white,
-                      child: Assets.icons.lockBlueIcon.svg(),
-                    ),
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
+            Visibility(
+              visible: controller.userCredentials?.accessToken == null,
+              child: Container(
+                margin: EdgeInsets.zero,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                color: theme.main10,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: CircleAvatar(
+                        radius: 12,
+                        backgroundColor: Colors.white,
+                        child: Assets.icons.lockBlueIcon.svg(),
                       ),
-                      children: [
-                        TextSpan(
-                          text: 'Login',
-                          style: TextStyle(
-                            color: theme.main50,
-                          ),
-                        ),
-                        TextSpan(text: ' or '),
-                        TextSpan(
-                          text: 'Register',
-                          style: TextStyle(
-                            color: theme.main50,
-                          ),
-                        ),
-                        TextSpan(text: ' to manage and auto fill your order'),
-                      ],
                     ),
-                  ),
-                ],
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        children: [
+                          TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => controller.goToLogin(),
+                            text: 'Login',
+                            style: TextStyle(
+                              color: theme.main50,
+                            ),
+                          ),
+                          const TextSpan(text: ' or '),
+                          TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => controller.goToRegister(),
+                            text: 'Register',
+                            style: TextStyle(
+                              color: theme.main50,
+                            ),
+                          ),
+                          const TextSpan(
+                              text: ' to manage and auto fill your order'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Divider(
@@ -153,9 +175,9 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
               color: theme.disable,
             ),
             Padding(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
               child: Container(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   border: Border.all(color: theme.black10),
                   borderRadius: BorderRadius.circular(8),
@@ -196,11 +218,11 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
               color: theme.disable,
             ),
             Padding(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextBasicWidget(
+                  const TextBasicWidget(
                     text: 'Diver Detail - 1',
                     weight: FontWeight.w700,
                     size: 16,
@@ -208,7 +230,11 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                   ),
                   Row(
                     children: [
-                      Checkbox(value: dummyCheckbox, onChanged: null),
+                      Checkbox(
+                        value: controller.isUseLoginInformation,
+                        onChanged: (value) =>
+                            controller.onChangeIsUseLoginInformation(),
+                      ),
                       TextBasicWidget(
                         text: 'Use login information',
                         weight: FontWeight.w400,
@@ -217,25 +243,25 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: TextFormFieldOutlineWidget(
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: const TextFormFieldOutlineWidget(
                       hint: 'First name',
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: TextFormFieldOutlineWidget(
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: const TextFormFieldOutlineWidget(
                       hint: 'Last name',
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
                     child: TextFormFieldOutlineWidget(
                       hint: 'Phone Number',
                     ),
                   ),
-                  TextFormFieldOutlineWidget(
+                  const TextFormFieldOutlineWidget(
                     hint: 'Certificate Number',
                   ),
                 ],
@@ -246,38 +272,38 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
               color: theme.disable,
             ),
             Padding(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: TextBasicWidget(
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: const TextBasicWidget(
                       text: 'Diver Detail - 2',
                       weight: FontWeight.w700,
                       size: 16,
                       color: Colors.black,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
                     child: TextFormFieldOutlineWidget(
                       hint: 'First name',
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: TextFormFieldOutlineWidget(
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: const TextFormFieldOutlineWidget(
                       hint: 'Last name',
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: TextFormFieldOutlineWidget(
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 16),
+                    child: const TextFormFieldOutlineWidget(
                       hint: 'Phone Number',
                     ),
                   ),
-                  TextFormFieldOutlineWidget(
+                  const TextFormFieldOutlineWidget(
                     hint: 'Certificate Number',
                   ),
                 ],
@@ -288,7 +314,7 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
               color: theme.disable,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               child: Column(
                 children: [
                   Row(
@@ -300,7 +326,8 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                         color: theme.black30,
                       ),
                       TextBasicWidget(
-                        text: 'IDR 214.234',
+                        text:
+                            '${controller.data?.currency ?? ''} ${(controller.data?.package?.price ?? '').addComma()}',
                         weight: FontWeight.w700,
                         color: theme.main50,
                         size: 16,
@@ -318,7 +345,7 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (_) {
-                              return SelectorBookingPaymentWidget();
+                              return const SelectorBookingPaymentWidget();
                             },
                           );
                         }),
