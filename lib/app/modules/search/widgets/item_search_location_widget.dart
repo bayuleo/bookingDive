@@ -53,6 +53,11 @@ class ItemSearchLocationWidget extends StatelessWidget with BaseWidgetMixin {
                       data?.image ?? '',
                       fit: BoxFit.cover,
                       width: MediaQuery.of(context).size.width - 50,
+                      errorBuilder: (context, exception, stackTrace) {
+                        return Assets.images.loginBanner.image(
+                            fit: BoxFit.cover,
+                            width: MediaQuery.of(context).size.width - 40);
+                      },
                     ),
                   );
                 }),

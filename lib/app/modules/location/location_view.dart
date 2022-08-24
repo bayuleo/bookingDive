@@ -112,6 +112,11 @@ class LocationScreen extends BaseView<LocationController> {
                                 child: CircularProgressIndicator(),
                               );
                             },
+                            errorBuilder: (context, exception, stackTrace) {
+                              return Assets.images.loginBanner.image(
+                                fit: BoxFit.cover,
+                              );
+                            },
                           ),
                         ),
                       )),
@@ -133,6 +138,11 @@ class LocationScreen extends BaseView<LocationController> {
                                 if (loadingProgress == null) return child;
                                 return Center(
                                   child: CircularProgressIndicator(),
+                                );
+                              },
+                              errorBuilder: (context, exception, stackTrace) {
+                                return Assets.images.loginBanner.image(
+                                  fit: BoxFit.cover,
                                 );
                               },
                             ),
@@ -194,6 +204,12 @@ class LocationScreen extends BaseView<LocationController> {
                                     if (loadingProgress == null) return child;
                                     return Center(
                                       child: CircularProgressIndicator(),
+                                    );
+                                  },
+                                  errorBuilder:
+                                      (context, exception, stackTrace) {
+                                    return Assets.images.loginBanner.image(
+                                      fit: BoxFit.cover,
                                     );
                                   },
                                 ),

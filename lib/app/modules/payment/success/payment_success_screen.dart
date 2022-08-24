@@ -26,9 +26,9 @@ class PaymentSuccessScreen extends BaseView<PaymentSuccessController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Assets.icons.paymentWaitingIcon.svg(),
+                Assets.icons.paymentSuccess.svg(),
                 TextBasicWidget(
-                  text: 'We’ve received your order!',
+                  text: 'Your payment is successful',
                   size: 18,
                   weight: FontWeight.w700,
                   color: theme.black50,
@@ -37,7 +37,7 @@ class PaymentSuccessScreen extends BaseView<PaymentSuccessController> {
                   padding: EdgeInsets.only(top: 8, bottom: 24),
                   child: TextBasicWidget(
                     text:
-                        'We need time to check your payment. See payment status by clicking the button below',
+                        'Your payment is confirmed. We have sent you your e-Ticket',
                     size: 16,
                     weight: FontWeight.w400,
                     color: theme.black30,
@@ -45,7 +45,7 @@ class PaymentSuccessScreen extends BaseView<PaymentSuccessController> {
                   ),
                 ),
                 ButtonBasicWidget(
-                  text: 'View Payment Status',
+                  text: 'View e-Ticket',
                   onTap: () {},
                 )
               ],
