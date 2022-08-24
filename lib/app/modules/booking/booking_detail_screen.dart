@@ -4,7 +4,7 @@ import 'package:bookingdive/app/core/utils/date.dart';
 import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/button/button_basic_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
-import 'package:bookingdive/app/core/widgets/text/text_field_outline_widget.dart';
+import 'package:bookingdive/app/modules/booking/widgets/diver_detail_form_widget.dart';
 import 'package:bookingdive/app/modules/booking/widgets/selector_booking_payment_widget.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/gestures.dart';
@@ -213,101 +213,15 @@ class BookingDetailScreen extends BaseView<BookingDetailController> {
                 ),
               ),
             ),
-            Divider(
-              thickness: 4,
-              color: theme.disable,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const TextBasicWidget(
-                    text: 'Diver Detail - 1',
-                    weight: FontWeight.w700,
-                    size: 16,
-                    color: Colors.black,
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: controller.isUseLoginInformation,
-                        onChanged: (value) =>
-                            controller.onChangeIsUseLoginInformation(),
-                      ),
-                      TextBasicWidget(
-                        text: 'Use login information',
-                        weight: FontWeight.w400,
-                        size: 14,
-                        color: theme.black50,
-                      ),
-                    ],
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: const TextFormFieldOutlineWidget(
-                      hint: 'First name',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: const TextFormFieldOutlineWidget(
-                      hint: 'Last name',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: TextFormFieldOutlineWidget(
-                      hint: 'Phone Number',
-                    ),
-                  ),
-                  const TextFormFieldOutlineWidget(
-                    hint: 'Certificate Number',
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              thickness: 4,
-              color: theme.disable,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: const TextBasicWidget(
-                      text: 'Diver Detail - 2',
-                      weight: FontWeight.w700,
-                      size: 16,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: TextFormFieldOutlineWidget(
-                      hint: 'First name',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: const TextFormFieldOutlineWidget(
-                      hint: 'Last name',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: const TextFormFieldOutlineWidget(
-                      hint: 'Phone Number',
-                    ),
-                  ),
-                  const TextFormFieldOutlineWidget(
-                    hint: 'Certificate Number',
-                  ),
-                ],
-              ),
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount:
+                  int.parse(controller.data?.package?.minimumDiver ?? '1'),
+              itemBuilder: (BuildContext context, int index) {
+                return DiverDetailFormWidget(
+                    controller: controller, index: index);
+              },
             ),
             Divider(
               thickness: 4,

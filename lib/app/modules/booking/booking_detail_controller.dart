@@ -15,15 +15,44 @@ class BookingDetailController extends BaseController {
 
   bool isUseLoginInformation = false;
 
-  List<TextEditingController> controllers = [];
+  List<TextEditingController> firstNameControllers = [];
+  List<TextEditingController> lastNameControllers = [];
+  List<TextEditingController> phoneNumberControllers = [];
+  List<TextEditingController> certificateNumberControllers = [];
 
   BookingArguments? data;
 
   @override
-  void onReady() {
-    data = Get.arguments;
+  void onReady() async {
+    data = await Get.arguments;
+    generateController();
     getUserData();
     super.onReady();
+  }
+
+  void generateController() {
+    for (int i = 0; i < int.parse(data?.package?.minimumDiver ?? '1'); i++) {
+      var firstName = TextEditingController();
+      var lastName = TextEditingController();
+      var phoneNumber = TextEditingController();
+      var certificateNumber = TextEditingController();
+
+      firstNameControllers.add(firstName);
+      lastNameControllers.add(lastName);
+      phoneNumberControllers.add(phoneNumber);
+      certificateNumberControllers.add(certificateNumber);
+    }
+  }
+
+  @override
+  void onClose() {
+    for (int i = 0; i < int.parse(data?.package?.minimumDiver ?? '1'); i++) {
+      firstNameControllers[i].dispose();
+      lastNameControllers[i].dispose();
+      phoneNumberControllers[i].dispose();
+      certificateNumberControllers[i].dispose();
+    }
+    super.onClose();
   }
 
   Future<void> getUserData() async {
@@ -47,6 +76,16 @@ class BookingDetailController extends BaseController {
 
   onChangeIsUseLoginInformation() {
     isUseLoginInformation = !isUseLoginInformation;
+    if (isUseLoginInformation) {
+      firstNameControllers[0].text = userCredentials?.profile?.firstName ?? '';
+      lastNameControllers[0].text = userCredentials?.profile?.lastName ?? '';
+      phoneNumberControllers[0].text =
+          userCredentials?.profile?.phoneNumber ?? '';
+    } else {
+      firstNameControllers[0].text = '';
+      lastNameControllers[0].text = '';
+      phoneNumberControllers[0].text = '';
+    }
     update();
   }
 }
