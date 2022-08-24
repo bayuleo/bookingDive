@@ -39,7 +39,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  onTapLeftIcon ?? Get.back();
+                  onTapLeftIcon != null ? onTapLeftIcon!() : Get.back();
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

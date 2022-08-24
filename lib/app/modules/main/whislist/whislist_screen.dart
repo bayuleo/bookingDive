@@ -1,10 +1,14 @@
 import 'package:bookingdive/app/core/base/base_view.dart';
+import 'package:bookingdive/app/core/utils/argument.dart';
+import 'package:bookingdive/app/core/utils/date.dart';
 import 'package:bookingdive/app/core/widgets/app_bars/app_bar_widget.dart';
 import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/main/whislist/whislist_controller.dart';
+import 'package:bookingdive/app/routes/app_routes.dart';
 import 'package:bookingdive/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 import '../../search/widgets/item_search_location_widget.dart';
 
@@ -54,10 +58,28 @@ class WhistlistScreen extends BaseView<WhislistController> {
                   itemCount: controller.wishlist?.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
                     var item = controller.wishlist?[index];
-                    return ItemSearchLocationWidget(
-                      data: item,
-                      onTapFavorite: () => controller
-                          .postWishlist((item?.productId ?? '').toString()),
+                    return InkWell(
+                      onTap: () {
+                        controller
+                                .homeController.dateTextEditingController.text =
+                            DateHelper.formatDate(
+                                DateTime.now(), 'dd MMMM yyyy');
+                        Get.toNamed(
+                          Routes.LOCATION,
+                          arguments: LocationArguments(
+                            locationName: item?.productName ?? '',
+                            date: DateHelper.formatDate(
+                                DateTime.now(), 'dd MMMM yyyy'),
+                            diver: '9',
+                            id: item?.productId ?? '',
+                          ),
+                        );
+                      },
+                      child: ItemSearchLocationWidget(
+                        data: item,
+                        onTapFavorite: () => controller
+                            .postWishlist((item?.productId ?? '').toString()),
+                      ),
                     );
                   }),
             ),

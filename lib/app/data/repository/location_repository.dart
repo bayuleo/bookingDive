@@ -16,6 +16,8 @@ abstract class LocationRepository {
 
   Future<ResponseReview> getReview(String idLocation);
 
+  Future<ResponseOrder> postOrder(RequestOrder param);
+
   Future<ResponseListLocations> getWishlist();
 
   Future<String> postWishlist(RequestWishlist param);
@@ -60,5 +62,10 @@ class LocationRepositoryImpl implements LocationRepository {
   @override
   Future<String> postWishlist(RequestWishlist param) {
     return _locationDataSource.postWishlist(param);
+  }
+
+  @override
+  Future<ResponseOrder> postOrder(RequestOrder param) {
+    return _locationDataSource.postOrder(param);
   }
 }

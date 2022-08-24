@@ -12,8 +12,10 @@ import 'package:bookingdive/app/modules/location/location_binding.dart';
 import 'package:bookingdive/app/modules/location/location_view.dart';
 import 'package:bookingdive/app/modules/location/review/review_binding.dart';
 import 'package:bookingdive/app/modules/location/review/review_screen.dart';
-import 'package:bookingdive/app/modules/payment/payment_binding.dart';
-import 'package:bookingdive/app/modules/payment/payment_screen.dart';
+import 'package:bookingdive/app/modules/payment/success/payment_success_binding.dart';
+import 'package:bookingdive/app/modules/payment/success/payment_success_screen.dart';
+import 'package:bookingdive/app/modules/payment/waiting/payment_waiting_binding.dart';
+import 'package:bookingdive/app/modules/payment/waiting/payment_waiting_screen.dart';
 import 'package:bookingdive/app/modules/profile/change_password/change_password_binding.dart';
 import 'package:bookingdive/app/modules/profile/change_password/change_password_screen.dart';
 import 'package:bookingdive/app/modules/profile/edit_profile/edit_profile_binding.dart';
@@ -116,9 +118,14 @@ class AppPages {
       binding: BookingDetailBinding(),
     ),
     GetPage(
-      name: Routes.PAYMENT,
-      page: () => PaymentScreen(),
-      binding: PaymentBinding(),
+      name: Routes.PAYMENT_WAITING,
+      page: () => PaymentWaitingScreen(),
+      binding: PaymentWaitingBinding(),
+    ),
+    GetPage(
+      name: Routes.PAYMENT_SUCCESS,
+      page: () => PaymentSuccessScreen(),
+      binding: PaymentSuccessBinding(),
     ),
     GetPage(
       name: Routes.MAIN_CONTENT,

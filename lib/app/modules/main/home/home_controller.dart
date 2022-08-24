@@ -1,5 +1,6 @@
 import 'package:bookingdive/app/core/base/base_controller.dart';
 import 'package:bookingdive/app/core/utils/argument.dart';
+import 'package:bookingdive/app/core/utils/date.dart';
 import 'package:bookingdive/app/core/utils/permission_handler.dart';
 import 'package:bookingdive/app/core/utils/snackbar.dart';
 import 'package:bookingdive/app/core/utils/time.dart';
@@ -135,20 +136,17 @@ class HomeController extends BaseController {
   }
 
   void onTapItemPopular(ResponseDataListLocation item) async {
-    await Get.toNamed(Routes.LOCATION,
-        arguments: LocationArguments(
-          locationName: item.productName,
-          date: TimeHelper.formatDate(DateTime.now(), 'dd MMM yyyy'),
-          diver: "1",
-          id: item.productId.toString(),
-        )
-        // arguments: SearchDetailArguments(
-        //   selectedDestination: item.productName,
-        //   date: dateTextEditingController.text.trim(),
-        //   diver: diverTextEditingController.text.trim(),
-        //   searchBy: searchBy!,
-        // ),
-        );
+    dateTextEditingController.text =
+        DateHelper.formatDate(DateTime.now(), 'dd MMMM yyyy');
+    await Get.toNamed(
+      Routes.LOCATION,
+      arguments: LocationArguments(
+        locationName: item.productName,
+        date: TimeHelper.formatDate(DateTime.now(), 'dd MMM yyyy'),
+        diver: "1",
+        id: item.productId.toString(),
+      ),
+    );
   }
 
   Future<PermissionStatus> _checkPermissionAccessLocation() async {

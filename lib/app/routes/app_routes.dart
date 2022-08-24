@@ -15,5 +15,6 @@ abstract class Routes {
   static const LOCATION = '/location';
   static const REVIEW = '/review';
   static const BOOKING = '/booking';
-  static const PAYMENT = '/payment';
+  static const PAYMENT_WAITING = '/payment_waiting';
+  static const PAYMENT_SUCCESS = '/payment_success';
 }
