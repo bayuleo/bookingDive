@@ -34,6 +34,7 @@ class LocationEndpoint {
   final String review;
   final String wishlist;
   final String order;
+  final String orderList;
 
   LocationEndpoint({
     this.popularLocation = '/listing-popular',
@@ -43,6 +44,7 @@ class LocationEndpoint {
     this.review = '/review',
     this.wishlist = '/wishlist',
     this.order = '/order',
+    this.orderList = 'order-list',
   });
 }
 

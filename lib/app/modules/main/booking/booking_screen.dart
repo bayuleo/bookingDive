@@ -63,8 +63,8 @@ class BookingScreen extends BaseView<BookingController> {
           Expanded(
             child: TabBarView(
               controller: controller.tabController,
-              children: const [
-                ItemBookingWidget(),
+              children: [
+                ItemBookingWidget(data: controller.data ?? []),
                 Text('test2'),
                 Text('test3'),
                 // ItemBookingWidget(),

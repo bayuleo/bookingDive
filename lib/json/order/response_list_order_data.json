@@ -1,0 +1,11 @@
+{
+  "order_id": "12345665",
+  "product_id": "1234",
+  "product_name": "Universal Diver Studioi",
+  "location_state": "Semporna",
+  "location_country": "Malaysia",
+  "grand_total": "100000",
+  "payment_status": "waiting",
+  "is_completed": true,
+  "package": "$./response_list_order_package"
+}

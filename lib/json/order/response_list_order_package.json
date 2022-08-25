@@ -1,0 +1,9 @@
+{
+  "package_name": "package 1",
+  "day_count": "3",
+  "night_count": "2",
+  "minimum_diver": "3",
+  "dive_count": "3",
+  "image": "https://bookingdive.com/public/images/property/5/1652442434_scuba_diving_course.jpg",
+  "price": "5000000"
+}

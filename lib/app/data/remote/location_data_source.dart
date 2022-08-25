@@ -19,6 +19,8 @@ abstract class LocationDataSource {
 
   Future<ResponseOrder> postOrder(RequestOrder param);
 
+  Future<ResponseListOrder> getOrder();
+
   Future<ResponseListLocations> getWishlist();
 
   Future<String> postWishlist(RequestWishlist param);
@@ -109,5 +111,13 @@ class LocationDataSourceImpl implements LocationDataSource {
       queryParameters: queryParams,
     );
     return ResponseWishlist.fromJson(response.data).message;
+  }
+
+  @override
+  Future<ResponseListOrder> getOrder() async {
+    var response = await dioConfigure.dioMock.get(
+      endpoints.location.orderList,
+    );
+    return ResponseListOrder.fromJson(response.data);
   }
 }
