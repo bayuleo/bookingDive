@@ -1,3 +1,4 @@
+import 'package:bookingdive/app/core/widgets/text/text_basic_widget.dart';
 import 'package:bookingdive/app/modules/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,9 @@ class SplashScreen extends BaseView<SplashController> {
       body: Container(
         width: SizeConfig().screenWidth,
         height: SizeConfig().screenHeight,
-        decoration: const BoxDecoration(color: Colors.blueAccent),
+        decoration: const BoxDecoration(
+          color: Color(0xFF32749C),
+        ),
         child: Stack(
           children: [
             // Assets.images.backgroundSplash.svg(
@@ -28,26 +31,33 @@ class SplashScreen extends BaseView<SplashController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // const SizedBox(height: 40),
+                  // SizedBox(
+                  //   width: SizeConfig().screenWidth / 3,
+                  //   // child: Assets.images.logoSplash.svg(
+                  //   //   key: const ValueKey('splash_logo_image'),
+                  //   //   fit: BoxFit.scaleDown,
+                  //   // ),
+                  //   child: Text("Logo"),
+                  // ),
                   const SizedBox(height: 40),
-                  SizedBox(
-                    width: SizeConfig().screenWidth / 3,
-                    // child: Assets.images.logoSplash.svg(
-                    //   key: const ValueKey('splash_logo_image'),
-                    //   fit: BoxFit.scaleDown,
-                    // ),
-                    child: Text("Logo"),
+                  TextBasicWidget(
+                    text: 'Welcome to Booking Dive',
+                    size: 28,
+                    weight: FontWeight.w700,
+                    color: theme.white,
                   ),
                   const SizedBox(height: 40),
-                  const Text(
-                    'Welcome to Booking Dive',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 22,
-                    ),
-                    textAlign: TextAlign.center,
-                    key: ValueKey('splash_welcome_text'),
-                  ),
+                  // const Text(
+                  //   'Welcome to Booking Dive',
+                  //   style: TextStyle(
+                  //     color: Colors.white,
+                  //     fontWeight: FontWeight.w700,
+                  //     fontSize: 22,
+                  //   ),
+                  //   textAlign: TextAlign.center,
+                  //   key: ValueKey('splash_welcome_text'),
+                  // ),
                 ],
               ),
             ),

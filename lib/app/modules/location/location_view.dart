@@ -410,8 +410,11 @@ class LocationScreen extends BaseView<LocationController> {
                         itemCount: controller.listReview.length,
                         itemBuilder: (BuildContext context, int index) {
                           var item = controller.listReview[index];
-                          return ItemReviewWidget(
-                            data: item,
+                          return Padding(
+                            padding: EdgeInsets.only(right: 16),
+                            child: ItemReviewWidget(
+                              data: item,
+                            ),
                           );
                         },
                       ),

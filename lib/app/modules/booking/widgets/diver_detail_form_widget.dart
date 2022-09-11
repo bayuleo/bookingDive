@@ -32,7 +32,7 @@ class DiverDetailFormWidget extends StatelessWidget with BaseWidgetMixin {
                 size: 16,
                 color: Colors.black,
               ),
-              index == 0
+              index == 0 && controller.userCredentials?.accessToken != null
                   ? Row(
                       children: [
                         Checkbox(

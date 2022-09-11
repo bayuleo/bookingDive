@@ -35,6 +35,7 @@ class LocationController extends BaseController {
 
   @override
   void onReady() async {
+    showLoading();
     searchDetailArguments = Get.arguments;
     locationId = searchDetailArguments?.id ?? '0';
     update();

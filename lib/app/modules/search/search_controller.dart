@@ -44,7 +44,7 @@ class SearchController extends BaseController {
 
   @override
   void onInit() async {
-    listProductController.addListener(_listListener);
+    // listProductController.addListener(_listListener);
     debounce<String>(
       keyword,
       (_) async {
@@ -65,10 +65,11 @@ class SearchController extends BaseController {
 
   @override
   void onClose() {
-    listProductController.removeListener(_listListener);
+    // listProductController.removeListener(_listListener);
     listProductController.dispose();
     destinationBottomSelector.dispose();
     destinationTextEditingController.dispose();
+    destinationBottomInputTextEditingController.dispose();
     dateTextEditingController.dispose();
     diverTextEditingController.dispose();
     diverInputController.dispose();
@@ -93,7 +94,7 @@ class SearchController extends BaseController {
     update();
   }
 
-  void _listListener() {
+  void listListener() {
     if (listProductController.position.pixels >
         listProductController.position.minScrollExtent + 500) {
       if (!isShowButtonToFirstData) {

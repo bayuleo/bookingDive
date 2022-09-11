@@ -145,40 +145,49 @@ class SearchScreen extends BaseView<SearchController> {
               ),
             ),
             Expanded(
-              child: SingleChildScrollView(
-                controller: controller.listProductController,
-                child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.only(left: 24, top: 16, right: 24),
-                    shrinkWrap: true,
-                    itemCount: controller.listLocations.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var item = controller.listLocations[index];
-                      return InkWell(
-                          onTap: () {
-                            var detailLocationSearch = LocationArguments(
-                                locationName: item.productName,
-                                date: controller.homeController
-                                    .dateTextEditingController.text
-                                    .trim(),
-                                diver: controller.homeController
-                                    .diverTextEditingController.text
-                                    .trim(),
-                                id: item.productId);
-                            Get.toNamed(
-                              Routes.LOCATION,
-                              arguments: detailLocationSearch,
-                            );
-                          },
-                          child: ItemSearchLocationWidget(
-                            data: controller.listLocations[index],
-                            onTapFavorite: () {
-                              controller.postWishlist(
-                                item.productId.toString(),
+              child: NotificationListener<ScrollNotification>(
+                onNotification: (scrollNotification) {
+                  if (scrollNotification is ScrollEndNotification) {
+                    controller.listListener();
+                    return true;
+                  }
+                  return false;
+                },
+                child: SingleChildScrollView(
+                  controller: controller.listProductController,
+                  child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.only(left: 24, top: 16, right: 24),
+                      shrinkWrap: true,
+                      itemCount: controller.listLocations.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var item = controller.listLocations[index];
+                        return InkWell(
+                            onTap: () {
+                              var detailLocationSearch = LocationArguments(
+                                  locationName: item.productName,
+                                  date: controller.homeController
+                                      .dateTextEditingController.text
+                                      .trim(),
+                                  diver: controller.homeController
+                                      .diverTextEditingController.text
+                                      .trim(),
+                                  id: item.productId);
+                              Get.toNamed(
+                                Routes.LOCATION,
+                                arguments: detailLocationSearch,
                               );
                             },
-                          ));
-                    }),
+                            child: ItemSearchLocationWidget(
+                              data: controller.listLocations[index],
+                              onTapFavorite: () {
+                                controller.postWishlist(
+                                  item.productId.toString(),
+                                );
+                              },
+                            ));
+                      }),
+                ),
               ),
             ),
             // TODO remove comment when integrate with real data

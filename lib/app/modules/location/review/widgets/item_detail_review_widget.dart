@@ -95,6 +95,12 @@ class ItemReviewDetailWidget extends StatelessWidget with BaseWidgetMixin {
                               data.images[index],
                               width: 80,
                               fit: BoxFit.cover,
+                              errorBuilder: (context, exception, stackTrace) {
+                                return Assets.images.loginBanner.image(
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                );
+                              },
                             ),
                           ),
                         );
